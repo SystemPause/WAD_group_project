@@ -4,9 +4,9 @@
 ## Group Project: WAD2 - University of Glasgow 2018
 ## Group members: 
 
- 1. Martina Cocco
- 2. Zay Yar Tun
- 3. Gloria Dhandapani
+ 1. Martina Cocco - 2267320C
+ 2. Zay Yar Tun - 2277073Z
+ 3. Gloria Dhandapani - 2252533D
  4. Alessandro Speggiorin - 2268690S
 
 ## Project Overview 
@@ -26,7 +26,8 @@ In this section we should add coding rules that we want follow so that we all fo
     ```python
         {% url 'show_category'}
     ```
-    
+## TODO List 
+
 
 ## Marking Scheme
 
