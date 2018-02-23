@@ -13,13 +13,6 @@
 
 ## Coding Syle
 In this section we should add coding rules that we want follow so that we all follow the same coding standards.  
-
- - In every view, in order to get the url we should use the **reverse** function
- 
-    ```python
-        reverse('news-archive')
-    ```
-    
     
  - In every template, in order to get the url we should use
  
@@ -27,8 +20,13 @@ In this section we should add coding rules that we want follow so that we all fo
         {% url 'show_category'}
     ```
 ## TODO List 
+Here you can divide your work as you want so that other group members can see your progress
 
-
+ - **Dante**: Models / Population Script / Javascript / Jquery
+ - **Gloria**: User authentication / unit testing
+ - **Martina**: Templates / CSS
+ - **Alessandro**: Views / Ajax 
+ 
 ## Marking Scheme
 
 **Deployment**

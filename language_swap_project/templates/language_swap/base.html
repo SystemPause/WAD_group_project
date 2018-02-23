@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<body>
+    <head>
+        <script src="{% static 'javascript/jquery-3.3.1.min' %}"></script>
+        <title>
+            {% block title_block %}
+            {% endblock %}
+        </title>
+    </head>
+    <body>
+        {% block body_block %}
+        {% endblock %}
+    </body>
+</body>
