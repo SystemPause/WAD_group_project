@@ -4,3 +4,6 @@
 
 # Database file
 db.sqlite3
+
+# PyCharm Setting folder
+/.idea
