@@ -19,9 +19,19 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.conf.urls import include
 from language_swap import views
+from registration.backends.simple.views import RegistrationView
+
+# Redirects the user to the index page, if successful at logging
+class MyRegistrationView(RegistrationView):
+    def get_success_url(self, user): return '/LanguageSwap/'
 
 urlpatterns = [
     url(r'^$', views.index, name="index"),
-    url(r'^languageSwap/', include('language_swap.urls')),
+    url(r'^LanguageSwap/', include('language_swap.urls')),
+    url(r'^accounts/register/$', MyRegistrationView.as_view(), name='registration_register'),
+    url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+
+class MyRegistrationView(RegistrationView):
+    def get_success_url(self, user): return '/LanguageSwap/'
