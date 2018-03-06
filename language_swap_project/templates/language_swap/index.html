@@ -6,26 +6,42 @@
 {% block body_block %}
 <main role="main">
 
-    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+    <div class="row overflow-hidden p-3 p-md-5 text-center bg-dark bg">
+       <!-- <section class="position-relative bg-dark text-white"><img src="{% static 'images/background.jpeg' %}" class="bg-image opacity-60"></section> -->
         <div class="col-md-8 p-lg-5 mx-auto my-5">
-            <h1 class="display-4 font-weight-normal">Punny headline</h1>
-            <p class="lead font-weight-normal">And an even wittier subheading to boot. Jumpstart your marketing efforts with this example based on Apple's marketing pages.</p>
+            <h1 class="display-4 font-weight-normal text-light">Find your language buddy</h1>
+            <p class="lead font-weight-normal text-light">This will be the coolest thing in your life.</p>
             <form>
               <div class="form-row">
-                <div class="col-5">
-                  <input type="text" class="form-control" placeholder="City">
+                <div class="col">
+                  <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                        <option selected>The language I want to learn</option>
+                      </select>
                 </div>
                 <div class="col">
-                  <input type="text" class="form-control" placeholder="Language">
+                  <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                        <option selected>My native language</option>
+                      </select>
                 </div>
                 <div class="col-2">
-                  <button class="btn btn-md btn-primary" type="submit">Search</button>
+                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                        <option selected>My Country</option>
+                            <!-- {% for country in countries %}
+                                <option value="{{country}}">{{country}}</option>
+                            {% endfor %} -->
+                      </select>
+                </div>
+                <div class="col-2">
+                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                        <option selected>My City</option>
+                      </select>
+                </div>
+                <div class="col-1">
+                  <button class="btn btn-primary" type="submit">Search</button>
                 </div>
               </div>
             </form>
         </div>
-        <div class="product-device box-shadow d-none d-md-block"></div>
-        <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
     </div>
 
     <!-- Marketing messaging and featurettes
@@ -35,26 +51,23 @@
     <div class="container marketing">
 
         <!-- Three columns of text below the carousel -->
-        <div class="row">
+        <div class="row pt-5">
             <div class="col-lg-4">
                 <img class="rounded-circle" src="{{ MEDIA_URL }}profile_pictures/frog.jpg" alt="Generic placeholder image" width="140" height="140">
-                <h2>Heading</h2>
+                <h2>Chat.</h2>
                 <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
             </div>
             <!-- /.col-lg-4 -->
             <div class="col-lg-4">
                 <img class="rounded-circle" src="{{ MEDIA_URL }}profile_pictures/frog.jpg" alt="Generic placeholder image" width="140" height="140">
-                <h2>Heading</h2>
+                <h2>Meet.</h2>
                 <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
             </div>
             <!-- /.col-lg-4 -->
             <div class="col-lg-4">
                 <img class="rounded-circle" src="{{ MEDIA_URL }}profile_pictures/frog.jpg" alt="Generic placeholder image" width="140" height="140">
-                <h2>Heading</h2>
+                <h2>Practice!</h2>
                 <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
             </div>
             <!-- /.col-lg-4 -->
         </div>
