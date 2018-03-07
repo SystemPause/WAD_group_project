@@ -8,7 +8,7 @@ from language_swap.models import UserProfile,Language,Contact
 
 def populate():
     language_list = [
-        "Burmese", "Italian", "English"
+        "burmese", "italian", "english"
     ]
 
     for lang in language_list:
@@ -20,13 +20,13 @@ def populate():
         {
             "firstname": "Dicky", "lastname":"Donkey", "email": "dickd@dd.com",
             "password":"hunter123","city":"Milan","country":"Italy",
-            "speaks":"Italian","practices":"Burmese"
+            "speaks":"italian","practices":"burmese"
         },
 
         {
             "firstname": "Nay Min", "lastname": "Htet", "email": "naymin@htet.com",
             "password": "hunter123", "city": "Mandalay", "country": "Myanmar",
-            "speaks":"Burmese","practices":"Italian"
+            "speaks":"burmese","practices":"italian"
         },
 
     ]
