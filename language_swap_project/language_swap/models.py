@@ -33,25 +33,28 @@ class UserProfile(models.Model):
     practices = models.ManyToManyField(Language,related_name='practice')
 
     #these are the relationship attributes between different users
-    contacts = models.ManyToManyField('self',related_name='contact')
+    #contacts = models.ManyToManyField('self',related_name='contact',
+                                      #symmetrical=False)
 
-class Rate(models.Model):
-    ratedUser = models.ForeignKey(UserProfile,related_name='rated')
-
-    rater = models.ForeignKey(UserProfile,related_name='raterUser')
-
-    scoreChoices = (
-        (1, "bad"),
-        (2, "not too bad"),
-        (3, "normal"),
-        (4, "kinda good"),
-        (5, "good"),
-    )
-
-
-    score = models.IntegerField(choices = scoreChoices)
     def __str__(self):
         return self.user.username
+
+
+class Contact(models.Model):
+    sourceUser = models.ForeignKey(UserProfile,related_name='source')
+    contactedUser = models.ForeignKey(UserProfile,related_name='contacted')
+    scoreChoices = (
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4),
+        (5, 5),
+    )
+
+    score = models.IntegerField(choices=scoreChoices)
+
+
+
 
 
 
