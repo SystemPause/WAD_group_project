@@ -24,7 +24,7 @@ def index(request):
     # Populate a temporary list with all the countries
     country_list = []
     for country in pycountry.countries:
-        print country.name
+        print(country.name)
         country_list.append(country.name.lower())
     
     # Sort the elements of the list alphabetically

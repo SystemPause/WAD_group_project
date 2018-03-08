@@ -8,7 +8,7 @@ from django.db import models
 
 class Language(models.Model):
 
-    LanguageName = models.CharField(max_length=120)
+    LanguageName = models.CharField(max_length=120,primary_key=True)
 
     def __str__(self):
         return self.LanguageName
@@ -28,13 +28,11 @@ class UserProfile(models.Model):
     hobby = models.CharField(max_length=500,blank = True)
 
     #these are the relationship attributes between user and languages
-    speaks = models.ManyToManyField(Language,related_name="speak")
+    speaks = models.ManyToManyField(Language,related_name="speaks")
 
-    practices = models.ManyToManyField(Language,related_name='practice')
+    practices = models.ManyToManyField(Language,related_name='practices')
 
-    #these are the relationship attributes between different users
-    #contacts = models.ManyToManyField('self',related_name='contact',
-                                      #symmetrical=False)
+
 
     def __str__(self):
         return self.user.username
@@ -51,13 +49,7 @@ class Contact(models.Model):
         (5, 5),
     )
 
-    score = models.IntegerField(choices=scoreChoices)
-
-
-
-
-
-
+    score = models.IntegerField(choices=scoreChoices, blank=True)
 
 
 
