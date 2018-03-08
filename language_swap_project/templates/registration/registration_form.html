@@ -4,7 +4,52 @@
     <h1>Register Here</h1>
     <form method="post" action="." enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form.non_field_errors }}
+        <div class="fieldWrapper">
+            {{ form.first_name.errors }}
+            <label for="{{ form.first_name.id_for_label }}">First Name:</label>
+            {{ form.first_name }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.last_name.errors }}
+            <label for="{{ form.last_name.id_for_label }}">Last Name:</label>
+            {{ form.last_name }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.email.errors }}
+            <label for="{{ form.email.id_for_label }}">Email:</label>
+            {{ form.email }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.password1.errors }}
+            {{ form.password2.errors }}
+            <label for="{{ form.password1.id_for_label }}">Password:</label>
+            {{ form.password1 }}
+        </div>
+        <div class="fieldWrapper">
+            <label for="{{ form.password2.id_for_label }}">Password confirmation:</label>
+            {{ form.password2 }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.city.errors }}
+            <label for="{{ form.city.id_for_label }}">City:</label>
+            {{ form.city }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.country.errors }}
+            <label for="{{ form.country.id_for_label }}">Country:</label>
+            {{ form.country }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.speaks.errors }}
+            <label for="{{ form.speaks.id_for_label }}">Native Language(s):</label>
+            {{ form.speaks }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.practices.errors }}
+            <label for="{{ form.practices.id_for_label }}">Practising Language(s):</label>
+            {{ form.practices }}
+        </div>
         <input type="submit" value="Sign Up" />
     </form>
 {% endblock %}
