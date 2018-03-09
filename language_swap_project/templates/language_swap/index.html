@@ -12,7 +12,7 @@
             <h1 class="display-4 font-weight-normal text-light">Find your language buddy</h1>
             <p class="lead font-weight-normal text-light">This will be the coolest thing in your life.</p>
             <form id="search_user_form" method="get" action="{%  url 'result' %}">
-            {% csrf_token %}
+            
               <div class="form-row">
                 <div class="col">
                   <select name="practicingLanguage" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
@@ -39,8 +39,9 @@
                       </select>
                 </div>
                 <div class="col-2">
-                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                        <option selected>My City</option>
+                    <select name="city" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                        <option disabled selected>My City</option>
+                        <option value="milan">Milan</option>
                       </select>
                 </div>
                 <div class="col-1">

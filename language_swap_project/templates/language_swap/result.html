@@ -1,0 +1,38 @@
+{% if errors %}
+    {% for error in errors %}
+        {{ error }}
+    {% endfor %}
+{% else %}
+    {% for user, details in users.items %}
+        {{ user }}<br>
+        {{ details.id }}<br>
+        {{ details.email }}<br>
+        {{ details.firstname }}<br>
+        {{ details.lastname }}<br>
+        {{ details.country }}<br>
+        {{ details.city }}<br>
+        {{ details.email }}<br>
+        {% if details.picture %}
+            {{ details.picture }}<br>
+        {% else %}
+            No picture uploaded for this user<br>
+        {% endif %}
+        {% if details.hobby %}
+            {{ details.hobby }}<br>
+        {% else %} 
+            No hobby  for this user<br>
+        {% endif %}
+        <b>Speaks</b><br>
+        {% for slang in details.speaks %}
+            {{ slang }}<br>
+        {% endfor %}
+        <b>Practices</b><br>
+        {% for plang in details.practices %}
+            {{ plang }}<br>
+        {% endfor %}
+        <hr>
+    {% endfor %}
+{% endif %}
+
+
+

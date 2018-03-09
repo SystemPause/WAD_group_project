@@ -8,28 +8,38 @@ from language_swap.models import UserProfile,Language,Contact,User
 import pycountry
 
 def populate():
-    language_list = []
+    language_list = ["italian", "french", "burmese", "english", "spanish"]
+    for lang in language_list:
+        add_Language(lang)
+    '''
     for language in pycountry.languages:
         language_list.append(language.name.lower())
         add_Language(language.name.lower())
+    '''
 
 
 
     user_list = [
         {
             "firstname": "Dicky", "lastname":"Donkey","username":"lamborghini", "email": "dickd@dd.com",
-            "password":"hunter123","city":"Milan","country":"Italy",
+            "password":"hunter123","city":"milan","country":"italy",
             "speaks":["italian","french"],"practices":["burmese","english"]
         },
 
         {
             "firstname": "Nay Min", "lastname": "Htet","username":"joker111", "email": "naymin@htet.com",
-            "password": "hunter123", "city": "Mandalay", "country": "Myanmar",
+            "password": "hunter123", "city": "mandalay", "country": "myanmar",
             "speaks":["burmese","spanish"],"practices":["italian","english"]
+        },
+        
+        {
+            "firstname": "Dante", "lastname":"The little pigeon","username":"littlePigeon", "email": "yolo@dd.com",
+            "password":"hunter123","city":"milan","country":"italy",
+            "speaks":["italian","french"],"practices":["burmese","english"]
         },
 
     ]
-    print(UserProfile._meta.get_fields())
+    
     for user in user_list:
         speaksList = []
 
@@ -44,9 +54,6 @@ def populate():
 
 
         add_user(user["firstname"],user["lastname"],user["username"],user["email"],user["password"],user["city"],user["country"],speaksList,practicesList)
-
-
-
 
 
 def add_Language(name):
@@ -65,8 +72,6 @@ def add_user(firstname,lastname,username,email,password,city,country,speaks,prac
 
     userProfile = UserProfile.objects.get_or_create(user = userObject, city = city,
                                              country = country)[0]
-    print(userObject)
-    print(userProfile)
     userProfile.save()
 
     for sth in speaks:
