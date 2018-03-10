@@ -1,15 +1,21 @@
 {% extends 'language_swap/base.html' %}
 
 {% block body_block %}
-    <h1>Login</h1>
-    <form method="post" action=".">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Log In" />
-        <input type="hidden" name="next" value="{{ next }}" />
-    </form>
-    <p>
-        Not a member?
-        <a href="{% url 'registration_register' %}">Register</a>
-    </p>
+    <link href="http://v4-alpha.getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+    <div class="container">
+        <form class="form-signin" method="post" action=".">
+            {% csrf_token %}
+            <h1 class="form-signin-heading">Log In</h1>
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
+            <input type="hidden" name="next" value="{{ next }}" /><br>
+            <p>
+                Not a member?
+                <a href="{% url 'registration_register' %}">Register</a>
+            </p>
+        </form>
+    </div>
 {% endblock %}

@@ -1,55 +1,103 @@
 {% extends 'language_swap/base.html' %}
 
 {% block body_block %}
-    <h1>Register Here</h1>
-    <form method="post" action="." enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.non_field_errors }}
-        <div class="fieldWrapper">
-            {{ form.first_name.errors }}
-            <label for="{{ form.first_name.id_for_label }}">First Name:</label>
-            {{ form.first_name }}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.last_name.errors }}
-            <label for="{{ form.last_name.id_for_label }}">Last Name:</label>
-            {{ form.last_name }}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.email.errors }}
-            <label for="{{ form.email.id_for_label }}">Email:</label>
-            {{ form.email }}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.password1.errors }}
-            {{ form.password2.errors }}
-            <label for="{{ form.password1.id_for_label }}">Password:</label>
-            {{ form.password1 }}
-        </div>
-        <div class="fieldWrapper">
-            <label for="{{ form.password2.id_for_label }}">Password confirmation:</label>
-            {{ form.password2 }}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.city.errors }}
-            <label for="{{ form.city.id_for_label }}">City:</label>
-            {{ form.city }}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.country.errors }}
-            <label for="{{ form.country.id_for_label }}">Country:</label>
-            {{ form.country }}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.speaks.errors }}
-            <label for="{{ form.speaks.id_for_label }}">Native Language(s):</label>
-            {{ form.speaks }}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.practices.errors }}
-            <label for="{{ form.practices.id_for_label }}">Practising Language(s):</label>
-            {{ form.practices }}
-        </div>
-        <input type="submit" value="Sign Up" />
-    </form>
+    <div class="container">
+        <form method="post" action=".">
+            {% csrf_token %}
+            <h1 class="form-signin-heading">Sign Up</h1>
+            {{ form.non_field_errors }}
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="{{ form.first_name.id_for_label }}">First Name:</label>
+                    <input class="form-control" id="{{ form.first_name.id_for_label }}"
+                           name="{{ form.first_name.name }}" type="text" value="{{ form.data.first_name }}" required autofocus>
+                    {{ form.first_name.errors }}
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="{{ form.last_name.id_for_label }}">Last Name:</label>
+                    <input class="form-control" id="{{ form.last_name.id_for_label }}"
+                           name="{{ form.last_name.name }}" type="text" value="{{ form.data.last_name }}">
+                    {{ form.last_name.errors }}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for="{{ form.email.id_for_label }}">Email:</label>
+                    <input class="form-control" id="{{ form.email.id_for_label }}" name="email" type="email"
+                    value="{{ form.data.email }}">
+                    {{ form.email.errors }}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="{{ form.password1.id_for_label }}">Password:</label>
+                    <input class="form-control" id="{{ form.password1.id_for_label }}" name="password1" type="password"
+                    value="{{ form.data.password1 }}">
+                    {{ form.password1.errors }}
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="{{ form.password2.id_for_label }}">Password Confirmation:</label>
+                    <input class="form-control" id="{{ form.password2.id_for_label }}" name="password2" type="password"
+                    value="{{ form.data.password2 }}">
+                     {{ form.password2.errors }}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="{{ form.dob.id_for_label }}">Date of Birth:</label>
+                    <input class="form-control" id="{{ form.dob.id_for_label }}" name="dob" type="date"
+                           placeholder="YYYY-MM-DD" value="{{ form.data.dob }}">
+                    {{ form.dob.errors }}
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="{{ form.gender.id_for_label }}">Gender</label>
+                    <br><div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender"
+                               id="{{ form.gender.id_for_label }}" value="male">
+                        <label class="form-check-label" for="{{ form.gender.id_for_label }}">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender"
+                               id="{{ form.gender.id_for_label }}" value="female">
+                        <label class="form-check-label" for="{{ form.gender.id_for_label }}">Female</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender"
+                               id="{{ form.gender.id_for_label }}" value="other">
+                        <label class="form-check-label" for="{{ form.gender.id_for_label }}">Other</label>
+                    </div>
+                    {{ form.gender.errors }}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="{{ form.city.id_for_label }}">City:</label>
+                    <input class="form-control" id="{{ form.city.id_for_label }}" name="city" type="text"
+                           value="{{ form.data.city }}">
+                    {{ form.city.errors }}
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="{{ form.country.id_for_label }}">Country</label>
+                    <input class="form-control" id="{{ form.country.id_for_label }}" name="country" type="text"
+                    value="{{ form.data.country }}">
+                    {{ form.country.errors }}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="{{ form.speaks.id_for_label }}">Native Language(s):</label>
+                    <input class="form-control" id="{{ form.speaks.id_for_label }}" name="speaks" type="text"
+                    value="{{ form.data.speaks }}">
+                    {{ form.speaks.errors }}
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="{{ form.practices.id_for_label }}">Practising Language(s):</label>
+                    <input class="form-control" id="{{ form.practices.id_for_label }}" name="practices" type="text"
+                    value="{{ form.data.practices }}">
+                    {{ form.practices.errors }}
+                </div>
+            </div>
+            <center><button type="submit" class="btn btn-primary">Sign Up</button></center>
+        </form>
+    </div>
 {% endblock %}

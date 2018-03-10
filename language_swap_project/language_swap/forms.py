@@ -13,6 +13,8 @@ class UserRegistrationForm(RegistrationForm):
     country = forms.CharField(max_length=120)
     speaks = forms.CharField(max_length=120)
     practices = forms.CharField(max_length=120)
+    gender = forms.CharField(max_length=10)
+    dob = forms.DateField()
 
     # Sets username to given email
     def clean_email(self):
