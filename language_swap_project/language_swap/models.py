@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.contrib.auth.models import User
+from dateutil.relativedelta import relativedelta
 
-
+from datetime import date
 from django.db import models
 # Create your models here.
 
@@ -23,16 +24,24 @@ class UserProfile(models.Model):
 
     country = models.CharField(max_length=120)
 
+
+
+    gender = models.CharField(max_length=10,  null = True)
+
     picture = models.ImageField(upload_to='profile_images',blank = True)
 
     hobby = models.CharField(max_length=500,blank = True)
+
+    # following lines are to calculate age from date of birth
+    #age can be calculated in views.py
+    dob = models.DateField(max_length=8, null = True)
+
+
 
     #these are the relationship attributes between user and languages
     speaks = models.ManyToManyField(Language,related_name="speaks")
 
     practices = models.ManyToManyField(Language,related_name='practices')
-
-
 
     def __str__(self):
         return self.user.username
