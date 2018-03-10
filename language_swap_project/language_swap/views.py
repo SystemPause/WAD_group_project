@@ -1,16 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.shortcuts import render
 
-# LanguageSwap Specific 
-from django.http import HttpResponse
-from django.shortcuts import render
-from language_swap.models import User, UserProfile, Language, Contact
- 
 import pycountry
+from django.shortcuts import render
 
-# Import the helperFunctions
-from helperFunctions import getUserDetails
+from language_swap.helperFunctions import getUserDetails
+from language_swap.models import UserProfile, Language
 
 
 def index(request):
