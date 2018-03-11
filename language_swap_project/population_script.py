@@ -217,8 +217,7 @@ def populate():
 
         contacter = UserProfile.objects.get(user = User.objects.get(username = contact["contacter"]))
         contactee = UserProfile.objects.get(user = User.objects.get(username = contact["contactee"]))
-        print(contacter)
-        print(contactee)
+
         add_contact(contacter,contactee,contact["score"])
 
 
@@ -255,5 +254,5 @@ def add_contact(contacter,contactee,score):
     return c
 
 if __name__ == '__main__':
-    print("Starting Rango population script")
+    print("Starting LanguageSwap population script")
     populate()

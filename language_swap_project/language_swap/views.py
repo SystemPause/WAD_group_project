@@ -7,29 +7,15 @@ from language_swap.models import UserProfile, Language
 from language_swap.helperFunctions import getUserDetails
 
 def index(request):
-    context_dict = {}
+    context_dict = {'languages': []}
     
     # Get all languages from the database
-    languages = Language.objects.all()
+    languages = Language.objects.all().order_by('LanguageName')
     
-    # Populate a temporary list with all the languages
-    languages_list = []
+    # Populate the context_dictionary with all the languages
     for language in languages:
-        languages_list.append(str(language).lower())
-        
-    # Populate a temporary list with all the countries
-    country_list = []
-    for country in pycountry.countries:
-        country_list.append(country.name.lower())
-    
-    # Sort the elements of the list alphabetically
-    languages_list.sort()
-    country_list.sort()
-    
-    # Populate the context dictionary
-    context_dict['languages'] = languages_list
-    context_dict['countries'] = country_list
-        
+        context_dict['languages'].append(str(language).lower())
+             
     return render(request, 'language_swap/index.html', context_dict)
     
     
