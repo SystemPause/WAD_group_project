@@ -12,7 +12,6 @@
             <h1 class="display-4 font-weight-normal text-light">Find your language buddy</h1>
             <p class="lead font-weight-normal text-light">This will be the coolest thing in your life.</p>
             <form id="search_user_form" method="get" action="{%  url 'result' %}">
-            
               <div class="form-row">
                 <div class="col">
                   <select name="practicingLanguage" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
@@ -30,19 +29,8 @@
                     {% endfor %}
                     </select>
                 </div>
-                <div class="col-2">
-                    <select name="country" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                        <option value="" disabled selected>My Country</option>
-                            {% for country in countries %}
-                                <option value="{{country}}">{{country | title}}</option>
-                            {% endfor %}
-                      </select>
-                </div>
-                <div class="col-2">
-                    <select name="city" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                        <option disabled selected>My City</option>
-                        <option value="milan">Milan</option>
-                      </select>
+                <div class="col-4">
+                    <input type="text" name="places" id="gMapsAutocomplete" class="form-control" placeholder="Select your city and country">
                 </div>
                 <div class="col-1">
                   <button class="btn btn-primary" type="submit">Search</button>
@@ -126,3 +114,15 @@
     <!-- /.container -->
 </main>
 {% endblock %}
+
+ <!-- Placed at the end of the document so the pages load faster -->
+
+
+{% block javascript_block %}
+    <!-- Import the google maps places API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0WYZr005e3brFlluhm2dUStd1bmZ5jec&libraries=places&language=en"></script>
+    <script src="{% static 'javascript/placesAutocomplete.js' %}"></script>
+{% endblock %}
+
+
+

@@ -3,10 +3,8 @@ from __future__ import unicode_literals
 
 import pycountry
 from django.shortcuts import render
-
-from language_swap.helperFunctions import getUserDetails
 from language_swap.models import UserProfile, Language
-
+from language_swap.helperFunctions import getUserDetails
 
 def index(request):
     context_dict = {}
@@ -42,8 +40,19 @@ def searchResult(request):
     # Get the parameters passed in the URL
     practicingLanguage = request.GET.get('practicingLanguage', '').encode('utf-8').lower().strip()
     spokenLanguage = request.GET.get('spokenLanguage', '').encode('utf-8').lower().strip()
-    country = request.GET.get('country', '').encode('utf-8').lower().strip()
-    city = request.GET.get('city', '').encode('utf-8').lower().strip()
+    
+    # Get a list of places. The list has the format ['city','province','country'] 
+    places = request.GET.get('places', '').split(",")
+    
+    # If the list of places is not empty, process the values, otherwise add an error element
+    # to the errors list
+    print(places)
+    if places: 
+        city = places[0].encode('utf-8').lower().strip()
+        country = places[-1].encode('utf-8').lower().strip()
+    else:
+        errors = True
+        context_dict['errors'].append("An error has occured while fetching the places.")
     
     # Try to retrieve the selected languages
     try:
@@ -51,7 +60,7 @@ def searchResult(request):
         spoken = Language.objects.get(LanguageName = spokenLanguage)
     except:
         errors = True
-        context_dict['errors'].append("An error has occured while fetching the languages")
+        context_dict['errors'].append("An error has occured while fetching the languages.")
     
     # If an error occurs while selecting the languages, do not perform the Query and 
     # just return the error message
@@ -65,8 +74,6 @@ def searchResult(request):
         else:
             context_dict['errors'].append("There are no users in this city.")
             
-            
-    # TODO Change the file name for a more appropriate one
     return render(request, 'language_swap/result.html', context_dict)
 
 def about(request):
@@ -83,4 +90,3 @@ def contact(request):
     context_dict = {}
     
     return render(request, 'language_swap/contact.html', context_dict)
-

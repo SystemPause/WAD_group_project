@@ -12,11 +12,9 @@ class ProfileAdmin(admin.ModelAdmin):
         return obj.user.first_name
     def last_name(self,obj):
         return obj.user.last_name
+    
+# Models Registration.
 
 admin.site.register(Language)
 admin.site.register(Contact)
 admin.site.register(UserProfile,ProfileAdmin)
-
-from django.contrib import admin
-
-# Register your models here.
