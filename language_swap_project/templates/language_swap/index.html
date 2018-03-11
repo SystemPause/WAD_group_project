@@ -14,23 +14,23 @@
             <form id="search_user_form" method="get" action="{%  url 'result' %}">
               <div class="form-row">
                 <div class="col">
-                  <select name="practicingLanguage" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                    <option value="" disabled selected>The language I want to learn</option>
+                  <select name="spokenLanguage" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                    <option value="" disabled selected>Native language</option>
                     {% for language in languages %}
-                      <option value="{{ language }}">{{ language | title }}</option>
+                        <option value="{{ language }}">{{ language | title }}</option>
                     {% endfor %}
                     </select>
                 </div>
                 <div class="col">
-                  <select name="spokenLanguage" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                    <option value="" disabled selected>My native language</option>
+                  <select name="practicingLanguage" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                    <option value="" disabled selected>Practicing language</option>
                     {% for language in languages %}
-                      <option value="{{ language }}">{{ language | title }}</option>
+                        <option value="{{ language }}">{{ language | title }}</option>
                     {% endfor %}
                     </select>
                 </div>
-                <div class="col-4">
-                    <input type="text" name="places" id="gMapsAutocomplete" class="form-control" placeholder="Select your city and country">
+                <div class="col">
+                    <input type="text" name="places" id="gMapsAutocomplete" class="form-control autocomplete-address" placeholder="Select your city and country">
                 </div>
                 <div class="col-1">
                   <button class="btn btn-primary" type="submit">Search</button>
@@ -48,70 +48,66 @@
 
         <!-- Three columns of text below the carousel -->
         <div class="row pt-5">
-            <div class="col-lg-4">
-                <img class="rounded-circle" src="" alt="Generic placeholder image" width="140" height="140">
-                <h2>Chat.</h2>
+           <!-- Column 1: Chat -->
+            <div class="col-lg-4 pt-4">
+                <img class="rounded-circle" src="{% static 'images/chat.jpg' %}" alt="Generic placeholder image" width="140" height="140">
+                <h2 class="pt-3">Chat.</h2>
                 <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
             </div>
-            <!-- /.col-lg-4 -->
-            <div class="col-lg-4">
-                <img class="rounded-circle" src="{{ MEDIA_URL }}profile_pictures/frog.jpg" alt="Generic placeholder image" width="140" height="140">
-                <h2>Meet.</h2>
+            <!-- Column 2: Meet -->
+            <div class="col-lg-4 pt-4">
+                <img class="rounded-circle" src="{% static 'images/meet.jpeg' %}" alt="Generic placeholder image" width="140" height="140">
+                <h2 class="pt-3">Meet.</h2>
                 <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
             </div>
-            <!-- /.col-lg-4 -->
-            <div class="col-lg-4">
-                <img class="rounded-circle" src="{{ MEDIA_URL }}profile_pictures/frog.jpg" alt="Generic placeholder image" width="140" height="140">
-                <h2>Practice!</h2>
+            <!-- Column 3: practice -->
+            <div class="col-lg-4 pt-4">
+                <img class="rounded-circle" src="{% static 'images/practice.jpeg' %}" alt="Generic placeholder image" width="140" height="140">
+                <h2 class="pt-3">Practice!</h2>
                 <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
             </div>
-            <!-- /.col-lg-4 -->
         </div>
-        <!-- /.row -->
 
 
         <!-- START THE FEATURETTES -->
 
         <hr class="featurette-divider">
-
+        <!-- Example user 1 -->
         <div class="row featurette">
             <div class="col-md-7">
                 <h2 class="featurette-heading">Meet Alice. <span class="text-muted">She's a literature lover.</span></h2>
-                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. </p>
             </div>
             <div class="col-md-5">
                 <img class="featurette-image img-fluid mx-auto" src="{% static 'images/user1.jpeg' %}" alt="Generic placeholder image">
             </div>
         </div>
-
         <hr class="featurette-divider">
-
+        
+        <!-- Example user 2 -->
         <div class="row featurette">
             <div class="col-md-7 order-md-2">
                 <h2 class="featurette-heading">Meet Kyle. <span class="text-muted">Interested in mechanic.</span></h2>
-                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper.</p>
             </div>
             <div class="col-md-5 order-md-1">
                 <img class="featurette-image img-fluid mx-auto" src="{% static 'images/user3.jpeg' %}" alt="Generic placeholder image">
             </div>
         </div>
-
         <hr class="featurette-divider">
-
-        <div class="row featurette">
+        
+        <!-- Example user 3 -->
+        <div class="row featurette pb-5">
             <div class="col-md-7">
                 <h2 class="featurette-heading">Meet John. <span class="text-muted">He's a football player.</span></h2>
-                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper.</p>
             </div>
             <div class="col-md-5">
                 <img class="featurette-image img-fluid mx-auto" src="{% static 'images/user2.jpeg' %}" alt="Generic placeholder image">
             </div>
         </div>
-
         <!-- /END THE FEATURETTES-->
-
     </div>
-    <!-- /.container -->
 </main>
 {% endblock %}
 

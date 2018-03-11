@@ -3,8 +3,8 @@
 
 {% block body_block %}
     <link href="{% static 'css/bootstrap/css/signin.css' %}" rel="stylesheet">
-    <div class="container-fluid bg-light">
-        <form method="post" action=".">
+    <div class="container-fluid">
+        <form class="form-signup" method="post" action=".">
             {% csrf_token %}
             <h1 class="form-signin-heading">Sign Up</h1>
             {{ form.non_field_errors }}
@@ -18,44 +18,40 @@
                 <div class="form-group col-md-6">
                     <label for="{{ form.last_name.id_for_label }}">Last Name:</label>
                     <input class="form-control" id="{{ form.last_name.id_for_label }}"
-                           name="{{ form.last_name.name }}" type="text" value="{{ form.data.last_name }}">
+                           name="{{ form.last_name.name }}" type="text" value="{{ form.data.last_name }}" required>
                     {{ form.last_name.errors }}
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col">
                     <label for="{{ form.email.id_for_label }}">Email:</label>
-                    <input class="form-control" id="{{ form.email.id_for_label }}" name="email" type="email"
-                    value="{{ form.data.email }}">
+                    <input class="form-control" id="{{ form.email.id_for_label }}" name="email" type="email" value="{{ form.data.email }}" required>
                     {{ form.email.errors }}
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="{{ form.password1.id_for_label }}">Password:</label>
-                    <input class="form-control" id="{{ form.password1.id_for_label }}" name="password1" type="password"
-                    value="{{ form.data.password1 }}">
+                    <input class="form-control" id="{{ form.password1.id_for_label }}" name="password1" type="password" value="{{ form.data.password1 }}" required>
                     {{ form.password1.errors }}
                 </div>
                 <div class="form-group col-md-6">
                     <label for="{{ form.password2.id_for_label }}">Password Confirmation:</label>
-                    <input class="form-control" id="{{ form.password2.id_for_label }}" name="password2" type="password"
-                    value="{{ form.data.password2 }}">
-                     {{ form.password2.errors }}
+                    <input class="form-control" id="{{ form.password2.id_for_label }}" name="password2" type="password" value="{{ form.data.password2 }}" required>
+                    {{ form.password2.errors }}
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="{{ form.dob.id_for_label }}">Date of Birth:</label>
-                    <input class="form-control" id="{{ form.dob.id_for_label }}" name="dob" type="date"
-                           placeholder="YYYY-MM-DD" value="{{ form.data.dob }}">
+                    <input class="form-control" id="{{ form.dob.id_for_label }}" name="dob" type="date" placeholder="YYYY-MM-DD" value="{{ form.data.dob }}" required>
                     {{ form.dob.errors }}
                 </div>
                 <div class="form-group col-md-6">
                     <label for="{{ form.gender.id_for_label }}">Gender</label><br>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="gender"
-                               id="{{ form.gender.id_for_label }}" value="male">
+                               id="{{ form.gender.id_for_label }}" value="male" checked>
                         <label class="form-check-label" for="{{ form.gender.id_for_label }}">Male</label>
                     </div>
                     <div class="form-check form-check-inline">
@@ -75,13 +71,13 @@
                 <div class="form-group col-md-6">
                     <label for="{{ form.city.id_for_label }}">City:</label>
                     <input class="form-control" id="{{ form.city.id_for_label }}" name="city" type="text"
-                           value="{{ form.data.city }}">
+                           value="{{ form.data.city }}" required>
                     {{ form.city.errors }}
                 </div>
                 <div class="form-group col-md-6">
                     <label for="{{ form.country.id_for_label }}">Country</label>
                     <input class="form-control" id="{{ form.country.id_for_label }}" name="country" type="text"
-                    value="{{ form.data.country }}">
+                    value="{{ form.data.country }}" required>
                     {{ form.country.errors }}
                 </div>
             </div>

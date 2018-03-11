@@ -35,7 +35,7 @@
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">My Profile</a>
+                        <a class="nav-link" href="{% url 'myProfile' %}">My Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'auth_logout' %}?next=/LanguageSwap/">Logout</a>
@@ -57,7 +57,7 @@
 
 
     <!-- FOOTER -->
-    <footer class="my-4 pt-3 text-muted text-right border-top sticky-bottom">
+    <footer class="my-4 pt-3 text-right border-top">
         <ul class="list-inline mr-3">
             <li class="list-inline-item"><a href="{% url 'about' %}">About</a></li>
             <li class="list-inline-item"><a href="{% url 'contact' %}">Contact Us</a></li>

@@ -90,3 +90,9 @@ def contact(request):
     context_dict = {}
     
     return render(request, 'language_swap/contact.html', context_dict)
+
+#TODO LOGIN REQUIRED??
+def profile(request):
+    context_dict = {}
+    
+    return render(request, 'language_swap/profile.html', context_dict)

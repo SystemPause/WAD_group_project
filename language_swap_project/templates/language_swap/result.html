@@ -2,69 +2,66 @@
 {% block title_block %} Results {% endblock %}
 
 {% block body_block %}
-    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-        <h1 class="display-4">Results</h1>
-        <p class="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It's built with default Bootstrap components and utilities with little customization.</p>
+    <div class="header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h3 class="display-5">Results for search:</h3>
     </div>
     {% if errors %}
         {% for error in errors %}
             <div class="text-center"> {{ error }} </div>
         {% endfor %}
     {% else %}
-
-
-    <div class="row pt-5 m-3">
-        {% for user, details in users.items %}
-        <div class="col-sm-6 col-md-4 col-xl-3 p-3">
-        <div class="card box-shadow">
-            {% if details.picture %}
-            <img class="card-img-top img-fluid" src="{{MEDIA_URL}}{{ details.picture }}" alt="{{details.firstname}}, profile picture"> {% else %}
-            <img class="card-img-top img-fluid" src="{{MEDIA_URL}}/profile_images/placeholder.png" alt="Placeholder: profile picture missing"> {% endif %}
-            <div class="card-body">
-                <h4 class="card-title"> {{ details.firstname }} {{ details.lastname }}</h4>
-                <h5 class="card-subtitle text-muted text-capitalize">{{ details.city }}, {{ details.country }}</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <h6 class="card-subtitle mb-2 text-muted">Hobbies</h6>
-                    {% if details.hobby %}
-                    <p class="card-text text-capitalize">{{ details.hobby }}</p>
-                    {% else %}
-                    <p class="card-text">No hobby for this user</p>
-                    {% endif %}
-                </li>
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col">
-                            <h6 class="card-subtitle mb-2 text-muted">Speaks</h6>
-                            <p class="card-text text-capitalize">
-                                {% for slang in details.speaks %} {{ slang }} <br> {% endfor %}
-                            </p>
-                        </div>
-                        <div class="col">
-                            <h6 class="card-subtitle mb-2 text-muted">Practices</h6>
-                            <p class="card-text text-capitalize">
-                                {% for plang in details.practices %} {{ plang }} <br> {% endfor %}
-                            </p>
-                        </div>
+        <div class="row m-3">
+            {% for user, details in users.items %}
+            <div class="col-sm-6 col-md-4 col-xl-3 p-3">
+                <div class="card box-shadow">
+                    {% if details.picture %}
+                    <img class="card-img-top img-fluid" src="{{MEDIA_URL}}{{ details.picture }}" alt="{{details.firstname}}, profile picture"> {% else %}
+                    <img class="card-img-top img-fluid" src="{{MEDIA_URL}}/profile_images/placeholder.png" alt="Placeholder: profile picture missing"> {% endif %}
+                    <div class="card-body">
+                        <h4 class="card-title text-capitalize"> {{ details.firstname }} {{ details.lastname }}</h4>
+                        <h5 class="card-subtitle text-muted text-capitalize">{{ details.city }}, {{ details.country }} ({{ details.gender }}, {{ details.age }})</h5>
+                        <p class="card-text pt-2">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
-                </li>
-            </ul>
-            {% if user.is_authenticated %}
-            <div class="card-body text-center">
-                <a href="#" class="btn btn-secondary">Contact</a>
-                <!--{{ details.email }}-->
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <h6 class="card-subtitle mb-2">Bio and hobbies</h6>
+                            {% if details.hobby %}
+                            <p class="card-text">{{ details.hobby }}</p>
+                            {% else %}
+                            <p class="card-text">No bio for this user</p>
+                            {% endif %}
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col">
+                                    <h6 class="card-subtitle mb-2">Speaks</h6>
+                                    <p class="card-text text-capitalize">
+                                        {% for slang in details.speaks %} {{ slang }} <br> {% endfor %}
+                                    </p>
+                                </div>
+                                <div class="col">
+                                    <h6 class="card-subtitle mb-2">Practices</h6>
+                                    <p class="card-text text-capitalize">
+                                        {% for plang in details.practices %} {{ plang }} <br> {% endfor %}
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    {% if user.is_authenticated %}
+                    <div class="card-body text-center">
+                        <a href="#" class="btn btn-secondary">Contact</a>
+                        <!--{{ details.email }}-->
+                    </div>
+                    {% else %}
+                    <div class="card-body text-center">
+                        <a href="{% url 'auth_login' %}" class="btn btn-primary">Contact</a>
+                    </div>
+                    {% endif %}
+                </div>
             </div>
-            {% else %}
-            <div class="card-body text-center">
-                LOG IN TO CONTACT
-            </div>
-            {% endif %}
+            {% endfor %}
         </div>
-        </div>
-        {% endfor %}
-    </div>
 
     {% endif %}
 {% endblock %}
