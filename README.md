@@ -43,7 +43,7 @@ Here you can divide your work as you want so that other group members can see yo
 
 **Look and Feel**
 - [ ] Polished / refined interface, not clunky - 3
-- [ ] Uses a responsive CSS framework - 3
+- [x] Uses a responsive CSS framework - 3
 - [ ] If browser window size changed, is the change handled neatly? - 1
 
 **Code**
