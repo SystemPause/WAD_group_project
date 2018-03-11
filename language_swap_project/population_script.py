@@ -8,16 +8,19 @@ from language_swap.models import UserProfile,Language,Contact,User
 import pycountry
 
 def populate():
-    language_list = ["italian", "french", "burmese", "english", "spanish","mandarin","german","japanese","korean","indian"]
+    language_list = ["afrikaans","albanian","amharic","arabic","armenian","azerbaijani","basque","belarusian","bengali",
+                     "bosnian","bulgarian","burmese","catalan","cebuano","chichewa","chinese","corsican","croatian",
+                     "czech","danish","dutch","english","esperanto","estonian","filipino","finnish","french","frisian",
+                     "gaelic","galician","georgian","german","greek","gujarati","haitian","hausa","hawaiian","hebrew",
+                     "hindi","hmong","hungarian","icelandic","igbo","indonesian","irish","italian","japanese","javanese",
+                     "kannada","kazakh","khmer","korean","kurdish","kyrgyz","lao","latin","latvian","lithuanian",
+                     "luxembourgish","macedonian","malagasy","malay","malayalam","maltese","maori","marathi","mongolian",
+                     "nepali","norwegian","pashto","persian","polish","portuguese","punjabi","romanian","russian",
+                     "samoan","serbian","sesotho","shona","sindhi","sinhala","slovak","slovenian","somali","spanish",
+                     "sundanese","swahili","swedish","tajik","tamil","telugu","thai","turkish","ukrainian","urdu",
+                     "uzbek","vietnamese","welsh","xhosa","yiddish","yoruba","zulu"]
     for lang in language_list:
         add_Language(lang)
-    '''
-    for language in pycountry.languages:
-        language_list.append(language.name.lower())
-        add_Language(language.name.lower())
-    '''
-
-
 
     user_list = [
         {
@@ -52,12 +55,12 @@ def populate():
         {
             "firstname": "Wang", "lastname": "Huang", "username": "whuang@cmail.com", "email": "whuang@cmail.com",
             "password": "hunter123", "city": "shenzhen", "country": "china", "gender": "female", "dob": "1992-04-15",
-            "speaks": ["mandarin", "french"], "practices": ["burmese", "english"]
+            "speaks": ["chinese", "french"], "practices": ["burmese", "english"]
         },
         {
             "firstname": "Ramesh", "lastname": "Ali", "username": "mali@mail.com", "email": "mali@mail.com",
             "password": "hunter123", "city": "bombay", "country": "india", "gender": "male", "dob": "1996-08-26",
-            "speaks": ["indian", "english"], "practices": ["spanish", "korean"]
+            "speaks": ["hindi", "english"], "practices": ["spanish", "korean"]
         },
         {
             "firstname": "Santiago", "lastname": "Lopez", "username": "slopez@hotmail.com", "email": "slopez@hotmail.com",
@@ -67,7 +70,7 @@ def populate():
         {
             "firstname": "Xiao", "lastname": "Qi", "username": "xxq@cmail.com", "email": "xxq@cmail.com",
             "password": "hunter123", "city": "shanghai", "country": "china", "gender": "female", "dob": "1995-02-10",
-            "speaks": ["mandarin", "english"], "practices": ["korean", "japanese"]
+            "speaks": ["chinese", "english"], "practices": ["korean", "japanese"]
         },
         {
             "firstname": "Hanada", "lastname": "Shiro", "username": "hana@jmail.com", "email": "hana@jmail.com",
@@ -77,7 +80,7 @@ def populate():
         {
             "firstname": "Aung", "lastname": "Min", "username": "amin@mail.com", "email": "amin@mail.com",
             "password": "hunter123", "city": "yangon", "country": "myanmar", "gender": "male", "dob": "1992-03-15",
-            "speaks": ["burmese", "english"], "practices": ["indian", "mandarin"]
+            "speaks": ["burmese", "english"], "practices": ["hindi", "chinese"]
         },
         {
             "firstname": "Tomo", "lastname": "Naka", "username": "tnaka@jmail.com", "email": "tnaka@jmail.com",
@@ -87,12 +90,12 @@ def populate():
         {
             "firstname": "Hyun", "lastname": "Jun", "username": "jun@kmail.com", "email": "jun@kmail.com",
             "password": "hunter123", "city": "seoul", "country": "korea", "gender": "female", "dob": "1993-06-15",
-            "speaks": ["korean", "mandarin"], "practices": ["indian", "english"]
+            "speaks": ["korean", "chinese"], "practices": ["hindi", "english"]
         },
         {
             "firstname": "Muhammad", "lastname": "Muhammad", "username": "mm@mail.com", "email": "mm@mail.com",
             "password": "hunter123", "city": "new dehli", "country": "india", "gender": "male", "dob": "1994-01-01",
-            "speaks": ["indian", "english"], "practices": ["mandarin", "italian"]
+            "speaks": ["hindi", "english"], "practices": ["chinese", "italian"]
         },
         {
             "firstname": "Fernandez", "lastname": "Garcia", "username": "fg@cmail.com", "email": "fg@cmail.com",
@@ -102,12 +105,12 @@ def populate():
         {
             "firstname": "Lao", "lastname": "You", "username": "ly@cmail.com", "email": "ly@cmail.com",
             "password": "hunter123", "city": "beijing", "country": "china", "gender": "male", "dob": "1993-06-14",
-            "speaks": ["mandarin", "english","french"], "practices": ["burmese", "italian"]
+            "speaks": ["chinese", "english","french"], "practices": ["burmese", "italian"]
         },
         {
             "firstname": "Alessandro", "lastname": "Speggy", "username": "ass@cmail.com", "email": "ass@cmail.com",
             "password": "hunter123", "city": "vicenza", "country": "italy", "gender": "female", "dob": "1996-11-11",
-            "speaks": ["italian", "mandarin"], "practices": ["indian", "japanese"]
+            "speaks": ["italian", "chinese"], "practices": ["hindi", "japanese"]
         },
         {
             "firstname": "Sebastian", "lastname": "Thomas", "username": "sbtms@cmail.com", "email": "sbtms@cmail.com",
@@ -122,7 +125,7 @@ def populate():
         {
             "firstname": "Hua", "lastname": "Lin", "username": "hlin@cmail.com", "email": "hlin@cmail.com",
             "password": "hunter123", "city": "shenzhen", "country": "china", "gender": "female", "dob": "1995-02-10",
-            "speaks": ["mandarin", "english"], "practices": ["burmese", "korean","japanese"]
+            "speaks": ["chinese", "english"], "practices": ["burmese", "korean","japanese"]
         },
         {
             "firstname": "Marti", "lastname": "Smarti", "username": "marti@cmail.com", "email": "marti@cmail.com",
@@ -132,27 +135,27 @@ def populate():
         {
             "firstname": "Park", "lastname": "Hyun", "username": "phyu@cmail.com", "email": "phyu@cmail.com",
             "password": "hunter123", "city": "seoul", "country": "korea", "gender": "male", "dob": "1993-01-20",
-            "speaks": ["korean", "indian"], "practices": ["english", "mandarin"]
+            "speaks": ["korean", "hindi"], "practices": ["english", "chinese"]
         },
         {
             "firstname": "Tom", "lastname": "Yum", "username": "tomy@cmail.com", "email": "tomy@cmail.com",
             "password": "hunter123", "city": "london", "country": "united kingdom", "gender": "male", "dob": "1996-02-21",
-            "speaks": ["english"], "practices": ["italian", "mandarin"]
+            "speaks": ["english"], "practices": ["italian", "chinese"]
         },
         {
             "firstname": "Beer", "lastname": "Man", "username": "bman@cmail.com", "email": "bman@cmail.com",
             "password": "hunter123", "city": "london", "country": "united kingdom", "gender": "male", "dob": "1994-01-04",
-            "speaks": ["english", "french"], "practices": ["mandarin", "burmese"]
+            "speaks": ["english", "french"], "practices": ["chinese", "burmese"]
         },
         {
             "firstname": "Shido", "lastname": "Yama", "username": "shy@cmail.com", "email": "shy@cmail.com",
             "password": "hunter123", "city": "kyoto", "country": "japan", "gender": "male", "dob": "1994-01-21",
-            "speaks": ["japanese", "korean"], "practices": ["mandarin", "english"]
+            "speaks": ["japanese", "korean"], "practices": ["chinese", "english"]
         },
         {
             "firstname": "Mandy", "lastname": "Blanc", "username": "mandy@cmail.com", "email": "mandy@cmail.com",
             "password": "hunter123", "city": "paris", "country": "france", "gender": "female", "dob": "1991-01-25",
-            "speaks": ["italian", "french"], "practices": ["english", "indian"]
+            "speaks": ["italian", "french"], "practices": ["english", "hindi"]
         },
         {
             "firstname": "Howard", "lastname": "Lance", "username": "hlance@cmail.com", "email": "hlance@cmail.com",
@@ -162,12 +165,12 @@ def populate():
         {
             "firstname": "Min", "lastname": "Min", "username": "mm@cmail.com", "email": "mm@cmail.com",
             "password": "hunter123", "city": "yangon", "country": "myanmar", "gender": "male", "dob": "1994-07-20",
-            "speaks": ["burmese", "mandarin"], "practices": ["english", "italian"]
+            "speaks": ["burmese", "chinese"], "practices": ["english", "italian"]
         },
         {
             "firstname": "Gloria", "lastname": "DaMan", "username": "gloman@cmail.com", "email": "gloman@cmail.com",
             "password": "hunter123", "city": "manchester", "country": "united kingdom", "gender": "female", "dob": "1991-04-06",
-            "speaks": ["english", "indian"], "practices": ["italian", "spanish"]
+            "speaks": ["english", "hindi"], "practices": ["italian", "spanish"]
         },
         {
             "firstname": "Louis", "lastname": "Ville", "username": "lvi@cmail.com", "email": "lvi@cmail.com",
@@ -177,7 +180,7 @@ def populate():
         {
             "firstname": "Vim", "lastname": "Wandauandslfeseee", "username": "wim@cmail.com", "email": "wim@cmail.com",
             "password": "hunter123", "city": "glasgow", "country": "united kingdom", "gender": "other", "dob": "1988-01-01",
-            "speaks": ["english", "japanese"], "practices": ["japanese", "mandarin"]
+            "speaks": ["english", "japanese"], "practices": ["japanese", "chinese"]
         },
     ]
     
@@ -196,6 +199,27 @@ def populate():
 
         add_user(user["firstname"],user["lastname"],user["username"],user["email"],user["password"],user["city"],
                  user["country"],user["gender"],user["dob"],speaksList,practicesList)
+
+
+    rateList = [
+        {"contacter":"dickd@dd.com", "contactee":"yolo@dd.com","score":5},
+        {"contacter": "yolo@dd.com", "contactee": "dickd@dd.com", "score": 4},
+        {"contacter": "mister@mister.com", "contactee": "yolo@dd.com", "score": 4},
+        {"contacter": "lvi@cmail.com", "contactee": "yolo@dd.com", "score": 5},
+        {"contacter": "gtoti@cmail.com", "contactee": "yolo@dd.com", "score": 5},
+        {"contacter": "yolo@dd.com", "contactee": "gtoti@cmail.com", "score": 4},
+        {"contacter": "mister@mister.com", "contactee": "dickd@dd.com", "score": 2},
+        {"contacter": "dickd@dd.com", "contactee": "mister@mister.com", "score": 3},
+        {"contacter": "lvi@cmail.com", "contactee": "mister@mister.com", "score": 2},
+
+    ]
+    for contact in rateList:
+
+        contacter = UserProfile.objects.get(user = User.objects.get(username = contact["contacter"]))
+        contactee = UserProfile.objects.get(user = User.objects.get(username = contact["contactee"]))
+        print(contacter)
+        print(contactee)
+        add_contact(contacter,contactee,contact["score"])
 
 
 def add_Language(name):
@@ -225,7 +249,10 @@ def add_user(firstname,lastname,username,email,password,city,country,gender,dob,
     return userObject,userObject
 #
 
-
+def add_contact(contacter,contactee,score):
+    c = Contact.objects.get_or_create(sourceUser = contacter,contactedUser = contactee,score = score)[0]
+    c.save()
+    return c
 
 if __name__ == '__main__':
     print("Starting Rango population script")

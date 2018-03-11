@@ -36,8 +36,6 @@ class UserProfile(models.Model):
     #age can be calculated in views.py
     dob = models.DateField(max_length=8, null = True)
 
-
-
     #these are the relationship attributes between user and languages
     speaks = models.ManyToManyField(Language,related_name="speaks")
 
