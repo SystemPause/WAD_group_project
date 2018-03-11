@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from language_swap.models import UserProfile
+from language_swap.models import UserProfile, Language
 from registration.forms import RegistrationForm
 
 class UserRegistrationForm(RegistrationForm):
@@ -11,8 +11,8 @@ class UserRegistrationForm(RegistrationForm):
     last_name = forms.CharField(max_length=150)
     city = forms.CharField(max_length=120)
     country = forms.CharField(max_length=120)
-    speaks = forms.CharField(max_length=120)
-    practices = forms.CharField(max_length=120)
+    speaks = forms.ModelChoiceField(queryset=Language.objects.all().order_by('LanguageName'))
+    practices = forms.ModelChoiceField(queryset=Language.objects.all().order_by('LanguageName'))
     gender = forms.CharField(max_length=10)
     dob = forms.DateField()
 
