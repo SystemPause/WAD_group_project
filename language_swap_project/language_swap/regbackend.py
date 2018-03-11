@@ -13,14 +13,13 @@ class MyRegistrationView(RegistrationView):
             last_name = form_class.cleaned_data['last_name']
             city = form_class.cleaned_data['city']
             country = form_class.cleaned_data['country']
-            speaks = form_class.cleaned_data['speaks'].lower()
-            practices = form_class.cleaned_data['practices'].lower()
-            gender = form_class.cleaned_data['gender'].lower()
+            speaks = form_class.cleaned_data['speaks']
+            practices = form_class.cleaned_data['practices']
+            gender = form_class.cleaned_data['gender']
             dob = form_class.cleaned_data['dob']
             new_user.first_name = first_name
             new_user.last_name = last_name
             new_profile = UserProfile.objects.create(user=new_user, city=city, country=country, gender = gender, dob = dob)
-            # Only works if given language is in the database
             nlanguage = Language.objects.get(LanguageName=speaks)
             planguage = Language.objects.get(LanguageName=practices)
             new_profile.speaks.add(nlanguage)

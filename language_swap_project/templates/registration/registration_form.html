@@ -52,8 +52,8 @@
                     {{ form.dob.errors }}
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="{{ form.gender.id_for_label }}">Gender</label>
-                    <br><div class="form-check form-check-inline">
+                    <label for="{{ form.gender.id_for_label }}">Gender</label><br>
+                    <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="gender"
                                id="{{ form.gender.id_for_label }}" value="male">
                         <label class="form-check-label" for="{{ form.gender.id_for_label }}">Male</label>
@@ -88,14 +88,22 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="{{ form.speaks.id_for_label }}">Native Language(s):</label>
-                    <input class="form-control" id="{{ form.speaks.id_for_label }}" name="speaks" type="text"
-                    value="{{ form.data.speaks }}">
+                    <select class="custom-select" name="speaks" required id="{{ form.speaks.id_for_label }}">
+                        <option value="" disabled selected>Select a language</option>
+                        {% for language in form.speaks.field.queryset %}
+                            <option value="{{ language }}">{{ language|title }}</option>
+                        {% endfor %}
+                    </select>
                     {{ form.speaks.errors }}
                 </div>
                 <div class="form-group col-md-6">
                     <label for="{{ form.practices.id_for_label }}">Practising Language(s):</label>
-                    <input class="form-control" id="{{ form.practices.id_for_label }}" name="practices" type="text"
-                    value="{{ form.data.practices }}">
+                    <select class="custom-select" name="practices" required id="{{ form.practices.id_for_label }}">
+                        <option value="" disabled selected>Select a language</option>
+                        {% for language in form.speaks.field.queryset %}
+                            <option value="{{ language }}">{{ language|title }}</option>
+                        {% endfor %}
+                    </select>
                     {{ form.practices.errors }}
                 </div>
             </div>
