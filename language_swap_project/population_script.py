@@ -28,8 +28,8 @@ def populate():
 
         {
             "firstname": "Nay Min", "lastname": "Htet","username":"naymin@htet.com", "email": "naymin@htet.com",
-            "password": "hunter123", "city": "mandalay", "country": "myanmar","gender":"male","dob":"1995-12-15",
-            "speaks":["burmese","spanish"],"practices":["italian","english"]
+            "password": "hunter123", "city": "milan", "country": "italy","gender":"male","dob":"1995-12-15",
+            "speaks":["burmese","italian"],"practices":["italian","english"]
         },
         
         {
@@ -40,8 +40,8 @@ def populate():
 
         {
             "firstname": "Mister", "lastname": "Man", "username": "mister@mister.com", "email": "mister@mister.com",
-            "password": "hunter123", "city": "rome", "country": "italy", "gender": "male", "dob": "1991-04-06",
-            "speaks": ["italian", "english"], "practices": ["japanese", "spanish"]
+            "password": "hunter123", "city": "milan", "country": "italy", "gender": "male", "dob": "1991-04-06",
+            "speaks": ["italian", "burmese"], "practices": ["japanese", "english"]
         },
 
         {

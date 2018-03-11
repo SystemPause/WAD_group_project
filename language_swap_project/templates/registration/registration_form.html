@@ -1,7 +1,9 @@
 {% extends 'language_swap/base.html' %}
+{% load staticfiles %}
 
 {% block body_block %}
-    <div class="container">
+    <link href="{% static 'css/bootstrap/css/signin.css' %}" rel="stylesheet">
+    <div class="container-fluid bg-light">
         <form method="post" action=".">
             {% csrf_token %}
             <h1 class="form-signin-heading">Sign Up</h1>
