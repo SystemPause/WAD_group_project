@@ -3,8 +3,9 @@ from __future__ import unicode_literals
 
 import pycountry
 from django.shortcuts import render
-from language_swap.models import UserProfile, Language
+from language_swap.models import UserProfile, Language, Contact
 from language_swap.helperFunctions import getUserDetails
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     context_dict = {'languages': []}
@@ -29,10 +30,12 @@ def searchResult(request):
     
     # Get a list of places. The list has the format ['city','province','country'] 
     places = request.GET.get('places', '').split(",")
+
+    # Remove all the empty Unicode values from the list
+    places = [place for place in places if place != u'']
     
     # If the list of places is not empty, process the values, otherwise add an error element
     # to the errors list
-    print(places)
     if places: 
         city = places[0].encode('utf-8').lower().strip()
         country = places[-1].encode('utf-8').lower().strip()
@@ -77,8 +80,29 @@ def contact(request):
     
     return render(request, 'language_swap/contact.html', context_dict)
 
-#TODO LOGIN REQUIRED??
+@login_required
 def profile(request):
-    context_dict = {}
+    context_dict = {'userProfile' : {}}
     
+    loggedUser = UserProfile.objects.get(user = request.user)
+    
+    # Get all the details of the current logged in user
+    context_dict['userProfile'].update(getUserDetails(loggedUser))
+
     return render(request, 'language_swap/profile.html', context_dict)
+
+@login_required
+def contactHistory(request):
+    context_dict = {'contacts' : {}}
+    
+    # Get the current UserProfile object
+    loggedUser = UserProfile.objects.get(user = request.user)
+    
+    # Get the contact list of the users that have been contacted by the logged in user
+    contactList = Contact.objects.filter(sourceUser = loggedUser)
+    
+    for contact in contactList:
+        # Populate the context_dict with contacts details
+        context_dict['contacts'].update(getUserDetails(contact.contactedUser))
+    
+    return render(request, 'language_swap/contactHistory.html', context_dict)

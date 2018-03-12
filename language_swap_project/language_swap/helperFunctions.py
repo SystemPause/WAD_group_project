@@ -2,6 +2,7 @@
 
 # Import packages
 from datetime import date
+from language_swap.models import Contact
 
 # This function retrieves all the informatin regarding one single User.
 # It receives a user (UserProfile) object as parameter and 
@@ -24,9 +25,10 @@ def getUserDetails(userObject):
         'hobby' : userObject.hobby if bool(userObject.hobby) else False,
         'speaks' : userObject.speaks.all(),
         'practices' : userObject.practices.all(),
-        'gender' : userObject.gender 
+        'gender' : userObject.gender,
+        'score' : getUserRating(userObject)
     }
-   
+    
     return user_dictionary
 
 # The function computes the age of a specified user. It gets the user date of birth as 
@@ -40,3 +42,28 @@ def getUserAge(dateOfBirth):
     monthDayCheck = ((todayDate.month, todayDate.day) < (dateOfBirth.month, dateOfBirth.day))
     
     return  yearsDifference - monthDayCheck
+
+# The function getUserRating(currentobject) computes the rating of a given user
+
+def getUserRating(currentUser):
+    
+    # Get the UserProfile object corresponding to the specified user 
+    contactsObject = Contact.objects.filter(contactedUser = currentUser)
+
+    if contactsObject.exists():
+        # The variable finalScore is used in order to keep track of the user score.
+        finalScore = 0.0
+        
+        for contactObject in contactsObject:
+            finalScore +=  contactObject.score
+            
+        return round(finalScore / len(contactsObject),1)
+    else:
+        return 0
+    
+    
+        
+        
+        
+    
+    

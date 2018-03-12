@@ -5,7 +5,13 @@
 {% block body_block %}
 
 <div class="container p-5 m-5">HELLO THIS IS MY PROFILE</div>
-{% for details in userProfile.values %}
-    {{details.email}}
-{% endfor %}
+{% if contacts %}
+    {% for details in contacts.values %}
+        {{details.email}}
+        <br>
+    {% endfor %}
+{% else %}
+    <p>The contact history is empty</p>
+{% endif %}
+
 {% endblock %}

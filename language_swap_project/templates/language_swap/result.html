@@ -11,7 +11,7 @@
         {% endfor %}
     {% else %}
         <div class="row m-3">
-            {% for user, details in users.items %}
+            {% for details in users.values %}
             <div class="col-sm-6 col-md-4 col-xl-3 p-3">
                 <div class="card box-shadow">
                     {% if details.picture %}
@@ -19,7 +19,7 @@
                     <img class="card-img-top img-fluid" src="{{MEDIA_URL}}/profile_images/placeholder.png" alt="Placeholder: profile picture missing"> {% endif %}
                     <div class="card-body">
                         <h4 class="card-title text-capitalize"> {{ details.firstname }} {{ details.lastname }}</h4>
-                        <h5 class="card-subtitle text-muted text-capitalize">{{ details.city }}, {{ details.country }} ({{ details.gender }}, {{ details.age }})</h5>
+                        <h5 class="card-subtitle text-muted text-capitalize">{{ details.city }}, {{ details.country }} ({{ details.gender }}, {{ details.age }}),{{ details.score }}</h5>
                         <p class="card-text pt-2">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                     <ul class="list-group list-group-flush">

@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^team/$', views.team, name = "team"),
     url(r'^contactUs/$', views.about, name = "contact"),
     url(r'^myProfile/$', views.profile, name = "myProfile"),
+    url(r'^contactHistory/$', views.contactHistory, name = "contactHistory")
 ]
