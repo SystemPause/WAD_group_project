@@ -1,18 +1,22 @@
 {% extends 'language_swap/base.html' %}
+{% load i18n %}
 {% load staticfiles %}
+
+{% block title_block %}{% trans "Sign Up" %}{% endblock %}
 
 {% block body_block %}
     <link href="{% static 'css/bootstrap/css/signin.css' %}" rel="stylesheet">
     <div class="container-fluid">
         <form class="form-signup" method="post" action=".">
             {% csrf_token %}
-            <h1 class="form-signin-heading">Sign Up</h1>
+            <h1 class="form-signin-heading">{% trans "Sign Up" %}</h1>
             {{ form.non_field_errors }}
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="{{ form.first_name.id_for_label }}">First Name:</label>
                     <input class="form-control" id="{{ form.first_name.id_for_label }}"
-                           name="{{ form.first_name.name }}" type="text" value="{{ form.data.first_name }}" required autofocus>
+                           name="{{ form.first_name.name }}" type="text" value="{{ form.data.first_name }}"
+                           required autofocus>
                     {{ form.first_name.errors }}
                 </div>
                 <div class="form-group col-md-6">
@@ -25,26 +29,30 @@
             <div class="form-row">
                 <div class="form-group col">
                     <label for="{{ form.email.id_for_label }}">Email:</label>
-                    <input class="form-control" id="{{ form.email.id_for_label }}" name="email" type="email" value="{{ form.data.email }}" required>
+                    <input class="form-control" id="{{ form.email.id_for_label }}" name="email" type="email"
+                           value="{{ form.data.email }}" required>
                     {{ form.email.errors }}
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="{{ form.password1.id_for_label }}">Password:</label>
-                    <input class="form-control" id="{{ form.password1.id_for_label }}" name="password1" type="password" value="{{ form.data.password1 }}" required>
+                    <input class="form-control" id="{{ form.password1.id_for_label }}" name="password1" type="password"
+                           value="{{ form.data.password1 }}" required>
                     {{ form.password1.errors }}
                 </div>
                 <div class="form-group col-md-6">
                     <label for="{{ form.password2.id_for_label }}">Password Confirmation:</label>
-                    <input class="form-control" id="{{ form.password2.id_for_label }}" name="password2" type="password" value="{{ form.data.password2 }}" required>
+                    <input class="form-control" id="{{ form.password2.id_for_label }}" name="password2" type="password"
+                           value="{{ form.data.password2 }}" required>
                     {{ form.password2.errors }}
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="{{ form.dob.id_for_label }}">Date of Birth:</label>
-                    <input class="form-control" id="{{ form.dob.id_for_label }}" name="dob" type="date" placeholder="YYYY-MM-DD" value="{{ form.data.dob }}" required>
+                    <input class="form-control" id="{{ form.dob.id_for_label }}" name="dob" type="date"
+                           placeholder="YYYY-MM-DD" value="{{ form.data.dob }}" required>
                     {{ form.dob.errors }}
                 </div>
                 <div class="form-group col-md-6">
@@ -103,7 +111,7 @@
                     {{ form.practices.errors }}
                 </div>
             </div>
-            <center><button type="submit" class="btn btn-primary">Sign Up</button></center>
+            <center><button type="submit" class="btn btn-primary">{% trans "Sign Up" %}</button></center>
         </form>
     </div>
 {% endblock %}

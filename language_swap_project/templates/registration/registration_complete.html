@@ -1,6 +1,7 @@
 {% extends 'language_swap/base.html' %}
+{% load i18n %}
 
 {% block body_block %}
-    <h1>Registration Complete</h1>
-    <p>You are now registered.</p>
+    <h1>{% trans "Registration Complete" %}</h1>
+    <p>{% trans "You are now registered." %}</p>
 {% endblock %}

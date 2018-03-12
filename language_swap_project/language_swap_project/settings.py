@@ -129,6 +129,7 @@ LOGIN_REDIRECT_URL = '/LanguageSwap/'
 # and are trying to access pages requiring authentication
 LOGIN_URL = '/accounts/login/'
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # During development only
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/

@@ -1,23 +1,32 @@
 {% extends 'language_swap/base.html' %}
+{% load i18n %}
 {% load staticfiles %}
 
-{% block title_block %} Login {% endblock %}
+{% block title_block %}{% trans "Log In" %}{% endblock %}
 
 {% block body_block %}
     <link href="{% static 'css/bootstrap/css/signin.css' %}" rel="stylesheet">
     <div class="container-fluid">
         <form class="form-signin" method="post" action=".">
             {% csrf_token %}
-            <h1 class="form-signin-heading">Log In</h1>
-            <label for="inputEmail" class="sr-only">Email address</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
+            <h1 class="form-signin-heading">{% trans "Log In" %}</h1>
+            <label for="{{ form.username.id_for_label }}" class="sr-only">Email address:</label>
+            <input type="username" name="username" id="{{ form.username.id_for_label }}" class="form-control"
+                   value="{{ form.data.username }}" placeholder="Email address" required autofocus>
+            {{ form.username.errors }}
+            <label for="{{ form.password.id_for_label }}" class="sr-only">Password:</label>
+            <input type="password" name="password" id="{{ form.password.id_for_label }}" class="form-control"
+                   value="{{ form.data.password }}" placeholder="Password" required>
+            {{ form.password.errors }}
+            <button class="btn btn-lg btn-primary btn-block" type="submit">{% trans "Log In" %}</button>
             <input type="hidden" name="next" value="{{ next }}"><br>
             <p>
-                Not a member?
-                <a href="{% url 'registration_register' %}">Register</a>
+                {% trans "Forgot your password?" %}
+                <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>
+            </p>
+            <p>
+                {% trans "Not a member?" %}
+                <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>
             </p>
         </form>
     </div>
