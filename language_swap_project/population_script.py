@@ -207,7 +207,7 @@ def populate():
         {"contacter": "mister@mister.com", "contactee": "yolo@dd.com", "score": 4},
         {"contacter": "lvi@cmail.com", "contactee": "yolo@dd.com", "score": 5},
         {"contacter": "gtoti@cmail.com", "contactee": "yolo@dd.com", "score": 5},
-        {"contacter": "yolo@dd.com", "contactee": "gtoti@cmail.com", "score": 4},
+        {"contacter": "yolo@dd.com", "contactee": "gtoti@cmail.com", "score": 0},
         {"contacter": "mister@mister.com", "contactee": "dickd@dd.com", "score": 2},
         {"contacter": "dickd@dd.com", "contactee": "mister@mister.com", "score": 3},
         {"contacter": "lvi@cmail.com", "contactee": "mister@mister.com", "score": 2},

@@ -48,15 +48,9 @@ class UserProfile(models.Model):
 class Contact(models.Model):
     sourceUser = models.ForeignKey(UserProfile,related_name='source')
     contactedUser = models.ForeignKey(UserProfile,related_name='contacted')
-    scoreChoices = (
-        (1, 1),
-        (2, 2),
-        (3, 3),
-        (4, 4),
-        (5, 5),
-    )
 
-    score = models.IntegerField(choices=scoreChoices, blank=True)
+
+    score = models.IntegerField(default=0)
 
 
 
