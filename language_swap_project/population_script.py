@@ -8,6 +8,7 @@ from language_swap.models import UserProfile,Language,Contact,User
 import pycountry
 
 def populate():
+    #populate languages first, neccessary since language objects are needed in "speaks" and "practices" fields of user
     language_list = ["afrikaans","albanian","amharic","arabic","armenian","azerbaijani","basque","belarusian","bengali",
                      "bosnian","bulgarian","burmese","catalan","cebuano","chichewa","chinese","corsican","croatian",
                      "czech","danish","dutch","english","esperanto","estonian","filipino","finnish","french","frisian",
@@ -21,6 +22,7 @@ def populate():
                      "uzbek","vietnamese","welsh","xhosa","yiddish","yoruba","zulu"]
     for lang in language_list:
         add_Language(lang)
+
 
     user_list = [
         {
@@ -183,7 +185,8 @@ def populate():
             "speaks": ["english", "japanese"], "practices": ["japanese", "chinese"]
         },
     ]
-    
+
+    #language the user speaks and practices are initially strings and must be converted into Language objects
     for user in user_list:
         speaksList = []
 
@@ -214,7 +217,7 @@ def populate():
 
     ]
     for contact in rateList:
-
+        #both end users are initially strings so we need to obtain UserProfile object from it
         contacter = UserProfile.objects.get(user = User.objects.get(username = contact["contacter"]))
         contactee = UserProfile.objects.get(user = User.objects.get(username = contact["contactee"]))
 
@@ -233,12 +236,19 @@ def add_user(firstname,lastname,username,email,password,city,country,gender,dob,
     userObject.set_password(userObject.password)
     userObject.save()
 
-
+    '''
+    in order to add a UserProfile which uses User Model as one of the attributes,
+    we must first create a User object then using that User object we create the UserProfile
+    '''
 
     userProfile = UserProfile.objects.get_or_create(user = userObject, city = city,
                                              country = country,gender = gender, dob = dob)[0]
     userProfile.save()
 
+    '''
+    speaks and practices are many to many fields and since a user can potentially speak more than one language,
+    we loop through every language and add them individually to the many to many relationship
+    '''
     for sth in speaks:
         userProfile.speaks.add(sth)
 

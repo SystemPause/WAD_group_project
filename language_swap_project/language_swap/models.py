@@ -24,10 +24,9 @@ class UserProfile(models.Model):
 
     country = models.CharField(max_length=120)
 
-
-
     gender = models.CharField(max_length=10,  null = True)
 
+    #picture and hobby are optional
     picture = models.ImageField(upload_to='profile_images',blank = True)
 
     hobby = models.CharField(max_length=500,blank = True)
@@ -49,7 +48,7 @@ class Contact(models.Model):
     sourceUser = models.ForeignKey(UserProfile,related_name='source')
     contactedUser = models.ForeignKey(UserProfile,related_name='contacted')
 
-
+    #by default, if a user appears on your contact history, he/she is not rated by default
     score = models.IntegerField(default=0)
 
 

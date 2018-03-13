@@ -5,7 +5,9 @@ from django.db import models
 
 from language_swap.models import Language,UserProfile,Contact
 
-
+'''
+In both Admin classes, any foreign keys or attributes must have helper class in order to obtain the value
+'''
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('first_name','last_name','city','country',)
     def first_name(self,obj):
