@@ -21,10 +21,12 @@ class MyRegistrationView(RegistrationView):
             new_user.last_name = last_name
             new_user.save()
             new_profile = UserProfile.objects.create(user=new_user, city=city, country=country, gender = gender, dob = dob)
-            nlanguage = Language.objects.get(LanguageName=speaks)
-            planguage = Language.objects.get(LanguageName=practices)
-            new_profile.speaks.add(nlanguage)
-            new_profile.practices.add(planguage)
+            for language in speaks:
+                nlanguage = Language.objects.get(LanguageName=language)
+                new_profile.speaks.add(nlanguage)
+            for language in practices:
+                planguage = Language.objects.get(LanguageName=language)
+                new_profile.practices.add(planguage)
             new_profile.save()
             return new_user
 
