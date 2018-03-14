@@ -1,17 +1,80 @@
 {% extends 'language_swap/base.html' %}
-
-{% block title_block %}My profile{% endblock %}
+{% block title_block %}Contact history{% endblock %}
 
 {% block body_block %}
-
-<div class="container p-5 m-5">HELLO THIS IS MY PROFILE</div>
-{% if contacts %}
-    {% for details in contacts.values %}
-        {{details.email}}
-        <br>
-    {% endfor %}
+    <div class="header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h3 class="display-5">Contact history</h3>
+    </div>
+    {% if contacts %}
+        <div class="container-fluid">
+            <div class="row m-3">
+            {% for details in contacts.values %}
+            <div class="col-sm-6 col-md-4 col-xl-3 p-3">
+                <!-- Create a card for every user filtered by the research -->
+                <div class="card box-shadow">
+                    <!-- Load the profile picture at the top of the card -->
+                    {% if details.picture %}
+                        <img class="card-img-top img-fluid" src="{{MEDIA_URL}}{{ details.picture }}" alt="{{details.firstname}}, profile picture">
+                    {% else %}
+                        <!-- If the picture is not present, load a placeholder -->
+                        <img class="card-img-top img-fluid" src="{{MEDIA_URL}}/profile_images/placeholder.png" alt="Placeholder: profile picture missing">
+                    {% endif %}
+                    <!-- Show profile detailes in the card body -->
+                    <div class="card-body">
+                        <!-- First name and Last name -->
+                        <h4 class="card-title text-capitalize"> {{ details.firstname }} {{ details.lastname }}</h4>
+                        <!-- Demographic details -->
+                        <h5 class="card-subtitle text-muted text-capitalize">{{ details.gender }}, {{ details.age }}</h5>
+                        <p class="card-text text-capitalize pt-2">
+                            {{ details.city }}, {{ details.country }}
+                            {% if details.score %}
+                                {{ details.score }}&#9733;
+                            {% else %}
+                                No rating for this user.
+                            {% endif %}
+                        </p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <h6 class="card-subtitle mb-2">Bio and hobbies</h6>
+                            {% if details.hobby %}
+                                <p class="card-text">{{ details.hobby }}</p>
+                            {% else %}
+                                <p class="card-text">No bio for this user</p>
+                            {% endif %}
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col">
+                                    <h6 class="card-subtitle mb-2">Speaks</h6>
+                                    <p class="card-text text-capitalize">
+                                        {% for slang in details.speaks %} {{ slang }} <br> {% endfor %}
+                                    </p>
+                                </div>
+                                <div class="col">
+                                    <h6 class="card-subtitle mb-2">Practices</h6>
+                                    <p class="card-text text-capitalize">
+                                        {% for plang in details.practices %} {{ plang }} <br> {% endfor %}
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <p class="card-text text-center">{{details.email}}</p>
+                        </li>
+                    </ul>
+                    <div class="card-body">
+                        <p class="card-text">Rate this user:</p>
+                        <form></form>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 {% else %}
-    <p>The contact history is empty</p>
-{% endif %}
+<div class="text-center">
+    <p>The contact history is empty.</p>
+</div>
 
-{% endblock %}
+{% endif %} {% endblock %}

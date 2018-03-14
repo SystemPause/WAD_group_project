@@ -3,9 +3,42 @@
 {% block title_block %}My profile{% endblock %}
 
 {% block body_block %}
-
-<div class="container p-5 m-5">HELLO THIS IS MY PROFILE</div>
-{% for details in userProfile.values %}
-    {{details.email}}
-{% endfor %}
+    {% if userProfile.values %}
+    
+        {% for details in userProfile.values %}
+            <div class="header px-3 py-3 pt-md-5 pb-md-4 mx-auto">
+                <h3 class="display-4">{{details.firstname}} {{details.lastname}}</h3>
+            </div>
+            <div class="container">
+                <h5 class="card-subtitle text-muted text-capitalize">{{ details.gender }}, {{ details.age }}</h5>
+                <p class="card-text text-capitalize pt-2">
+                    {{ details.city }}, {{ details.country }} {% if details.score %} {{ details.score }}&#9733; {% else %} No rating for this user. {% endif %}
+                </p>
+                <h6>EMAIL:</h6>
+                <p> {{details.email}}</p>
+                <h6 class="card-subtitle mb-2">Bio and hobbies</h6>
+                {% if details.hobby %}
+                    <p class="card-text">{{ details.hobby }}</p>
+                {% else %}
+                    <p class="card-text">No bio for this user</p>
+                {% endif %}
+                <div class="row">
+                    <div class="col">
+                        <h6 class="card-subtitle mb-2">Speaks</h6>
+                        <p class="card-text text-capitalize">
+                            {% for slang in details.speaks %} {{ slang }} <br> {% endfor %}
+                        </p>
+                    </div>
+                    <div class="col">
+                        <h6 class="card-subtitle mb-2">Practices</h6>
+                        <p class="card-text text-capitalize">
+                            {% for plang in details.practices %} {{ plang }} <br> {% endfor %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        No information found.
+    {% endif %}
 {% endblock %}

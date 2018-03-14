@@ -5,64 +5,84 @@
     <div class="header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
         <h3 class="display-5">Results for search:</h3>
     </div>
+    
     {% if errors %}
         {% for error in errors %}
             <div class="text-center"> {{ error }} </div>
         {% endfor %}
     {% else %}
-        <div class="row m-3">
+        <div class="container-fluid">
+       <!-- Create a responsive row of card -->
+            <div class="row m-3">
             {% for details in users.values %}
-            <div class="col-sm-6 col-md-4 col-xl-3 p-3">
-                <div class="card box-shadow">
-                    {% if details.picture %}
-                    <img class="card-img-top img-fluid" src="{{MEDIA_URL}}{{ details.picture }}" alt="{{details.firstname}}, profile picture"> {% else %}
-                    <img class="card-img-top img-fluid" src="{{MEDIA_URL}}/profile_images/placeholder.png" alt="Placeholder: profile picture missing"> {% endif %}
-                    <div class="card-body">
-                        <h4 class="card-title text-capitalize"> {{ details.firstname }} {{ details.lastname }}</h4>
-                        <h5 class="card-subtitle text-muted text-capitalize">{{ details.city }}, {{ details.country }} ({{ details.gender }}, {{ details.age }}),{{ details.score }}</h5>
-                        <p class="card-text pt-2">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <h6 class="card-subtitle mb-2">Bio and hobbies</h6>
-                            {% if details.hobby %}
-                            <p class="card-text">{{ details.hobby }}</p>
-                            {% else %}
-                            <p class="card-text">No bio for this user</p>
-                            {% endif %}
-                        </li>
-                        <li class="list-group-item">
-                            <div class="row">
-                                <div class="col">
-                                    <h6 class="card-subtitle mb-2">Speaks</h6>
-                                    <p class="card-text text-capitalize">
-                                        {% for slang in details.speaks %} {{ slang }} <br> {% endfor %}
-                                    </p>
-                                </div>
-                                <div class="col">
-                                    <h6 class="card-subtitle mb-2">Practices</h6>
-                                    <p class="card-text text-capitalize">
-                                        {% for plang in details.practices %} {{ plang }} <br> {% endfor %}
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                    {% if user.is_authenticated %}
-                    <div class="card-body text-center">
-                        <a href="#" class="btn btn-secondary">Contact</a>
-                        <!--{{ details.email }}-->
-                    </div>
-                    {% else %}
-                    <div class="card-body text-center">
-                        <a href="{% url 'auth_login' %}" class="btn btn-primary">Contact</a>
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-            {% endfor %}
-        </div>
+                <div class="col-sm-6 col-md-4 col-xl-3 p-3">
+                    <!-- Create a card for every user filtered by the research -->
+                    <div class="card box-shadow">
+                        <!-- Load the profile picture at the top of the card -->
+                        {% if details.picture %}
+                            <img class="card-img-top img-fluid" src="{{MEDIA_URL}}{{ details.picture }}" alt="{{details.firstname}}, profile picture">
+                        {% else %}
+                           <!-- If the picture is not present, load a placeholder -->
+                            <img class="card-img-top img-fluid" src="{{MEDIA_URL}}/profile_images/placeholder.png" alt="Placeholder: profile picture missing">
+                        {% endif %}
 
+                        <!-- Show profile detailes in the card body -->
+                        <div class="card-body">
+                            <!-- First name and Last name -->
+                            <h4 class="card-title text-capitalize"> {{ details.firstname }} {{ details.lastname }}</h4>
+                            <!-- Demographic details -->
+                            <h5 class="card-subtitle text-muted text-capitalize">{{ details.gender }}, {{ details.age }}</h5>
+                            <p class="card-text text-capitalize pt-2">
+                                {{ details.city }}, {{ details.country }} 
+                                {% if details.score %}
+                                    {{ details.score }}&#9733;
+                                {% else %}
+                                   {{ details.score }}
+                                    No rating for this user.
+                                {% endif %}
+                            </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <h6 class="card-subtitle mb-2">Bio and hobbies</h6>
+                                {% if details.hobby %}
+                                <p class="card-text">{{ details.hobby }}</p>
+                                {% else %}
+                                <p class="card-text">No bio for this user</p>
+                                {% endif %}
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col">
+                                        <h6 class="card-subtitle mb-2">Speaks</h6>
+                                        <p class="card-text text-capitalize">
+                                            {% for slang in details.speaks %} {{ slang }} <br> {% endfor %}
+                                        </p>
+                                    </div>
+                                    <div class="col">
+                                        <h6 class="card-subtitle mb-2">Practices</h6>
+                                        <p class="card-text text-capitalize">
+                                            {% for plang in details.practices %} {{ plang }} <br> {% endfor %}
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        {% if user.is_authenticated %}
+                        <div class="card-body text-center">
+                            <a href="#" class="btn btn-primary btn-block">Contact</a>
+                            <!--{{ details.email }}-->
+                        </div>
+                        {% else %}
+                        <div class="card-body">
+                            <a href="{% url 'auth_login' %}" class="btn btn-primary btn-block">Contact</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     {% endif %}
 {% endblock %}
 
