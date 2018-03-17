@@ -3,6 +3,7 @@
 # Import packages
 from datetime import date
 from language_swap.models import Contact
+import requests
 
 # This function retrieves all the informatin regarding one single User.
 # It receives a user (UserProfile) object as parameter and
@@ -43,7 +44,8 @@ def getUserAge(dateOfBirth):
 
     return  yearsDifference - monthDayCheck
 
-# The function getUserRating(currentobject) computes the rating of a given user
+# The function getUserRating(currentobject) computes the rating of a given user.
+# It returns False if the user has not been rated yet
 
 def getUserRating(currentUser):
 
@@ -62,6 +64,50 @@ def getUserRating(currentUser):
                 finalScore +=  contactObject.score
                 counter += 1
 
-        return round(finalScore / counter,1)
+        # If the variable counter is 0 then it means that someone has already contacted the current users
+        # but nobody has rated it. So return False. Otherwise return the user rating
+        if counter == 0:
+            return False
+        else:
+            return round(finalScore / counter,1)
     else:
         return False
+
+# The function calls the google maps Api in order to retrieve the city and the country of a specific location.
+# It returns a dictionary that countains 3 different key.
+# - status: True if the operation has been completed successfully, False otherwise
+# - city: the city of the specified location
+# - country: the country of the specified location
+
+def placesReverseGeocoder(location):
+
+    resultDict = {'status' : False, 'city' : '', 'country' : ''}
+    geocode_url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + location + "&key=AIzaSyD0WYZr005e3brFlluhm2dUStd1bmZ5jec&language=en"
+
+    # Try to get and retireve the json object from the specified URL
+    try:
+        results = requests.get(geocode_url)
+        results = results.json()
+    except:
+        return resultDict
+    # If status is 'OK' then no errors occurred; the address was successfully parsed and
+    # at least one geocode was returned
+    if results['status'] == 'OK':
+        # Try to fetch the Json object to retrieve the city and the country
+        try:
+            for el in results['results'][0]['address_components']:
+                if 'locality' in el['types']:
+                    resultDict['city'] = el['long_name'].lower()
+                if 'country' in el['types']:
+                    resultDict['country'] = el['long_name'].lower()
+        except:
+            return resultDict
+    else:
+        return resultDict
+
+    # Check if the city and the country have a value
+    if resultDict['city'] and resultDict['country']:
+        resultDict['status'] = True
+        return resultDict
+    else:
+        return resultDict

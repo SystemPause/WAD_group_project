@@ -5,7 +5,6 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'language_swap_project.settings'
 import django
 django.setup()
 from language_swap.models import UserProfile,Language,Contact,User
-import pycountry
 
 def populate():
     #populate languages first, neccessary since language objects are needed in "speaks" and "practices" fields of user
@@ -36,7 +35,7 @@ def populate():
             "password": "hunter123", "city": "milan", "country": "italy","gender":"male","dob":"1995-12-15",
             "speaks":["burmese","italian"],"practices":["italian","english"]
         },
-        
+
         {
             "firstname": "Dante", "lastname":"The little pigeon","username":"yolo@dd.com", "email": "yolo@dd.com",
             "password":"hunter123","city":"milan","country":"italy","gender":"male","dob":"1992-01-26",
