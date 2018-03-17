@@ -3,6 +3,7 @@
 {% block title_block %}Contact history{% endblock %}
 
 {% block body_block %}
+    <link href="{% static 'css/main_css.css' %}" rel="stylesheet">
     <div class="header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
         <h3 class="display-5">Contact history</h3>
     </div>
@@ -10,7 +11,7 @@
         <div class="container-fluid">
             <div class="row row-eq-height m-3">
                 {% for details in contacts.values %}
-                <div class="col-sm-6 col-md-4 col-xl-3 p-3">
+                <div class="col-sm-6 col-md-4 col-xl-3 p-3 d-flex align-items-stretch">
                     <!-- Create a card for every user filtered by the research -->
                     <div class="card box-shadow">
                         <!-- Load the profile picture at the top of the card -->
@@ -22,19 +23,21 @@
                         {% endif %}
                         <!-- Show profile detailes in the card body -->
                         <div class="card-body">
-                            <!-- First name and Last name -->
-                            <h4 class="card-title text-capitalize"> {{ details.firstname }} {{ details.lastname }}</h4>
-                            <!-- Demographic details -->
-                            <h5 class="card-subtitle text-muted text-capitalize">{{ details.gender }}, {{ details.age }}</h5>
-                            <p class="card-text text-capitalize pt-2">
-                                {{ details.city }}, {{ details.country }}
+                            <p class="card-text float-right">
                                 <span id="scoreId{{ details.id}}">
                                 {% if details.score %}
-                                    {{ details.score }}&#9733;
+                                    {{ details.score }} <i class="fa fa-star" style="color:#FFD700;"></i>
                                 {% else %}
                                     No rating for this user.
                                 {% endif %}
                                 </span>
+                            </p>
+                            <!-- First name and Last name -->
+                            <h4 class="card-title text-capitalize"> {{ details.firstname }} {{ details.lastname }}</h4>
+                            <!-- Demographic details -->
+                            <h5 class="card-subtitle text-muted text-capitalize pb-2">{{ details.gender }}, {{ details.age }}</h5>
+                            <p class="card-text text-capitalize">
+                                {{ details.city }}, {{ details.country }}
                             </p>
                         </div>
                         <ul class="list-group list-group-flush">
@@ -70,7 +73,7 @@
                                 <div class="input-group mb-3">
                                     <form class="ratingForm" method="get">
                                         <input type="hidden" value={{details.id}} name="ratedUserId">
-                                        <select id="invalidSelect{{details.id}}" class="custom-select"  name="rating">
+                                        <select id="invalidSelect{{details.id}}" class="custom-select mb-2"  name="rating">
                                             <option {% if details.assignedScore == 0  %} selected {% endif %} disabled>You have not rated this user yet</option>
                                             <option {% if details.assignedScore == 1  %} selected {% endif %} value="1">1</option>
                                             <option {% if details.assignedScore == 2  %} selected {% endif %} value="2">2</option>
@@ -82,7 +85,7 @@
                                             Invalid feedback
                                         </div>
                                         <div class="input-group-append text-right">
-                                            <input type="submit" class="submit btn btn-info" value="Rate">
+                                            <input type="submit" class="submit btn btn-primary btn-block" value="Rate">
                                         </div>
                                     </form>
                                 </div>

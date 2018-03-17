@@ -4,39 +4,45 @@
 
 {% block body_block %}
     {% if userProfile.values %}
-    
         {% for details in userProfile.values %}
-            <div class="header px-3 py-3 pt-md-5 pb-md-4 mx-auto">
+        <div class="container">
+            <div class="header text-center px-3 py-3 pt-md-5 pb-md-4 mx-auto">
                 <h3 class="display-4">{{details.firstname}} {{details.lastname}}</h3>
             </div>
-            <div class="container">
-                <h5 class="card-subtitle text-muted text-capitalize">{{ details.gender }}, {{ details.age }}</h5>
-                <p class="card-text text-capitalize pt-2">
-                    {{ details.city }}, {{ details.country }} {% if details.score %} {{ details.score }}&#9733; {% else %} No rating for this user. {% endif %}
-                </p>
-                <h6>EMAIL:</h6>
-                <p> {{details.email}}</p>
-                <h6 class="card-subtitle mb-2">Bio and hobbies</h6>
-                {% if details.hobby %}
-                    <p class="card-text">{{ details.hobby }}</p>
-                {% else %}
-                    <p class="card-text">No bio for this user</p>
-                {% endif %}
-                <div class="row">
-                    <div class="col">
-                        <h6 class="card-subtitle mb-2">Speaks</h6>
-                        <p class="card-text text-capitalize">
-                            {% for slang in details.speaks %} {{ slang }} <br> {% endfor %}
-                        </p>
-                    </div>
-                    <div class="col">
-                        <h6 class="card-subtitle mb-2">Practices</h6>
-                        <p class="card-text text-capitalize">
-                            {% for plang in details.practices %} {{ plang }} <br> {% endfor %}
-                        </p>
-                    </div>
+            <div class="card flex-md-row box-shadow">
+                <div class="card-body text-justify">
+                    <h5 class="card-subtitle text-muted text-capitalize">Gender</h5>
+                    <p class="card-text text-capitalize">{{ details.gender }}</p>
+                    <h5 class="card-subtitle text-muted">Age</h5>
+                    <p class="card-text text-capitalize">{{ details.age }}</p>
+                    <h5 class="card-subtitle text-muted">From</h5>
+                    <p class="card-text text-capitalize">
+                {{ details.city }}, {{ details.country }}</p>
+                    <h6 class="card-subtitle">Email:</h6>
+                    <p> {{details.email}}</p>
+                    <h6 class="card-subtitle">Bio and hobbies</h6>
+                    {% if details.hobby %}
+                        <p>{{ details.hobby }}</p>
+                    {% else %}
+                        <p>No bio for this user</p>
+                    {% endif %}
+                    <h6 class="card-subtitle">Speaks</h6>
+                    <p class="card-text text-capitalize">
+                        {% for slang in details.speaks %} {{ slang }} <br> {% endfor %}
+                    </p>
+                    <h6 class="card-subtitle">Practices</h6>
+                    <p class="text-capitalize">
+                    {% for plang in details.practices %} {{ plang }} <br> {% endfor %}
+                    </p>
                 </div>
+                {% if details.picture %}
+                    <img class="card-img-right" src="{{MEDIA_URL}}{{ details.picture }}">
+                {% else %}
+                    <!-- If the picture is not present, load a placeholder -->
+                    <img class="card-img-right img-fluid w-50 h-50" src="{{MEDIA_URL}}/profile_images/placeholder.png" alt="Placeholder: profile picture missing">
+                 {% endif %}
             </div>
+        </div>
         {% endfor %}
     {% else %}
         No information found.
