@@ -8,6 +8,8 @@ urlpatterns = [
     url(r'^team/$', views.team, name = "team"),
     url(r'^contactUs/$', views.about, name = "contact"),
     url(r'^myProfile/$', views.profile, name = "myProfile"),
+    url(r'^myProfile/edit/$', views.edit_profile, name = 'edit_profile'),
+    url(r'^myProfile/delete/$', views.delete_account, name = 'delete_account'),
     url(r'^contactHistory/$', views.contactHistory, name = "contactHistory"),
-    url(r'^rating/$', views.rating, name = "rating")
+    url(r'^rating/$', views.rating, name = "rating"),
 ]

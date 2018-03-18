@@ -1,0 +1,64 @@
+{% extends 'language_swap/base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block title_block %}{% trans "Edit Profile" %}{% endblock %}
+
+{% block body_block %}
+    {% if userProfile.values %}
+        {% for details in userProfile.values %}
+            <div class="container">
+                <div class="header text-center px-3 py-3 pt-md-5 pb-md-4 mx-auto">
+                    <h3 class="display-4">{{details.firstname}} {{details.lastname}}</h3>
+                </div>
+                <form class="form-signup" method="post" action="{% url 'edit_profile' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="card flex-md-row box-shadow">
+                        <div class="card-body text-justify">
+                            <h5 class="card-subtitle text-muted text-capitalize">Gender</h5>
+                            <p class="card-text text-capitalize">{{ details.gender }}</p>
+                            <h5 class="card-subtitle text-muted">Age</h5>
+                            <p class="card-text text-capitalize">{{ details.age }}</p>
+                            <h5 class="card-subtitle text-muted">From</h5>
+                            <p><input type="text" name="places" value="{{ details.city|title }}, {{ details.country|title }}"
+                              id="gMapsAutocomplete" required/></p>
+                            <h6 class="card-subtitle">Email</h6>
+                            <p>{{details.email}}</p>
+                            <h6 class="card-subtitle">Hobbies</h6>
+                            <p><input type="text" name="hobby" value="{% if details.hobby %}{{ details.hobby|title }}{% endif %}"
+                                   maxlength="500" id="id_hobby"/></p>
+                            <h6 class="card-subtitle">Speaks</h6>
+                            <p class="card-text text-capitalize">
+                                {% for slang in details.speaks %} {{ slang }} <br> {% endfor %}
+                            </p>
+                            <h6 class="card-subtitle">Practices</h6>
+                            <p class="text-capitalize">
+                                {% for plang in details.practices %} {{ plang }} <br> {% endfor %}
+                            </p>
+                            <a href="{% url 'myProfile' %}" type="button" class="btn btn-default">{% trans "Cancel" %}</a>
+                            <button type="submit" class="btn btn-primary">{% trans "Save" %}</button>
+                        </div>
+                        <p>
+                            <label for="id_picture">Current Profile Picture:</label>
+                            {% if details.picture %}
+                                <a href="{{MEDIA_URL}}{{ details.picture }}">{{ details.picture }}</a>
+                            {% else %}
+                                <a href="{{MEDIA_URL}}/profile_images/placeholder.png">default profile picture</a>
+                            {% endif %}<br>
+                            Change:
+                            <input type="file" name="picture" id="id_picture"/>
+                        </p>
+                    </div>
+                </form>
+            </div>
+         {% endfor %}
+    {% else %}
+        No information found.
+    {% endif %}
+{% endblock %}
+
+{% block extra_resources_block %}
+    <!-- Import the google maps places API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0WYZr005e3brFlluhm2dUStd1bmZ5jec&libraries=places&language=en"></script>
+    <script src="{% static 'javascript/placesAutocomplete.js' %}"></script>
+{% endblock %}

@@ -13,13 +13,16 @@
             <label for="{{ form.username.id_for_label }}" class="sr-only">Email address:</label>
             <input type="username" name="username" id="{{ form.username.id_for_label }}" class="form-control"
                    value="{{ form.data.username }}" placeholder="Email address" required autofocus>
-            {{ form.username.errors }}
             <label for="{{ form.password.id_for_label }}" class="sr-only">Password:</label>
             <input type="password" name="password" id="{{ form.password.id_for_label }}" class="form-control"
                    value="{{ form.data.password }}" placeholder="Password" required>
-            {{ form.password.errors }}
             <button class="btn btn-lg btn-primary btn-block" type="submit">{% trans "Log In" %}</button>
             <input type="hidden" name="next" value="{{ next }}"><br>
+            {% if form.errors %}
+                <div class="alert alert-danger">
+                    Please enter a correct email address and password. Note that both fields may be case-sensitive.
+                </div>
+            {% endif %}
             <p>
                 {% trans "Forgot your password?" %}
                 <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>

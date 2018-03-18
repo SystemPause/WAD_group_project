@@ -11,8 +11,8 @@ class MyRegistrationView(RegistrationView):
             new_user = super(MyRegistrationView, self).register(form_class)
             first_name = form_class.cleaned_data['first_name']
             last_name = form_class.cleaned_data['last_name']
-            city = form_class.cleaned_data['city'].lower()
-            country = form_class.cleaned_data['country'].lower()
+            city = form_class.cleaned_data['city']
+            country = form_class.cleaned_data['country']
             speaks = form_class.cleaned_data['speaks']
             practices = form_class.cleaned_data['practices']
             gender = form_class.cleaned_data['gender']

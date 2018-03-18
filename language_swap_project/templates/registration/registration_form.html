@@ -50,44 +50,27 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
+                    <label>City:</label>
+                    <input type="text" name="places" id="gMapsAutocomplete" class="form-control autocomplete-address"
+                           placeholder="">
+                </div>
+                <div class="form-group col-md-4">
                     <label for="{{ form.dob.id_for_label }}">Date of Birth:</label>
                     <input class="form-control" id="{{ form.dob.id_for_label }}" name="dob" type="date"
                            placeholder="YYYY-MM-DD" value="{{ form.data.dob }}" required>
                     {{ form.dob.errors }}
                 </div>
-                <div class="form-group col-md-6">
-                    <label for="{{ form.gender.id_for_label }}">Gender</label><br>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="gender"
-                               id="{{ form.gender.id_for_label }}" value="male">
-                        <label class="form-check-label" for="{{ form.gender.id_for_label }}">Male</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="gender"
-                               id="{{ form.gender.id_for_label }}" value="female">
-                        <label class="form-check-label" for="{{ form.gender.id_for_label }}">Female</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="gender"
-                               id="{{ form.gender.id_for_label }}" value="other">
-                        <label class="form-check-label" for="{{ form.gender.id_for_label }}">Other</label>
-                    </div>
+                <div class="form-group col-md-4">
+                    <label for="{{ form.gender.id_for_label }}">Gender:</label><br>
+                    {% for value,label in form.gender.field.choices %}
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender"
+                                   id="{{ form.gender.id_for_label }}" value="{{ value }}">
+                            <label class="form-check-label" for="{{ form.gender.id_for_label }}">{{ label }}</label>
+                        </div>
+                    {% endfor %}
                     {{ form.gender.errors }}
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="{{ form.city.id_for_label }}">City:</label>
-                    <input class="form-control" id="{{ form.city.id_for_label }}" name="city" type="text"
-                           value="{{ form.data.city }}" required>
-                    {{ form.city.errors }}
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="{{ form.country.id_for_label }}">Country</label>
-                    <input class="form-control" id="{{ form.country.id_for_label }}" name="country" type="text"
-                    value="{{ form.data.country }}" required>
-                    {{ form.country.errors }}
                 </div>
             </div>
             <div class="form-row">
@@ -105,7 +88,7 @@
                      <label for="{{ form.practices.id_for_label }}">Practising Language(s):</label>
                     <select class="custom-select" name="practices" required id="{{ form.practices.id_for_label }}" multiple>
                         <option value="" disabled>Select up to 5 languages</option>
-                        {% for language in form.speaks.field.queryset %}
+                        {% for language in form.practices.field.queryset %}
                             <option value="{{ language }}">{{ language|title }}</option>
                         {% endfor %}
                     </select>
@@ -119,6 +102,9 @@
 
 {% block extra_resources_block %}
     <script src="{% static 'javascript/select2.min.js' %}"></script>
+    <!-- Import the google maps places API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0WYZr005e3brFlluhm2dUStd1bmZ5jec&libraries=places&language=en"></script>
+    <script src="{% static 'javascript/placesAutocomplete.js' %}"></script>
     <script>
         $("#{{ form.speaks.id_for_label }}").select2({
             maximumSelectionLength: 5

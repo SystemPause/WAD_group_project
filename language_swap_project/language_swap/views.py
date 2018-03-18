@@ -3,10 +3,11 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 from language_swap.models import User, UserProfile, Language, Contact
+from language_swap.forms import EditProfileForm, DeleteAccountForm
 from language_swap.helperFunctions import getUserDetails, getUserRating, placesReverseGeocoder
 from django.contrib.auth.decorators import login_required
-from django.http import Http404
-from django.http import HttpResponse
+from django.http import Http404, HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 import json
 
 
@@ -40,7 +41,7 @@ def searchResult(request):
         country = places['country']
     else:
         errors = True
-        context_dict['errors'].append("An error has occured while fetching the places.")
+        context_dict['errors'].append("An error has occurred while fetching the places.")
 
 
     # Try to retrieve the selected languages
@@ -90,6 +91,45 @@ def profile(request):
     context_dict['userProfile'].update(getUserDetails(loggedUser))
 
     return render(request, 'language_swap/profile.html', context_dict)
+
+@login_required
+def edit_profile(request):
+    loggedUser = UserProfile.objects.get(user=request.user)
+
+    form = EditProfileForm(request.POST or None, initial={'places': loggedUser.city.title()+", "+loggedUser.country.title(),
+                                                          'hobby': loggedUser.hobby, 'picture': loggedUser.picture})
+    if request.method == 'POST':
+        if form.is_valid():
+            loggedUser.city = form.cleaned_data['city']
+            loggedUser.country = form.cleaned_data['country']
+            loggedUser.hobby = form.cleaned_data['hobby']
+            if 'picture' in request.FILES:
+                loggedUser.picture.delete(save=False)
+                loggedUser.picture = request.FILES['picture']
+            loggedUser.save()
+            return HttpResponseRedirect(reverse('myProfile'))
+
+    context = {"form": form, 'userProfile' : {}}
+    # Gets all the details of the current logged in user
+    context['userProfile'].update(getUserDetails(loggedUser))
+
+    return render(request, "language_swap/edit_profile.html", context)
+
+@login_required
+def delete_account(request):
+    form = DeleteAccountForm(request.POST or None)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            user = request.user
+            loggedUser = UserProfile.objects.get(user=user)
+            loggedUser.picture.delete(save=False)
+            loggedUser.delete()
+            user.delete()
+            return HttpResponseRedirect(reverse(index))
+
+    context = {"form": form}
+    return render(request, "language_swap/delete_account.html", context)
 
 @login_required
 def contactHistory(request):
