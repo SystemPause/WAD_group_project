@@ -164,7 +164,7 @@ def populate():
             "speaks": ["english"], "practices": ["french", "italian"]
         },
         {
-            "firstname": "Min", "lastname": "Min", "username": "mm@gmx.com", "email": "mm@gmx.com",
+            "firstname": "Min", "lastname": "Min", "username": "min@gmx.com", "email": "min@gmx.com",
             "password": "hunter123", "city": "yangon", "country": "myanmar", "gender": "male", "dob": "1994-07-20",
             "speaks": ["burmese", "chinese"], "practices": ["english", "italian"]
         },
