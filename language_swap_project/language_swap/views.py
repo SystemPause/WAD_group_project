@@ -197,3 +197,16 @@ def rating(request):
             return HttpResponse(json.dumps(resultDict))
     else:
         raise Http404
+
+def emailCheck(request):
+    if request.is_ajax():
+        emailList = User.objects.all().values_list('username',flat = True)
+        print(emailList)
+        email = request.GET.get('email','').strip().lower()
+
+        if email in emailList:
+            return HttpResponse(1)
+        else:
+            return HttpResponse(0)
+    else:
+        raise Http404

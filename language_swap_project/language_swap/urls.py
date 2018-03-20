@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^myProfile/delete/$', views.delete_account, name = 'delete_account'),
     url(r'^contactHistory/$', views.contactHistory, name = "contactHistory"),
     url(r'^rating/$', views.rating, name = "rating"),
+    url(r'^emailCheck/$',views.emailCheck,name = "emailCheck")
 ]

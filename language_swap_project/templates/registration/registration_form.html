@@ -15,6 +15,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="{{ form.first_name.id_for_label }}">First Name:</label>
+                    <span id="first_name_error"></span>
                     <input class="form-control" id="{{ form.first_name.id_for_label }}"
                            name="{{ form.first_name.name }}" type="text" value="{{ form.data.first_name }}"
                            required autofocus>
@@ -22,6 +23,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="{{ form.last_name.id_for_label }}">Last Name:</label>
+                    <span id="last_name_error"></span>
                     <input class="form-control" id="{{ form.last_name.id_for_label }}"
                            name="{{ form.last_name.name }}" type="text" value="{{ form.data.last_name }}" required>
                     {{ form.last_name.errors }}
@@ -30,6 +32,7 @@
             <div class="form-row">
                 <div class="form-group col">
                     <label for="{{ form.email.id_for_label }}">Email:</label>
+                    <span id="email_error"></span>
                     <input class="form-control" id="{{ form.email.id_for_label }}" name="email" type="email"
                            value="{{ form.data.email }}" required>
                     {{ form.email.errors }}
@@ -38,12 +41,14 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="{{ form.password1.id_for_label }}">Password:</label>
+                    <span id="pass1_error"></span>
                     <input class="form-control" id="{{ form.password1.id_for_label }}" name="password1" type="password"
                            value="{{ form.data.password1 }}" required>
                     {{ form.password1.errors }}
                 </div>
                 <div class="form-group col-md-6">
                     <label for="{{ form.password2.id_for_label }}">Password Confirmation:</label>
+                    <span id="pass2_error"></span>
                     <input class="form-control" id="{{ form.password2.id_for_label }}" name="password2" type="password"
                            value="{{ form.data.password2 }}" required>
                     {{ form.password2.errors }}
@@ -52,11 +57,13 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label>City:</label>
+                    <span id="city_error"></span>
                     <input type="text" name="places" id="gMapsAutocomplete" class="form-control autocomplete-address"
                            placeholder="">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="{{ form.dob.id_for_label }}">Date of Birth:</label>
+                    <span id="birthday_error"></span>
                     <input class="form-control" id="{{ form.dob.id_for_label }}" name="dob" type="date"
                            placeholder="YYYY-MM-DD" value="{{ form.data.dob }}" required>
                     {{ form.dob.errors }}
@@ -76,6 +83,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="{{ form.speaks.id_for_label }}">Native Language(s):</label>
+                    <span id="native_error"></span>
                     <select class="custom-select" name="speaks" required id="{{ form.speaks.id_for_label }}" multiple>
                         <option value="" disabled>Select up to 5 languages</option>
                         {% for language in form.speaks.field.queryset %}
@@ -86,6 +94,7 @@
                 </div>
                 <div class="form-group col-md-6">
                      <label for="{{ form.practices.id_for_label }}">Practising Language(s):</label>
+                    <span id="practice_error"></span>
                     <select class="custom-select" name="practices" required id="{{ form.practices.id_for_label }}" multiple>
                         <option value="" disabled>Select up to 5 languages</option>
                         {% for language in form.practices.field.queryset %}
@@ -111,6 +120,46 @@
         });
         $("#{{ form.practices.id_for_label }}").select2({
             maximumSelectionLength: 5
+        });
+        function emptyChecker(errorElement,input){
+            $(input).bind("focusout",function(){
+               
+               if (!$(input).val()){
+                   $(errorElement).html("Required Field");
+                   $(errorElement).css("color","red");
+               } else{
+                   $(errorElement).html("");
+                   
+               }
+            });
+        }
+        emptyChecker("#first_name_error","#{{ form.first_name.id_for_label }}");
+        emptyChecker("#last_name_error","#{{ form.last_name.id_for_label }}");
+        emptyChecker("#email_error","#{{ form.email.id_for_label }}");
+        emptyChecker("#pass1_error","#{{ form.password1.id_for_label }}");
+        emptyChecker("#pass2_error","#{{ form.password2.id_for_label }}");
+        emptyChecker("#city_error","#gMapsAutocomplete");
+        emptyChecker("#birthday_error","#{{ form.dob.id_for_label }}");        
+        
+        $("#{{ form.email.id_for_label }}").bind("focusout",function(){
+            var email = $("#{{ form.email.id_for_label }}").val();
+            $.get('/LanguageSwap/emailCheck/',{email:email}, function(data){
+                if (data==1){
+                    alert("email is already taken");
+                }
+                else{
+                    alert("email approved!");
+                }
+            }
+        );
+        
+        });
+        
+        $("#{{ form.password2.id_for_label }}").bind("focusout",function(){
+            var pass1 = $("#{{ form.password1.id_for_label }}").val();
+            if ($("#{{ form.password2.id_for_label }}").val() != pass1){
+                alert("no");
+            }
         });
     </script>
 {% endblock %}
