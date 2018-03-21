@@ -123,13 +123,13 @@
         });
         function emptyChecker(errorElement,input){
             $(input).bind("focusout",function(){
-               
+
                if (!$(input).val()){
                    $(errorElement).html("Required Field");
                    $(errorElement).css("color","red");
                } else{
                    $(errorElement).html("");
-                   
+
                }
             });
         }
@@ -139,8 +139,8 @@
         emptyChecker("#pass1_error","#{{ form.password1.id_for_label }}");
         emptyChecker("#pass2_error","#{{ form.password2.id_for_label }}");
         emptyChecker("#city_error","#gMapsAutocomplete");
-        emptyChecker("#birthday_error","#{{ form.dob.id_for_label }}");        
-        
+        emptyChecker("#birthday_error","#{{ form.dob.id_for_label }}");
+
         $("#{{ form.email.id_for_label }}").bind("focusout",function(){
             var email = $("#{{ form.email.id_for_label }}").val();
             $.get('/LanguageSwap/emailCheck/',{email:email}, function(data){
@@ -152,9 +152,9 @@
                 }
             }
         );
-        
+
         });
-        
+
         $("#{{ form.password2.id_for_label }}").bind("focusout",function(){
             var pass1 = $("#{{ form.password1.id_for_label }}").val();
             if ($("#{{ form.password2.id_for_label }}").val() != pass1){

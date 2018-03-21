@@ -34,7 +34,6 @@ body, html {
     vertical-align: text-top;
 }
 
-
 /* fieldset, label { margin: 0; padding: 0; }
 body{ margin: 20px; }
 h1 { font-size: 1.5em; margin: 10px; } */
@@ -77,3 +76,32 @@ h1 { font-size: 1.5em; margin: 10px; } */
 /*.rating > input:checked ~ label:hover,
 /*.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
 /*.rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+*/
+
+/* Modal custom design */
+.errorMessageEmail{
+    display: none;
+}
+
+.successMessageEmail{
+    display: none;
+}
+
+#modalName{
+     margin-left: 5px;
+     color: #007bff;
+     text-transform:capitalize;
+}
+
+/* Google Maps autocomplete form styling */
+.pac-item, .pac-item-query{
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 1rem;
+    padding-left: 5px;
+}
+.pac-item-selected{
+    color: #007bff;
+}
+.pac-icon{
+    display: none;
+}

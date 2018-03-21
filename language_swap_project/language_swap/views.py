@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from language_swap.models import User, UserProfile, Language, Contact
 from language_swap.forms import EditProfileForm, DeleteAccountForm
-from language_swap.helperFunctions import getUserDetails, getUserRating, placesReverseGeocoder
+from language_swap.helperFunctions import getUserDetails, getUserRating, placesReverseGeocoder, sendEmailFunction
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.urls import reverse
@@ -60,7 +60,13 @@ def searchResult(request):
         # If there are results to the Query, retrieve users details
         if resultUsers.exists():
             for resultUser in resultUsers:
-                context_dict['users'].update(getUserDetails(resultUser))
+                # Check if the user is logged in. We don't want to show the logged in user in the result page
+                if request.user.is_authenticated():
+                    # If it is not logged in, add it to the result context dictionary
+                    if request.user != resultUser.user:
+                        context_dict['users'].update(getUserDetails(resultUser))
+                else:
+                    context_dict['users'].update(getUserDetails(resultUser))
         else:
             context_dict['errors'].append("There are no users in this city.")
 
@@ -201,12 +207,44 @@ def rating(request):
 def emailCheck(request):
     if request.is_ajax():
         emailList = User.objects.all().values_list('username',flat = True)
-        print(emailList)
         email = request.GET.get('email','').strip().lower()
 
         if email in emailList:
             return HttpResponse(1)
         else:
             return HttpResponse(0)
+    else:
+        raise Http404
+
+
+# The sendEmail function is used in order to send a mail to a User. It returns True if
+# the email has been sent successfully, False otherwise.
+@login_required
+def sendEmail(request):
+    # Check if the request performed is Ajax, if it's not raise a 404 error
+    if request.is_ajax():
+
+        # Get the contact User id and the message
+        sendMessageToUser = request.GET.get('userId','').strip()
+        message = request.GET.get('message','').strip()
+        if sendMessageToUser and message:
+            # Get the current logged In user
+            loggedUser = UserProfile.objects.get(user = request.user)
+            try:
+                sendMessageToUser = int(sendMessageToUser)
+                # Try to retrieve the user with the specified id
+                contactUser = User.objects.get(id = sendMessageToUser)
+                contactUser = UserProfile.objects.get(user = contactUser)
+            except:
+                return HttpResponse(False)
+            # Send the email to the specified user, if something fails return False
+            if sendEmailFunction(loggedUser.user.email, contactUser.user.email, message):
+                # If the email has been sent successfully, try to create a new Contact
+                try:
+                    contactCreated = Contact.objects.get_or_create(sourceUser = loggedUser, contactedUser = contactUser)
+                except:
+                    return HttpResponse(False)
+                return HttpResponse(True)
+        return HttpResponse(False)
     else:
         raise Http404

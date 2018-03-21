@@ -4,6 +4,7 @@
 from datetime import date
 from language_swap.models import Contact
 import requests
+from django.core.mail import send_mail
 
 # This function retrieves all the informatin regarding one single User.
 # It receives a user (UserProfile) object as parameter and
@@ -102,8 +103,6 @@ def placesReverseGeocoder(location):
                     resultDict['country'] = el['long_name'].lower()
         except:
             return resultDict
-    else:
-        return resultDict
 
     # Check if the city and the country have a value
     if resultDict['city'] and resultDict['country']:
@@ -111,3 +110,14 @@ def placesReverseGeocoder(location):
         return resultDict
     else:
         return resultDict
+
+
+# The function sends an email to one user from one user. If something fails return False,
+# otherwise return true
+
+def sendEmailFunction(emailFrom, emailTo, message):
+    try:
+        send_mail("Language Swap: You have a new message!", message, emailFrom, [emailTo], fail_silently=False)
+    except:
+        return False
+    return True
