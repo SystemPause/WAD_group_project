@@ -33,7 +33,6 @@
                     <span id="email_error"></span>
                     <input class="form-control" id="{{ form.email.id_for_label }}" name="email" type="email"
                            value="{{ form.data.email }}" required>
-                    {{ form.email.errors }}
                 </div>
             </div>
             <div class="form-row">
@@ -64,7 +63,6 @@
                     <span id="birthday_error"></span>
                     <input class="form-control" id="{{ form.dob.id_for_label }}" name="dob" type="date"
                            placeholder="YYYY-MM-DD" value="{{ form.data.dob }}" required>
-                    {{ form.dob.errors }}
                 </div>
                 <div class="form-group col-md-4">
                     <label for="{{ form.gender.id_for_label }}">Gender:</label><br>
@@ -75,7 +73,6 @@
                             <label class="form-check-label" for="{{ form.gender.id_for_label }}">{{ label }}</label>
                         </div>
                     {% endfor %}
-                    {{ form.gender.errors }}
                 </div>
             </div>
             <div class="form-row">
@@ -88,7 +85,6 @@
                             <option value="{{ language }}">{{ language|title }}</option>
                         {% endfor %}
                     </select>
-                    {{ form.speaks.errors }}
                 </div>
                 <div class="form-group col-md-6">
                      <label for="{{ form.practices.id_for_label }}">Practising Language(s):</label>
@@ -99,7 +95,6 @@
                             <option value="{{ language }}">{{ language|title }}</option>
                         {% endfor %}
                     </select>
-                    {{ form.practices.errors }}
                 </div>
             </div>
             <center><button type="submit" class="btn btn-primary">{% trans "Sign Up" %}</button></center>
@@ -114,15 +109,7 @@
     <!-- Import the google maps places API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0WYZr005e3brFlluhm2dUStd1bmZ5jec&libraries=places&language=en"></script>
     <script src="{% static 'javascript/placesAutocomplete.js' %}"></script>
-    <script>
-        $("#{{ form.speaks.id_for_label }}").select2({
-            maximumSelectionLength: 5
-        });
-        $("#{{ form.practices.id_for_label }}").select2({
-            maximumSelectionLength: 5
-        });
-        
-    </script>
+    <script src="{% static 'javascript/customMultiselect.js' %}"></script>
     <script src="{% static 'javascript/registrationChecker.js' %}"></script>
     
     
