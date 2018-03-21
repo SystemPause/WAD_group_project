@@ -56,7 +56,7 @@ def populate():
         {
             "firstname": "Wang", "lastname": "Huang", "username": "whuang@gmx.com", "email": "whuang@gmx.com",
             "password": "hunter123", "city": "shenzhen", "country": "china", "gender": "female", "dob": "1992-04-15",
-            "speaks": ["chinese", "french"], "practices": ["burmese", "english"],"image":""
+            "speaks": ["chinese", "french"], "practices": ["burmese", "english"],"image":"profile_images/girl.jpeg"
         },
         {
             "firstname": "Ramesh", "lastname": "Ali", "username": "mali@gmx.com", "email": "mali@gmx.com",
@@ -244,7 +244,7 @@ def add_user(firstname,lastname,username,email,password,city,country,gender,dob,
                                              country = country,gender = gender, dob = dob)[0]
     if image != '':
         userProfile.picture = image
-    
+
     userProfile.save()
 
     '''

@@ -18,6 +18,9 @@
     <link href="{% static 'css/bootstrap/css/carousel.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'css/main_css.css' %}" rel="stylesheet" type="text/css">
     <!-- <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"> -->
+
+    {% block specific_css %}
+    {% endblock %}
 </head>
 
 <body class="bg-light">
@@ -64,7 +67,7 @@
         <ul class="list-inline mr-3">
             <li class="list-inline-item"><a href="{% url 'about' %}">About</a></li>
             <li class="list-inline-item"><a href="{% url 'contact' %}">Contact Us</a></li>
-            <li class="list-inline-item"><a href="#">Back to top</a></li>
+            <li class="list-inline-item"><a class="text-muted" href="#">Back to top <i class="fa fa-arrow-up"></i></a></li>
         </ul>
     </footer>
 

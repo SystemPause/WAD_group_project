@@ -48,13 +48,14 @@
                     <!-- Create a card for every user filtered by the research -->
                     <div class="card box-shadow mb-4">
                         <!-- Load the profile picture at the top of the card -->
+                        <!--<div class="imgdiv" style="height:200px; overflow:hidden; object-fit:contain;">-->
                         {% if details.picture %}
                             <img class="card-img-top img-fluid" src="{{MEDIA_URL}}{{ details.picture }}" alt="{{details.firstname}}, profile picture">
                         {% else %}
                            <!-- If the picture is not present, load a placeholder -->
-                            <img class="card-img-top img-fluid" src="{{MEDIA_URL}}/profile_images/placeholder.png" alt="Placeholder: profile picture missing">
+                            <img class="card-img-top img-fluid" src="{% static 'images/placeholder.png' %}" alt="Placeholder: profile picture missing">
                         {% endif %}
-
+                        <!-- </div> -->
                         <!-- Show profile detailes in the card body -->
                         <div class="card-body">
                             <p class="card-text float-right ml-1 pt-1">

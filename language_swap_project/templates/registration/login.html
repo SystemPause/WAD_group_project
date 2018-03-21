@@ -1,6 +1,9 @@
 {% extends 'language_swap/base.html' %}
 {% load i18n %}
 {% load staticfiles %}
+{% block specific_css %}
+    <link href="{% static 'css/bootstrap/css/signin.css' %}" rel="stylesheet">
+{% endblock %}
 
 {% block title_block %}{% trans "Log In" %}{% endblock %}
 
@@ -19,7 +22,7 @@
             <input type="hidden" name="next" value="{{ next }}"><br>
             {% if form.errors %}
                 <div class="alert alert-danger">
-                    Please enter a correct email address and password. Note that both fields may be case-sensitive.
+                    Please enter a correct email address and password. Note that both fields are case-sensitive.
                 </div>
             {% endif %}
             <p>
@@ -32,8 +35,4 @@
             </p>
         </form>
     </div>
-{% endblock %}
-
-{% block extra_resources_block %}
-    <link href="{% static 'css/bootstrap/css/signin.css' %}" rel="stylesheet">
 {% endblock %}

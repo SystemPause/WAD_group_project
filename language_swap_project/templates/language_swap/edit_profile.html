@@ -43,7 +43,7 @@
                             {% if details.picture %}
                                 <a href="{{MEDIA_URL}}{{ details.picture }}">{{ details.picture }}</a>
                             {% else %}
-                                <a href="{{MEDIA_URL}}/profile_images/placeholder.png">default profile picture</a>
+                                <a href="{% static 'images/placeholder.png' %}">default profile picture</a>
                             {% endif %}<br>
                             Change:
                             <input type="file" name="picture" id="id_picture"/>

@@ -1,5 +1,6 @@
 {% extends 'language_swap/base.html' %}
 {% load staticfiles %}
+
 {% block title_block %}Contact history{% endblock %}
 
 {% block body_block %}
@@ -18,7 +19,7 @@
                             <img class="card-img-top img-fluid" src="{{MEDIA_URL}}{{ details.picture }}" alt="{{details.firstname}}, profile picture">
                         {% else %}
                             <!-- If the picture is not present, load a placeholder -->
-                            <img class="card-img-top img-fluid" src="{{MEDIA_URL}}/profile_images/placeholder.png" alt="Placeholder: profile picture missing">
+                            <img class="card-img-top img-fluid" src="{% static 'images/placeholder.png' %}" alt="Placeholder: profile picture missing">
                         {% endif %}
                         <!-- Show profile detailes in the card body -->
                         <div class="card-body">
@@ -82,7 +83,7 @@
                                     <div class="invalid-feedback">
                                         Invalid feedback
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-block submit" value="Rate">Submit</button>
+                                    <button type="submit" class="btn btn-primary btn-block submit" value="Rate">Rate</button>
                                 </form>
 
                                 <!-- <fieldset class="rating">

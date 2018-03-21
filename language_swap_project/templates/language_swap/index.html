@@ -7,11 +7,14 @@
 <main role="main">
     <div class="row overflow-hidden p-3 p-md-5 text-center bg-dark bg">
         <div class="col-md-8 p-lg-5 mx-auto my-5">
+            <!--Page header-->
             <h1 class="display-4 font-weight-normal text-light">Find your language buddy</h1>
-            <p class="lead font-weight-normal text-light">This will be the coolest thing in your life.</p>
+            <p class="lead font-weight-normal text-light">Learning a new language has never been so cool</p>
+
+            <!--Responsive search form -->
             <form id="search_user_form" method="get" action="{%  url 'result' %}">
               <div class="form-row">
-                <div class="col">
+                <div class="col-md mb-2">
                   <select name="spokenLanguage" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
                     <option value="" disabled selected>Native language</option>
                     {% for language in languages %}
@@ -19,7 +22,7 @@
                     {% endfor %}
                     </select>
                 </div>
-                <div class="col">
+                <div class="col-md mb-2">
                   <select name="practicingLanguage" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
                     <option value="" disabled selected>Practicing language</option>
                     {% for language in languages %}
@@ -27,47 +30,61 @@
                     {% endfor %}
                     </select>
                 </div>
-                <div class="col">
+                <div class="col-md mb-2">
                     <input type="text" name="places" id="gMapsAutocomplete" class="form-control autocomplete-address" placeholder="Select your city">
                 </div>
-                <div class="col-1">
+
+                <!-- Submit button becomes a block-button at the small breakpoint. -->
+                <div class="d-sm-none d-md-inline col-md-2 col-xl-1 mb-2">
                   <button class="btn btn-primary" type="submit">Search</button>
                 </div>
+                <div class="d-md-none col-md-2 col-xl-1 mb-2">
+                  <button class="btn btn-primary btn-block" type="submit">Search</button>
+                </div>
+
               </div>
             </form>
         </div>
     </div>
 
-    <!-- Featurettes
-      ==================================================
-        Wrap the rest of the page in another container to center all the content. -->
+    <!-- Informative columns
+      ================================================== -->
 
     <div class="container marketing">
-
         <!-- Three columns of text below the carousel -->
         <div class="row pt-5">
-           <!-- Column 1: Chat -->
+           <!-- Column 1: Contact -->
             <div class="col-lg-4 pt-4">
                 <img class="rounded-circle" src="{% static 'images/chat.jpg' %}" alt="Generic placeholder image" width="140" height="140">
-                <h2 class="pt-3">Chat.</h2>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+                <h2 class="pt-3">Contact.</h2>
+                <p>
+                    Find someone in your city who wants to learn a language you already speak and speaks the language you are practicing!
+                    Send them an email through our website and let the SWAP begin!
+                </p>
             </div>
             <!-- Column 2: Meet -->
             <div class="col-lg-4 pt-4">
                 <img class="rounded-circle" src="{% static 'images/meet.jpeg' %}" alt="Generic placeholder image" width="140" height="140">
                 <h2 class="pt-3">Meet.</h2>
-                <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+                <p>
+                    After contacting another LanguageSwap user, arrange a face-to-face meeting!
+                    There is nothing better than a friendly chat and a coffee to break the ice!
+                </p>
             </div>
-            <!-- Column 3: practice -->
+            <!-- Column 3: Practice -->
             <div class="col-lg-4 pt-4">
                 <img class="rounded-circle" src="{% static 'images/practice.jpeg' %}" alt="Generic placeholder image" width="140" height="140">
                 <h2 class="pt-3">Practice!</h2>
-                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                <p>
+                    Now that you are all warmed up and sharing a nice cup of Italian gelato, choose a topic and let's practice!
+                    <em>Warning: </em>if this will be so much fun that you'll end up sharing 10 cups of gelato, WE DON'T TAKE ANY RESPONSIBILITY!
+                </p>
             </div>
         </div>
 
 
-        <!-- START THE FEATURETTES -->
+        <!-- Present example users
+          ================================================== -->
 
         <hr class="featurette-divider">
         <!-- Example user 1 -->
@@ -104,13 +121,9 @@
                 <img class="featurette-image img-fluid mx-auto" src="{% static 'images/user2.jpeg' %}" alt="Generic placeholder image">
             </div>
         </div>
-        <!-- /END THE FEATURETTES-->
     </div>
 </main>
 {% endblock %}
-
- <!-- Placed at the end of the document so the pages load faster -->
-
 
 {% block extra_resources_block %}
     <!-- Import the google maps places API -->

@@ -34,6 +34,10 @@ body, html {
     vertical-align: text-top;
 }
 
+.imgdiv{
+    height:200px;
+    overflow:hidden;
+}
 /* fieldset, label { margin: 0; padding: 0; }
 body{ margin: 20px; }
 h1 { font-size: 1.5em; margin: 10px; } */

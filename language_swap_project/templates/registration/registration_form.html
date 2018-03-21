@@ -1,6 +1,10 @@
 {% extends 'language_swap/base.html' %}
 {% load i18n %}
 {% load staticfiles %}
+{% block specific_css %}
+    <link href="{% static 'css/bootstrap/css/signin.css' %}" rel="stylesheet">
+    <link href="{% static 'css/select2.min.css' %}" rel="stylesheet"/>
+{% endblock %}
 
 {% block title_block %}{% trans "Sign Up" %}{% endblock %}
 
@@ -108,8 +112,6 @@
 {% endblock %}
 
 {% block extra_resources_block %}
-    <link href="{% static 'css/bootstrap/css/signin.css' %}" rel="stylesheet">
-    <link href="{% static 'css/select2.min.css' %}" rel="stylesheet"/>
     <script src="{% static 'javascript/select2.min.js' %}"></script>
     <!-- Import the google maps places API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0WYZr005e3brFlluhm2dUStd1bmZ5jec&libraries=places&language=en"></script>
@@ -121,12 +123,6 @@
         $("#{{ form.practices.id_for_label }}").select2({
             maximumSelectionLength: 5
         });
-        
     </script>
     <script src="{% static 'javascript/registrationChecker.js' %}"></script>
-    <script>
-    
-    </script>
-    
-    
 {% endblock %}

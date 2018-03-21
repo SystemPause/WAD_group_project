@@ -1,6 +1,9 @@
 {% extends 'language_swap/base.html' %}
 {% load i18n %}
 {% load staticfiles %}
+{% block specific_css %}
+    <link href="{% static 'css/bootstrap/css/signin.css' %}" rel="stylesheet">
+{% endblock %}
 
 {% block title_block %}{% trans "Delete Account" %}{% endblock %}
 
@@ -14,8 +17,4 @@
             <button type="submit" class="btn btn-primary">{% trans "Delete" %}</button>
         </form>
     </div>
-{% endblock %}
-
-{% block extra_resources_block %}
-    <link href="{% static 'css/bootstrap/css/signin.css' %}" rel="stylesheet">
 {% endblock %}
