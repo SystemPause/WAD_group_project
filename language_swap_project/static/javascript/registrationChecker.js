@@ -1,4 +1,8 @@
 $(function(){
+    /*
+    the function checks if the input is empty and 
+    depending on the result, will alter the first parameter
+    */
     function emptyChecker(errorElement,input){
         $(input).bind("focusout",function(){
 
@@ -16,6 +20,10 @@ $(function(){
     emptyChecker("#city_error","#gMapsAutocomplete");
     emptyChecker("#birthday_error","#id_dob");
 
+    /*
+    upon focusing out on the email field, checks if the input is empty,
+    a valid email format and if it exists in our database
+    */
     $("#id_email").bind("focusout",function(){
         var email = $("#id_email").val();
         if (!email){
@@ -43,6 +51,10 @@ $(function(){
 
     });
 
+    /*
+    checks if confirm password is empty or if it is equal to the
+    main password input
+    */
     $("#id_password2").bind("focusout",function(){
         var pass1 = $("#id_password1").val();
         if (!$("#id_password2").val()){

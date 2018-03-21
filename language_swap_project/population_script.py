@@ -261,10 +261,6 @@ def add_user(firstname,lastname,username,email,password,city,country,gender,dob,
 
     return userObject,userObject
 
-
-
-#
-
 def add_contact(contacter,contactee,score):
     c = Contact.objects.get_or_create(sourceUser = contacter,contactedUser = contactee,score = score)[0]
     c.save()
