@@ -17,7 +17,7 @@
             {% for details in users.values %}
                 <div class="col-sm-6 col-md-4 col-xl-3 d-flex align-items-stretch">
                     <!-- Create a card for every user filtered by the research -->
-                    <div class="card box-shadow">
+                    <div class="card box-shadow mb-4">
                         <!-- Load the profile picture at the top of the card -->
                         {% if details.picture %}
                             <img class="card-img-top img-fluid" src="{{MEDIA_URL}}{{ details.picture }}" alt="{{details.firstname}}, profile picture">
@@ -28,12 +28,12 @@
 
                         <!-- Show profile detailes in the card body -->
                         <div class="card-body">
-                            <p class="card-text float-right">
+                            <p class="card-text float-right ml-1 pt-1">
                                 <span id="scoreId{{ details.id}}">
                                 {% if details.score %}
-                                    {{ details.score }} <i class="fa fa-star" style="color:#FFD700;"></i>
+                                    {{ details.score }} <i class="fa fa-star golden"></i>
                                 {% else %}
-                                    No rating for this user.
+                                    <em>No ratings.</em>
                                 {% endif %}
                                 </span>
                             </p>

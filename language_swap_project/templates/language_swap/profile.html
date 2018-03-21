@@ -7,44 +7,56 @@
         {% for details in userProfile.values %}
         <div class="container">
             <div class="header text-center px-3 py-3 pt-md-5 pb-md-4 mx-auto">
-                <h3 class="display-4">{{details.firstname}} {{details.lastname}}</h3>
+                <h3 class="display-4">Your Profile</h3>
             </div>
-            <div class="card flex-md-row box-shadow">
-                <div class="card-body text-justify">
-                    <h5 class="card-subtitle text-muted text-capitalize">Gender</h5>
-                    <p class="card-text text-capitalize">{{ details.gender }}</p>
-                    <h5 class="card-subtitle text-muted">Age</h5>
-                    <p class="card-text text-capitalize">{{ details.age }}</p>
-                    <h5 class="card-subtitle text-muted">From</h5>
-                    <p class="card-text text-capitalize">
-                {{ details.city }}, {{ details.country }}</p>
-                    <h6 class="card-subtitle">Email</h6>
-                    <p> {{details.email}}</p>
-                    <h6 class="card-subtitle">Hobbies</h6>
-                    {% if details.hobby %}
-                        <p>{{ details.hobby|title }}</p>
-                    {% else %}
-                        <p>-</p>
-                    {% endif %}
-                    <h6 class="card-subtitle">Speaks</h6>
-                    <p class="card-text text-capitalize">
-                        {% for slang in details.speaks %} {{ slang }} <br> {% endfor %}
-                    </p>
-                    <h6 class="card-subtitle">Practices</h6>
-                    <p class="text-capitalize">
-                    {% for plang in details.practices %} {{ plang }} <br> {% endfor %}
-                    </p>
-                    <div>
-                        <a href="{% url 'edit_profile' %}" type="button" class="btn btn-default">Edit</a>
-                        <a href="{% url 'delete_account' %}" type="button" class="btn btn-default">Delete Account</a>
+            <div class="row">
+                <div class="col-6 mx-auto">
+                    <div class="card box-shadow">
+                        {% if details.picture %}
+                            <img class="card-img-top img-fluid" src="{{MEDIA_URL}}{{ details.picture }}" alt="{{details.firstname}}, profile picture">
+                        {% else %}
+                           <!-- If the picture is not present, load a placeholder -->
+                            <img class="card-img-top img-fluid" src="{{MEDIA_URL}}/profile_images/placeholder.png" alt="Placeholder: profile picture missing">
+                        {% endif %}
+                        <div class="card-body text-justify">
+
+                            <h1 class="card-subtitle text-muted text-capitalize">{{details.firstname}} {{details.lastname}}</h1>
+
+                            <p class="card-text text-capitalize">{{ details.age }}
+                                {% if details.gender == "female" %}
+                                    <i class="fa fa-venus"></i>
+                                {% elif details.gender == "male" %}
+                                    <i class="fa fa-mars"></i>
+                                {% else %}
+                                    <i class="fa fa-neuter"></i>
+                                {% endif %}
+                            </p>
+                            <h5 class="card-subtitle text-muted">From</h5>
+                            <p class="card-text text-capitalize">
+                        {{ details.city }}, {{ details.country }}</p>
+                            <h6 class="card-subtitle">Email</h6>
+                            <p> {{details.email}}</p>
+                            <h6 class="card-subtitle">Hobbies</h6>
+                            {% if details.hobby %}
+                                <p>{{ details.hobby|title }}</p>
+                            {% else %}
+                                <p>-</p>
+                            {% endif %}
+                            <h6 class="card-subtitle">Speaks</h6>
+                            <p class="card-text text-capitalize">
+                                {% for slang in details.speaks %} {{ slang }} <br> {% endfor %}
+                            </p>
+                            <h6 class="card-subtitle">Practices</h6>
+                            <p class="text-capitalize">
+                            {% for plang in details.practices %} {{ plang }} <br> {% endfor %}
+                            </p>
+                            <div>
+                                <a class="btn btn-default" href="{% url 'edit_profile' %}" role="button" >Edit</a>
+                                <a class="btn btn-default" href="{% url 'delete_account' %}" role="button">Delete Account</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                {% if details.picture %}
-                    <img class="card-img-right img-fluid w-50 h-50" src="{{MEDIA_URL}}{{ details.picture }}">
-                {% else %}
-                    <!-- If the picture is not present, load a placeholder -->
-                    <img class="card-img-right img-fluid w-50 h-50" src="{{MEDIA_URL}}/profile_images/placeholder.png" alt="Placeholder: profile picture missing">
-                {% endif %}
             </div>
         </div>
         {% endfor %}

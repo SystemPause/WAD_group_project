@@ -5,7 +5,6 @@
 {% block title_block %}{% trans "Log In" %}{% endblock %}
 
 {% block body_block %}
-    <link href="{% static 'css/bootstrap/css/signin.css' %}" rel="stylesheet">
     <div class="container-fluid">
         <form class="form-signin" method="post" action=".">
             {% csrf_token %}
@@ -33,4 +32,8 @@
             </p>
         </form>
     </div>
+{% endblock %}
+
+{% block extra_resources_block %}
+    <link href="{% static 'css/bootstrap/css/signin.css' %}" rel="stylesheet">
 {% endblock %}

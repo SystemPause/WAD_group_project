@@ -5,8 +5,6 @@
 {% block title_block %}{% trans "Sign Up" %}{% endblock %}
 
 {% block body_block %}
-    <link href="{% static 'css/bootstrap/css/signin.css' %}" rel="stylesheet">
-    <link href="{% static 'css/select2.min.css' %}" rel="stylesheet"/>
     <div class="container-fluid">
         <form class="form-signup" method="post" action=".">
             {% csrf_token %}
@@ -101,6 +99,8 @@
 {% endblock %}
 
 {% block extra_resources_block %}
+    <link href="{% static 'css/bootstrap/css/signin.css' %}" rel="stylesheet">
+    <link href="{% static 'css/select2.min.css' %}" rel="stylesheet"/>
     <script src="{% static 'javascript/select2.min.js' %}"></script>
     <!-- Import the google maps places API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0WYZr005e3brFlluhm2dUStd1bmZ5jec&libraries=places&language=en"></script>

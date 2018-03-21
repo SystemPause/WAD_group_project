@@ -22,7 +22,7 @@ $(function(){
             // If the result is False, then an error occured while executing the request hence show an alert.
             // Otherwise just update the score in the view
             if(JsonObj.result){
-                $('#scoreId' + ratedUserId).html(JsonObj.score.toFixed(1)  + '&#9733;');
+                $('#scoreId' + ratedUserId).html(JsonObj.score.toFixed(1)  + ' <i class="fa fa-star golden"></i>');
             }else{
                 alert("Something wrong happen when rating the current user");
             }
