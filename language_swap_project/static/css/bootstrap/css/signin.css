@@ -59,3 +59,10 @@ body {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
+.select2-hidden-accessible,
+.select2-hidden-accessible:focus {
+    left: auto
+    top: auto
+    margin: -1px;
+}

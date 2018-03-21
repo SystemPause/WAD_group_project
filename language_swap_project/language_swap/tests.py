@@ -410,17 +410,3 @@ class EmailCheckViewTests(TestCase):
         """
         response = self.client.get('/LanguageSwap/emailCheck/')
         self.assertEqual(response.status_code, 404)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
