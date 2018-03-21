@@ -27,161 +27,161 @@ def populate():
         {
             "firstname": "Marco", "lastname":"Hello","username":"dickd@gmx.com", "email": "dickd@gmx.com",
             "password":"hunter123","city":"milan","country":"italy", "gender":"female","dob":"1995-02-03",
-            "speaks":["italian","french"],"practices":["burmese","english"]
+            "speaks":["italian","french"],"practices":["burmese","english"],"image":"profile_images/woah.jpeg"
         },
 
         {
             "firstname": "Nay Min", "lastname": "Htet","username":"naymin@gmx.com", "email": "naymin@gmx.com",
             "password": "hunter123", "city": "milan", "country": "italy","gender":"male","dob":"1995-12-15",
-            "speaks":["burmese","italian"],"practices":["italian","english"]
+            "speaks":["burmese","italian"],"practices":["italian","english"],"image":"profile_images/friendlysmile.jpg"
         },
 
         {
             "firstname": "Dante", "lastname":"The little pigeon","username":"yolo@gmx.com", "email": "yolo@gmx.com",
             "password":"hunter123","city":"milan","country":"italy","gender":"male","dob":"1992-01-26",
-            "speaks":["italian","french"],"practices":["burmese","english"]
+            "speaks":["italian","french"],"practices":["burmese","english"],"image":"profile_images/banana.jpeg"
         },
 
         {
             "firstname": "Mister", "lastname": "Man", "username": "mister@gmx.com", "email": "mister@gmx.com",
             "password": "hunter123", "city": "milan", "country": "italy", "gender": "male", "dob": "1991-04-06",
-            "speaks": ["italian", "burmese"], "practices": ["japanese", "english"]
+            "speaks": ["italian", "burmese"], "practices": ["japanese", "english"],"image":"profile_images/happy.jpeg"
         },
 
         {
             "firstname": "Lee", "lastname": "Sook", "username": "leesook@gmx.com", "email": "leesook@gmx.com",
             "password": "hunter123", "city": "seoul", "country": "south korea", "gender": "female", "dob": "1996-05-05",
-            "speaks": ["korean", "english"], "practices": ["french", "italian"]
+            "speaks": ["korean", "english"], "practices": ["french", "italian"],"image":"profile_images/goodstache.jpeg"
         },
         {
             "firstname": "Wang", "lastname": "Huang", "username": "whuang@gmx.com", "email": "whuang@gmx.com",
             "password": "hunter123", "city": "shenzhen", "country": "china", "gender": "female", "dob": "1992-04-15",
-            "speaks": ["chinese", "french"], "practices": ["burmese", "english"]
+            "speaks": ["chinese", "french"], "practices": ["burmese", "english"],"image":""
         },
         {
             "firstname": "Ramesh", "lastname": "Ali", "username": "mali@gmx.com", "email": "mali@gmx.com",
             "password": "hunter123", "city": "mumbai", "country": "india", "gender": "male", "dob": "1996-08-26",
-            "speaks": ["hindi", "english"], "practices": ["spanish", "korean"]
+            "speaks": ["hindi", "english"], "practices": ["spanish", "korean"],"image":""
         },
         {
             "firstname": "Santiago", "lastname": "Lopez", "username": "slopez@gmx.com", "email": "slopez@gmx.com",
             "password": "hunter123", "city": "barcelona", "country": "spain", "gender": "male", "dob": "1992-01-15",
-            "speaks": ["spanish", "italian"], "practices": ["english", "french"]
+            "speaks": ["spanish", "italian"], "practices": ["english", "french"],"image":""
         },
         {
             "firstname": "Xiao", "lastname": "Qi", "username": "xxq@gmx.com", "email": "xxq@gmx.com",
             "password": "hunter123", "city": "shanghai", "country": "china", "gender": "female", "dob": "1995-02-10",
-            "speaks": ["chinese", "english"], "practices": ["korean", "japanese"]
+            "speaks": ["chinese", "english"], "practices": ["korean", "japanese"],"image":""
         },
         {
             "firstname": "Hanada", "lastname": "Shiro", "username": "hana@gmx.com", "email": "hana@gmx.com",
             "password": "hunter123", "city": "osaka", "country": "japan", "gender": "female", "dob": "1994-12-12",
-            "speaks": ["japanese", "english"], "practices": ["french", "burmese"]
+            "speaks": ["japanese", "english"], "practices": ["french", "burmese"],"image":""
         },
         {
             "firstname": "Aung", "lastname": "Min", "username": "amin@gmx.com", "email": "amin@gmx.com",
             "password": "hunter123", "city": "yangon", "country": "myanmar", "gender": "male", "dob": "1992-03-15",
-            "speaks": ["burmese", "english"], "practices": ["hindi", "chinese"]
+            "speaks": ["burmese", "english"], "practices": ["hindi", "chinese"],"image":""
         },
         {
             "firstname": "Tomo", "lastname": "Naka", "username": "tnaka@gmx.com", "email": "tnaka@gmx.com",
             "password": "hunter123", "city": "tokyo", "country": "japan", "gender": "female", "dob": "1991-04-26",
-            "speaks": ["japanese", "french"], "practices": ["english", "italian"]
+            "speaks": ["japanese", "french"], "practices": ["english", "italian"],"image":""
         },
         {
             "firstname": "Hyun", "lastname": "Jun", "username": "jun@gmx.com", "email": "jun@gmx.com",
             "password": "hunter123", "city": "seoul", "country": "south korea", "gender": "female", "dob": "1993-06-15",
-            "speaks": ["korean", "chinese"], "practices": ["hindi", "english"]
+            "speaks": ["korean", "chinese"], "practices": ["hindi", "english"],"image":""
         },
         {
             "firstname": "Muhammad", "lastname": "Muhammad", "username": "mm@gmx.com", "email": "mm@gmx.com",
             "password": "hunter123", "city": "new dehli", "country": "india", "gender": "male", "dob": "1994-01-01",
-            "speaks": ["hindi", "english"], "practices": ["chinese", "italian"]
+            "speaks": ["hindi", "english"], "practices": ["chinese", "italian"],"image":""
         },
         {
             "firstname": "Fernandez", "lastname": "Garcia", "username": "fg@gmx.com", "email": "fg@gmx.com",
             "password": "hunter123", "city": "madrid", "country": "spain", "gender": "male", "dob": "1995-04-28",
-            "speaks": ["spanish", "italian"], "practices": ["burmese", "korean"]
+            "speaks": ["spanish", "italian"], "practices": ["burmese", "korean"],"image":""
         },
         {
             "firstname": "Lao", "lastname": "You", "username": "ly@gmx.com", "email": "ly@gmx.com",
             "password": "hunter123", "city": "beijing", "country": "china", "gender": "male", "dob": "1993-06-14",
-            "speaks": ["chinese", "english","french"], "practices": ["burmese", "italian"]
+            "speaks": ["chinese", "english","french"], "practices": ["burmese", "italian"],"image":""
         },
         {
             "firstname": "Alessandro", "lastname": "Speggy", "username": "ass@gmx.com", "email": "ass@gmx.com",
             "password": "hunter123", "city": "vicenza", "country": "italy", "gender": "female", "dob": "1996-11-11",
-            "speaks": ["italian", "chinese"], "practices": ["hindi", "japanese"]
+            "speaks": ["italian", "chinese"], "practices": ["hindi", "japanese"],"image":""
         },
         {
             "firstname": "Sebastian", "lastname": "Thomas", "username": "sbtms@gmx.com", "email": "sbtms@gmx.com",
             "password": "hunter123", "city": "paris", "country": "france", "gender": "male", "dob": "1994-01-15",
-            "speaks": ["english", "french"], "practices": ["burmese", "italian"]
+            "speaks": ["english", "french"], "practices": ["burmese", "italian"],"image":""
         },
         {
             "firstname": "Giovanni", "lastname": "Toti", "username": "gtoti@gmx.com", "email": "gtoti@gmx.com",
             "password": "hunter123", "city": "florence", "country": "italy", "gender": "male", "dob": "1996-02-20",
-            "speaks": ["italian", "french"], "practices": ["spanish", "english"]
+            "speaks": ["italian", "french"], "practices": ["spanish", "english"],"image":""
         },
         {
             "firstname": "Hua", "lastname": "Lin", "username": "hlin@gmx.com", "email": "hlin@gmx.com",
             "password": "hunter123", "city": "shenzhen", "country": "china", "gender": "female", "dob": "1995-02-10",
-            "speaks": ["chinese", "english"], "practices": ["burmese", "korean","japanese"]
+            "speaks": ["chinese", "english"], "practices": ["burmese", "korean","japanese"],"image":""
         },
         {
             "firstname": "Marti", "lastname": "Smarti", "username": "marti@gmx.com", "email": "marti@gmx.com",
             "password": "hunter123", "city": "vicenza", "country": "italy", "gender": "female", "dob": "1996-01-29",
-            "speaks": ["italian", "english"], "practices": ["french", "japanese", "spanish"]
+            "speaks": ["italian", "english"], "practices": ["french", "japanese", "spanish"],"image":""
         },
         {
             "firstname": "Park", "lastname": "Hyun", "username": "phyu@gmx.com", "email": "phyu@gmx.com",
             "password": "hunter123", "city": "seoul", "country": "south korea", "gender": "male", "dob": "1993-01-20",
-            "speaks": ["korean", "hindi"], "practices": ["english", "chinese"]
+            "speaks": ["korean", "hindi"], "practices": ["english", "chinese"],"image":""
         },
         {
             "firstname": "Tom", "lastname": "Yum", "username": "tomy@gmx.com", "email": "tomy@gmx.com",
             "password": "hunter123", "city": "london", "country": "united kingdom", "gender": "male", "dob": "1996-02-21",
-            "speaks": ["english"], "practices": ["italian", "chinese"]
+            "speaks": ["english"], "practices": ["italian", "chinese"],"image":""
         },
         {
             "firstname": "Beer", "lastname": "Man", "username": "bman@gmx.com", "email": "bman@gmx.com",
             "password": "hunter123", "city": "london", "country": "united kingdom", "gender": "male", "dob": "1994-01-04",
-            "speaks": ["english", "french"], "practices": ["chinese", "burmese"]
+            "speaks": ["english", "french"], "practices": ["chinese", "burmese"],"image":""
         },
         {
             "firstname": "Shido", "lastname": "Yama", "username": "shy@gmx.com", "email": "shy@gmx.com",
             "password": "hunter123", "city": "kyoto", "country": "japan", "gender": "male", "dob": "1994-01-21",
-            "speaks": ["japanese", "korean"], "practices": ["chinese", "english"]
+            "speaks": ["japanese", "korean"], "practices": ["chinese", "english"],"image":""
         },
         {
             "firstname": "Mandy", "lastname": "Blanc", "username": "mandy@gmx.com", "email": "mandy@gmx.com",
             "password": "hunter123", "city": "paris", "country": "france", "gender": "female", "dob": "1991-01-25",
-            "speaks": ["italian", "french"], "practices": ["english", "hindi"]
+            "speaks": ["italian", "french"], "practices": ["english", "hindi"],"image":""
         },
         {
             "firstname": "Howard", "lastname": "Lance", "username": "hlance@gmx.com", "email": "hlance@gmx.com",
             "password": "hunter123", "city": "glasgow", "country": "united kingdom", "gender": "male", "dob": "1992-05-05",
-            "speaks": ["english"], "practices": ["french", "italian"]
+            "speaks": ["english"], "practices": ["french", "italian"],"image":""
         },
         {
             "firstname": "Min", "lastname": "Min", "username": "min@gmx.com", "email": "min@gmx.com",
             "password": "hunter123", "city": "yangon", "country": "myanmar", "gender": "male", "dob": "1994-07-20",
-            "speaks": ["burmese", "chinese"], "practices": ["english", "italian"]
+            "speaks": ["burmese", "chinese"], "practices": ["english", "italian"],"image":""
         },
         {
             "firstname": "Gloria", "lastname": "DaMan", "username": "gloman@gmx.com", "email": "gloman@gmx.com",
             "password": "hunter123", "city": "manchester", "country": "united kingdom", "gender": "female", "dob": "1991-04-06",
-            "speaks": ["english", "hindi"], "practices": ["italian", "spanish"]
+            "speaks": ["english", "hindi"], "practices": ["italian", "spanish"],"image":""
         },
         {
             "firstname": "Louis", "lastname": "Ville", "username": "lvi@gmx.com", "email": "lvi@gmx.com",
             "password": "hunter123", "city": "toulouse", "country": "france", "gender": "male", "dob": "1993-02-20",
-            "speaks": ["italian", "french"], "practices": ["spanish", "english"]
+            "speaks": ["italian", "french"], "practices": ["spanish", "english"],"image":""
         },
         {
             "firstname": "Vim", "lastname": "Wandauandslfeseee", "username": "wim@gmx.com", "email": "wim@gmx.com",
             "password": "hunter123", "city": "glasgow", "country": "united kingdom", "gender": "other", "dob": "1988-01-01",
-            "speaks": ["english", "japanese"], "practices": ["japanese", "chinese"]
+            "speaks": ["english", "japanese"], "practices": ["japanese", "chinese"],"image":""
         },
     ]
 
@@ -200,7 +200,7 @@ def populate():
 
 
         add_user(user["firstname"],user["lastname"],user["username"],user["email"],user["password"],user["city"],
-                 user["country"],user["gender"],user["dob"],speaksList,practicesList)
+                 user["country"],user["gender"],user["dob"],speaksList,practicesList,user["image"])
 
 
     rateList = [
@@ -228,7 +228,7 @@ def add_Language(name):
     l.save()
     return l
 
-def add_user(firstname,lastname,username,email,password,city,country,gender,dob,speaks,practices):
+def add_user(firstname,lastname,username,email,password,city,country,gender,dob,speaks,practices,image):
 
     userObject = User.objects.get_or_create(first_name = firstname, last_name = lastname,username =username,  email = email,
                                     password = password)[0]
@@ -242,6 +242,9 @@ def add_user(firstname,lastname,username,email,password,city,country,gender,dob,
 
     userProfile = UserProfile.objects.get_or_create(user = userObject, city = city,
                                              country = country,gender = gender, dob = dob)[0]
+    if image != '':
+        userProfile.picture = image
+    
     userProfile.save()
 
     '''
@@ -254,7 +257,12 @@ def add_user(firstname,lastname,username,email,password,city,country,gender,dob,
     for sth in practices:
         userProfile.practices.add(sth)
 
+
+
     return userObject,userObject
+
+
+
 #
 
 def add_contact(contacter,contactee,score):

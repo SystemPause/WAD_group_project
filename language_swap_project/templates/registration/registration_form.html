@@ -121,45 +121,12 @@
         $("#{{ form.practices.id_for_label }}").select2({
             maximumSelectionLength: 5
         });
-        function emptyChecker(errorElement,input){
-            $(input).bind("focusout",function(){
-
-               if (!$(input).val()){
-                   $(errorElement).html("Required Field");
-                   $(errorElement).css("color","red");
-               } else{
-                   $(errorElement).html("");
-
-               }
-            });
-        }
-        emptyChecker("#first_name_error","#{{ form.first_name.id_for_label }}");
-        emptyChecker("#last_name_error","#{{ form.last_name.id_for_label }}");
-        emptyChecker("#email_error","#{{ form.email.id_for_label }}");
-        emptyChecker("#pass1_error","#{{ form.password1.id_for_label }}");
-        emptyChecker("#pass2_error","#{{ form.password2.id_for_label }}");
-        emptyChecker("#city_error","#gMapsAutocomplete");
-        emptyChecker("#birthday_error","#{{ form.dob.id_for_label }}");
-
-        $("#{{ form.email.id_for_label }}").bind("focusout",function(){
-            var email = $("#{{ form.email.id_for_label }}").val();
-            $.get('/LanguageSwap/emailCheck/',{email:email}, function(data){
-                if (data==1){
-                    alert("email is already taken");
-                }
-                else{
-                    alert("email approved!");
-                }
-            }
-        );
-
-        });
-
-        $("#{{ form.password2.id_for_label }}").bind("focusout",function(){
-            var pass1 = $("#{{ form.password1.id_for_label }}").val();
-            if ($("#{{ form.password2.id_for_label }}").val() != pass1){
-                alert("no");
-            }
-        });
+        
     </script>
+    <script src="{% static 'javascript/registrationChecker.js' %}"></script>
+    <script>
+    
+    </script>
+    
+    
 {% endblock %}
