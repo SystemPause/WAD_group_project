@@ -48,9 +48,9 @@ def searchResult(request):
     try:
         practicing = Language.objects.get(LanguageName = practicingLanguage)
         spoken = Language.objects.get(LanguageName = spokenLanguage)
-    except:
+    except Language.DoesNotExist:
         errors = True
-        context_dict['errors'].append("An error has occured while fetching the languages.")
+        context_dict['errors'].append("An error has occurred while fetching the languages.")
 
     # If an error occurs while selecting the languages, do not perform the Query and
     # just return the error message
