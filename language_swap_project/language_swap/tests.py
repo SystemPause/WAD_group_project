@@ -138,12 +138,20 @@ class SearchResultViewTests(TestCase):
         response = self.client.get(reverse('result'))
         self.assertTemplateUsed(response, 'language_swap/result.html')
 
+    def test_search_result_no_places(self):
+        """
+        Ensures that error message is displayed if searched place is not supported
+        """
+        response = self.client.get(reverse('result'), args={'places': 'nonexistentcity,nonexistentcountry'})
+        self.assertContains(response, "An error has occurred while fetching the places.")
+
     def test_search_result_raise_does_not_exist_error_language_object(self):
         """
-        Ensures that error message is displayed if searched language is not supported
+        Ensures that Language.DoesNotExist error is raised and error message is displayed if searched language is not supported
         """
-        response = self.client.get(reverse('result'), args={'places': 'Mandarin'})
+        response = self.client.get(reverse('result'), args={'practicingLanguage': 'Mandarin'})
         self.assertRaises(Language.DoesNotExist)
+        print(response)
         self.assertContains(response, "An error has occurred while fetching the languages.")
 
 class AboutViewTests(TestCase):
@@ -232,6 +240,14 @@ class ContactHistoryViewTests(TestCase):
         self.client.login(username='user@test.com', password='testpassword')
         response = self.client.get(reverse('contactHistory'), {'user_id': 'user@test.com'})
         self.assertTemplateUsed(response, 'language_swap/contactHistory.html')
+
+    def test_contact_history_with_no_contact_history(self):
+        """
+        If no contact history exists, an appropriate message should be displayed
+        """
+        self.client.login(username='user@test.com', password='testpassword')
+        response = self.client.get(reverse('contactHistory'), {'user_id': 'user@test.com'})
+        self.assertContains(response, "The contact history is empty.")
 
 class ProfileViewTests(TestCase):
 
@@ -379,10 +395,22 @@ class RatingViewTests(TestCase):
         self.assertEqual(response.status_code, 404)
 
     def test_rating_raise_object_does_not_exist_error(self):
+        """
+        Ensures that if the rated user does not exist an appropriate error will be raised
+        """
         self.client.login(username='user@test.com', password='testpassword')
         self.client.get('/LanguageSwap/rating/', HTTP_X_REQUESTED_WITH='XMLHttpRequest',
                                    args={"ratedUserId": "nonexistentuser"})
         self.assertRaises(ObjectDoesNotExist)
+
+class EmailCheckViewTests(TestCase):
+
+    def test_rating_with_no_ajax_request(self):
+        """
+        Ensures that if the request is not an ajax request, a Http404 error will be raised
+        """
+        response = self.client.get('/LanguageSwap/emailCheck/')
+        self.assertEqual(response.status_code, 404)
 
 class MyRegistrationViewTests(TestCase):
 
@@ -401,12 +429,3 @@ class MyRegistrationViewTests(TestCase):
         """
         logged_user = self.client.login(username='user@test.com', password='testpassword')
         self.assertEqual(MyRegistrationView.get_success_url(self, logged_user), '/LanguageSwap/')
-
-class EmailCheckViewTests(TestCase):
-
-    def test_rating_with_no_ajax_request(self):
-        """
-        Ensures that if the request is not an ajax request, a Http404 error will be raised
-        """
-        response = self.client.get('/LanguageSwap/emailCheck/')
-        self.assertEqual(response.status_code, 404)
