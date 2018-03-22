@@ -68,7 +68,7 @@ def searchResult(request):
                 else:
                     context_dict['users'].update(getUserDetails(resultUser))
         else:
-            context_dict['errors'].append("There are no users in this city.")
+            context_dict['errors'].append("There are no matches in this city.")
 
     return render(request, 'language_swap/result.html', context_dict)
 
