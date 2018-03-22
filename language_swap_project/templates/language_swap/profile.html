@@ -19,10 +19,10 @@
                            <!-- If the picture is not present, load a placeholder -->
                             <img class="card-img-top img-fluid" src="{% static 'images/placeholder.png' %}" alt="Placeholder: profile picture missing">
                         {% endif %}
-                        <div class="card-body mx-3">
+                        <div class="card-body">
 
                             <h3 class="card-subtitle text-muted text-capitalize text-center">{{details.firstname}} {{details.lastname}}</h3>
-                            <p class="card-text font-weight-light text-center">{{ details.age }}
+                            <p class="card-text font-weight-light text-center">{{ details.age }} &#183;
                                 {% if details.gender == "female" %}
                                     <i class="fa fa-venus"></i>
                                 {% elif details.gender == "male" %}
@@ -30,37 +30,39 @@
                                 {% else %}
                                     <i class="fa fa-neuter"></i>
                                 {% endif %}
+                                 &#183; {{ details.score }} <i class="fa fa-star golden"></i>
                             </p>
-                            <ul class="list-unstyled">
-                                <li> <i class="fa fa-home"></i> From <span class="text-primary text-capitalize"> {{ details.city }}, {{ details.country }} </span></li>
-                                <li> <i class="fa fa-envelope"></i> Contact at <span class="text-primary">{{details.email}}</span> </li>
-                                <li> <li> <i class="fa fa-bowling-ball"></i> Bio
-                                    {% if details.hobby %}
-                                        <p class="pl-4 text-justify">{{ details.hobby|title }}</p>
-                                    {% else %}
-                                        <p class="pl-4">-</p>
-                                    {% endif %}
-                                </li>
+                        </div>
+                        <ul class="list-group list-group-flush list-unstyled">
+                            <li class="list-group-item"> <i class="fa fa-home"></i> From <span class="text-primary text-capitalize"> {{ details.city }}, {{ details.country }} </span></li>
+                            <li class="list-group-item"> <i class="fa fa-envelope"></i> Contact at <span class="text-primary">{{details.email}}</span> </li>
+                            <li class="list-group-item">  <i class="fa fa-compass"></i> What you should know about me
+                                {% if details.hobby %}
+                                    <p class="pl-4 text-justify font-weight-light ">{{ details.hobby}}</p>
+                                {% else %}
+                                    <p class="pl-4">-</p>
+                                {% endif %}
+                            </li>
+                        </ul>
 
-                            <div class="row">
-                                <div class="col">
-                                    <h6 class="card-subtitle">Speaks</h6>
-                                    <p class="card-text text-capitalize">
-                                        {% for slang in details.speaks %} {{ slang }} <br> {% endfor %}
-                                    </p>
-                                </div>
-                                <div class="col">
-                                    <h6 class="card-subtitle">Practices</h6>
-                                    <p class="text-capitalize">
-                                    {% for plang in details.practices %} {{ plang }} <br> {% endfor %}
-                                    </p>
-                                </div>
+                        <div class="card-body row text-center">
+                            <div class="col">
+                                <h6 class="card-subtitle">Speaking</h6>
+                                <p class="card-text text-capitalize font-weight-light">
+                                    {% for slang in details.speaks %} {{ slang }} <br> {% endfor %}
+                                </p>
                             </div>
-                            <div class="float-right">
-                                <a class="btn btn-light btn-sm text-secondary" href="{% url 'edit_profile' %}" role="button">Edit</a>
-                                <a class="btn btn-light btn-sm text-secondary" href="{% url 'auth_password_change' %}" role="button">Change Password</a>
-                                <a class="btn btn-light btn-sm text-danger" href="{% url 'delete_account' %}" role="button">Delete Account</a>
+                            <div class="col">
+                                <h6 class="card-subtitle">Practicing</h6>
+                                <p class="text-capitalize font-weight-light">
+                                {% for plang in details.practices %} {{ plang }} <br> {% endfor %}
+                                </p>
                             </div>
+                        </div>
+                        <div class=" card-footer text-right">
+                            <a class="btn btn-light btn-sm text-secondary" href="{% url 'edit_profile' %}" role="button">Edit</a>
+                            <a class="btn btn-light btn-sm text-secondary" href="{% url 'auth_password_change' %}" role="button">Change Password</a>
+                            <a class="btn btn-light btn-sm text-danger" href="{% url 'delete_account' %}" role="button">Delete Account</a>
                         </div>
                     </div>
                 </div>

@@ -91,7 +91,7 @@
                     </select>
                 </div>
                 <div class="form-group col-md-6">
-                     <label for="{{ form.practices.id_for_label }}">Practising Language(s):</label>
+                    <label for="{{ form.practices.id_for_label }}">Practising Language(s):</label>
                     <span id="practice_error"></span>
                     <select class="custom-select" name="practices" required id="{{ form.practices.id_for_label }}" multiple>
                         <option value="" disabled>Select up to 5 languages</option>
@@ -101,7 +101,7 @@
                     </select>
                 </div>
             </div>
-            <center><button type="submit" class="btn btn-primary">{% trans "Sign Up" %}</button></center>
+            <center><button type="submit" class="btn btn-primary btn-lg">{% trans "Sign Up" %}</button></center>
         </form>
     </div>
 {% endblock %}
