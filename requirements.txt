@@ -1,4 +1,5 @@
 django==1.11.7
 django-registration-redux==2.2
+pillow==5.0.0
 python-dateutil==2.6.1
 requests==2.18.4

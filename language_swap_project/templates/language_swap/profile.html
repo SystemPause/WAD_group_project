@@ -34,11 +34,11 @@
                             <ul class="list-unstyled">
                                 <li> <i class="fa fa-home"></i> From <span class="text-primary text-capitalize"> {{ details.city }}, {{ details.country }} </span></li>
                                 <li> <i class="fa fa-envelope"></i> Contact at <span class="text-primary">{{details.email}}</span> </li>
-                                <li> <li> <i class="fa fa-bowling-ball"></i> Hobbies
+                                <li> <li> <i class="fa fa-bowling-ball"></i> Bio
                                     {% if details.hobby %}
-                                        <p>{{ details.hobby|title }}</p>
+                                        <p class="pl-4 text-justify">{{ details.hobby|title }}</p>
                                     {% else %}
-                                        <p>-</p>
+                                        <p class="pl-4">-</p>
                                     {% endif %}
                                 </li>
 
