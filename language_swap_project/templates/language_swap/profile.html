@@ -1,7 +1,7 @@
 {% extends 'language_swap/base.html' %}
 {% load staticfiles %}
 
-{% block title_block %}My profile{% endblock %}
+{% block title_block %}My Profile{% endblock %}
 
 {% block body_block %}
     {% if userProfile.values %}
@@ -58,6 +58,7 @@
                             </div>
                             <div class="float-right">
                                 <a class="btn btn-light btn-sm text-secondary" href="{% url 'edit_profile' %}" role="button">Edit</a>
+                                <a class="btn btn-light btn-sm text-secondary" href="{% url 'auth_password_change' %}" role="button">Change Password</a>
                                 <a class="btn btn-light btn-sm text-danger" href="{% url 'delete_account' %}" role="button">Delete Account</a>
                             </div>
                         </div>
