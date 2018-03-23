@@ -24,7 +24,7 @@
                                 {% else %}
                                     <i class="fa fa-neuter"></i>
                                 {% endif %}
-                                 &#183; {{ details.score }} <i class="fa fa-star golden"></i>
+                                 &#183; {% if details.score %}{{ details.score }}<i class="fa fa-star golden"></i>{% else %}<span class="font-weight-light">No ratings.</span>{% endif %}
                             </p>
                         </div>
                         <form class="form" method="post" action="{% url 'edit_profile' %}" enctype="multipart/form-data">
