@@ -1,5 +1,4 @@
 from django import forms
-from django.contrib.auth.models import User
 from language_swap.models import UserProfile, Language
 from registration.forms import RegistrationForm
 from language_swap.helperFunctions import getUserAge, placesReverseGeocoder
@@ -12,7 +11,7 @@ class UserRegistrationForm(RegistrationForm):
     last_name = forms.CharField(max_length=30)
     city = forms.CharField(max_length=120, required=False, widget=forms.HiddenInput())
     country = forms.CharField(max_length=120, required=False, widget=forms.HiddenInput())
-    places = forms.CharField(widget=forms.TextInput(attrs={'id':'gMapsAutocomplete'}))
+    places = forms.CharField(widget=forms.TextInput(attrs={'id': 'gMapsAutocomplete'}))
     speaks = forms.ModelMultipleChoiceField(queryset=Language.objects.all().order_by('LanguageName'))
     practices = forms.ModelMultipleChoiceField(queryset=Language.objects.all().order_by('LanguageName'))
     gender = forms.ChoiceField(widget=forms.RadioSelect, choices=[("male","Male"), ("female", "Female"), ("other","Other")])
@@ -41,6 +40,7 @@ class UserRegistrationForm(RegistrationForm):
             self.cleaned_data['country'] = user_loc['country'].lower()
         else:
             raise forms.ValidationError(u'An error has occurred while fetching the places. Please try again')
+        return places
 
 class EditProfileForm(forms.ModelForm):
     places = forms.CharField(widget=forms.TextInput(attrs={'id': 'gMapsAutocomplete'}))
@@ -61,6 +61,7 @@ class EditProfileForm(forms.ModelForm):
             self.cleaned_data['country'] = user_loc['country'].lower()
         else:
             raise forms.ValidationError(u'An error has occurred while fetching the places. Please try again')
+        return places
 
 class DeleteAccountForm(forms.ModelForm):
 

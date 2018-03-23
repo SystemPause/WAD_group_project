@@ -60,20 +60,21 @@
                     <label>City:</label>
                     <span id="city_error"></span>
                     <input type="text" name="places" id="gMapsAutocomplete" class="form-control autocomplete-address"
-                           placeholder="">
+                           placeholder="" required>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="{{ form.dob.id_for_label }}">Date of Birth:</label>
                     <span id="birthday_error"></span>
                     <input class="form-control" id="{{ form.dob.id_for_label }}" name="dob" type="date"
                            placeholder="YYYY-MM-DD" value="{{ form.data.dob }}" required>
+                    {{ form.dob.errors }}
                 </div>
                 <div class="form-group col-md-4">
                     <label for="{{ form.gender.id_for_label }}">Gender:</label><br>
                     {% for value,label in form.gender.field.choices %}
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="gender"
-                                   id="{{ form.gender.id_for_label }}" value="{{ value }}">
+                                   id="{{ form.gender.id_for_label }}" value="{{ value }}" required>
                             <label class="form-check-label" for="{{ form.gender.id_for_label }}">{{ label }}</label>
                         </div>
                     {% endfor %}
