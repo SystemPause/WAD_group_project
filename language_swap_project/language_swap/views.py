@@ -204,6 +204,8 @@ def rating(request):
     else:
         raise Http404
 
+# The function checks if a given email is inside the db. If the email is contained, return 1
+# otherwise return 0
 def emailCheck(request):
     if request.is_ajax():
         emailList = User.objects.all().values_list('username',flat = True)
@@ -238,7 +240,7 @@ def sendEmail(request):
             except:
                 return HttpResponse(False)
             # Send the email to the specified user, if something fails return False
-            if sendEmailFunction(loggedUser.user.email, contactUser.user.email, message):
+            if sendEmailFunction(loggedUser, contactUser.user.email, message):
                 # If the email has been sent successfully, try to create a new Contact
                 try:
                     contactCreated = Contact.objects.get_or_create(sourceUser = loggedUser, contactedUser = contactUser)

@@ -5,6 +5,7 @@ from datetime import date
 from language_swap.models import Contact
 import requests
 from django.core.mail import send_mail
+from django.conf import settings
 
 # This function retrieves all the informatin regarding one single User.
 # It receives a user (UserProfile) object as parameter and
@@ -115,9 +116,14 @@ def placesReverseGeocoder(location):
 # The function sends an email to one user from one user. If something fails return False,
 # otherwise return true
 
-def sendEmailFunction(emailFrom, emailTo, message):
+def sendEmailFunction(loggedUser, emailTo, message):
+    hostEmail = settings.EMAIL_HOST_USER
+    loggedUserEmail = loggedUser.user.email
+    loggedUserName = loggedUser.user.first_name + " " + loggedUser.user.last_name
+    defaultMessage = "You have a new message from " + loggedUserName + ". \n\n\t" + message + "\n\n Contact " + loggedUserName + " at " + loggedUserEmail
+    object = "Language Swap: You have a new message from " + loggedUserName + "!"
     try:
-        send_mail("Language Swap: You have a new message!", message, emailFrom, [emailTo], fail_silently=False)
+        send_mail(object, defaultMessage, hostEmail, [emailTo], fail_silently = True)
     except:
         return False
     return True

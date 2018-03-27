@@ -28,7 +28,7 @@ SECRET_KEY = '-$%@&k%0$bx%-*l$mh&(yq=mm5u4*n&afsgku7m(_3-stmk-2o'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['languageswap.pythonanywhere.com']
+ALLOWED_HOSTS = ['languageswap.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition
@@ -124,7 +124,14 @@ LOGIN_REDIRECT_URL = '/LanguageSwap/'
 # and are trying to access pages requiring authentication
 LOGIN_URL = '/accounts/login/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # During development only
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # During development only
+# Email gmx host settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'mail.gmx.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'username'
+EMAIL_HOST_PASSWORD = 'password'
+EMAIL_USE_TLS = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
