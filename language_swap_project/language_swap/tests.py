@@ -2,50 +2,46 @@
 from __future__ import unicode_literals
 
 from django.test import TestCase, Client
+from django.apps import apps
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from language_swap.admin import ContactAdmin, ProfileAdmin
+from language_swap.apps import LanguageSwapConfig
 from language_swap.models import Language, UserProfile, Contact
-from language_swap.forms import EditProfileForm, DeleteAccountForm
 from language_swap.regbackend import MyRegistrationView
+from population_script import populate
+
+def createUser(userName):
+    user = User.objects.create(first_name='user', last_name='test', username=userName,
+                                    email=userName)
+    user.set_password('testpassword')
+    user.save()
+    return user
+
+def createProfile(user):
+    profile = UserProfile.objects.create(user=user, city='Glasgow', country='UK', dob='1000-10-10')
+    profile.save()
+    return profile
+
+class AppConfigTests(TestCase):
+
+    def test_language_swap_app_config(self):
+        self.assertEqual(LanguageSwapConfig.name, 'language_swap')
+        self.assertEqual(apps.get_app_config('language_swap').name, 'language_swap')
 
 class AdminTests(TestCase):
 
     def setUp(self):
         """
-        Populates the database with required data and creates test users
+        Creates test users
         """
-        from population_script import populate
-        populate()
-        self.user = User.objects.create(first_name='user', last_name='test', username='user@test.com', email='user@test.com',
-                         password='testpassword')
-        self.user.save()
-        self.profile = UserProfile.objects.create(user=self.user)
-        self.profile.save()
-        self.user2 = User.objects.create(first_name='user2', last_name='test', username='user2@test.com', email='user2@test.com',
-                          password='testpassword2')
-        self.user2.save()
-        self.profile2 = UserProfile.objects.create(user=self.user2)
-        self.profile2.save()
+        self.user = createUser('user@test.com')
+        self.user2 = createUser('user2@test.com')
+        self.profile = createProfile(self.user)
+        self.profile2 = createProfile(self.user2)
         self.contact = Contact.objects.create(sourceUser=self.profile, contactedUser=self.profile2)
-
-    def test_admin_interface_contact_view(self):
-        """
-        Ensures Admin interface contains ContactAdmin model data
-        """
-        self.assertIn('contacter', ContactAdmin.list_display)
-        self.assertIn('contactee', ContactAdmin.list_display)
-        self.assertIn('score', ContactAdmin.list_display)
-
-    def test_admin_interface_profile_view(self):
-        """
-        Ensures Admin interface contains ProfileAdmin model data
-         """
-        self.assertIn('first_name', ProfileAdmin.list_display)
-        self.assertIn('last_name', ProfileAdmin.list_display)
-        self.assertIn('city', ProfileAdmin.list_display)
-        self.assertIn('country', ProfileAdmin.list_display)
+        self.client = Client()
 
     def test_admin_first_name_method_profile_model(self):
         """
@@ -86,19 +82,11 @@ class UserProfileModelTests(TestCase):
         """
         Ensures UserProfile model str method returns a string representation of username
         """
-        user = User.objects.create(first_name='user', last_name ='test', username='user@test.com', email='user@test.com',
-                    password='testpassword')
-        profile = UserProfile.objects.create(user=user)
+        user = createUser('user@test.com')
+        profile = createProfile(user)
         self.assertEqual(str(profile), user.username)
 
 class IndexViewTests(TestCase):
-
-    def setUp(self):
-        """
-        Populates the database with required data and creates test users
-        """
-        from population_script import populate
-        populate()
 
     def test_ensure_index_loads(self):
         """
@@ -120,7 +108,6 @@ class SearchResultViewTests(TestCase):
         """
         Populates the database with required data
         """
-        from population_script import populate
         populate()
         self.client = Client()
 
@@ -142,17 +129,32 @@ class SearchResultViewTests(TestCase):
         """
         Ensures that error message is displayed if searched place is not supported
         """
-        response = self.client.get(reverse('result'), args={'places': 'nonexistentcity,nonexistentcountry'})
+        response = self.client.get(reverse('result'), {'places': 'nonexistentcity,nonexistentcountry'})
         self.assertContains(response, "An error has occurred while fetching the places.")
 
     def test_search_result_raise_does_not_exist_error_language_object(self):
         """
         Ensures that Language.DoesNotExist error is raised and error message is displayed if searched language is not supported
         """
-        response = self.client.get(reverse('result'), args={'practicingLanguage': 'Mandarin'})
+        response = self.client.get(reverse('result'), {'practicingLanguage': 'Mandarin'})
         self.assertRaises(Language.DoesNotExist)
-        print(response)
         self.assertContains(response, "An error has occurred while fetching the languages.")
+
+    def test_search_result_no_user_matches(self):
+        """
+        Ensures that error message is displayed if no users match search criteria
+        """
+        response = self.client.get(reverse('result'), {'places': 'Glasgow,UK', 'spokenLanguage': 'Armenian',
+                                                            'practicingLanguage': 'English'})
+        self.assertContains(response, "There are no matches in this city.")
+
+    def test_search_result_user_matches(self):
+        """
+        Ensures that no error messages are displayed if users match search criteria
+        """
+        response = self.client.get(reverse('result'), {'places': 'Milan,Metropolitan City of Milan,Italy',
+                                                       'spokenLanguage': 'English', 'practicingLanguage': 'Italian'})
+        self.assertEqual(response.context["errors"], [])
 
 class AboutViewTests(TestCase):
 
@@ -206,15 +208,10 @@ class ContactHistoryViewTests(TestCase):
 
     def setUp(self):
         """
-        Populates the database with required data and creates test users
+        Creates a test user
         """
-        from population_script import populate
-        populate()
-        self.user = User.objects.create(first_name='user', last_name='test', username='user@test.com', email='user@test.com')
-        self.user.set_password('testpassword')
-        self.user.save()
-        self.profile = UserProfile.objects.create(user=self.user, city='test', country='test', dob='1000-10-10')
-        self.profile.save()
+        user = createUser('user@test.com')
+        createProfile(user)
         self.client = Client()
 
     def test_contact_history_ensure_login_required(self):
@@ -255,11 +252,8 @@ class ProfileViewTests(TestCase):
         """
         Creates test user
         """
-        self.user = User.objects.create(first_name='user', last_name='test', username='user@test.com', email='user@test.com')
-        self.user.set_password('testpassword')
-        self.user.save()
-        self.profile = UserProfile.objects.create(user=self.user, city='test', country='test',dob='1000-10-10')
-        self.profile.save()
+        user = createUser('user@test.com')
+        createProfile(user)
         self.client = Client()
 
     def test_profile_ensure_login_required(self):
@@ -326,7 +320,7 @@ class ProfileViewTests(TestCase):
         response = self.client.get(reverse('delete_account'), {'user_id': 'user@test.com'})
         self.assertEqual(response.status_code, 200)
 
-    def test_delete_account_view_using_template(self):
+    def test_delete_account_using_template(self):
         """
         Ensures correct template used to render delete account page
         """
@@ -334,41 +328,14 @@ class ProfileViewTests(TestCase):
         response = self.client.get(reverse('delete_account'), {'user_id': 'user@test.com'})
         self.assertTemplateUsed(response, 'language_swap/delete_account.html')
 
-    def test_delete_account_view_context_contains_delete_account_form(self):
-        """
-        Ensures delete account context contains delete account form
-        """
-        self.client.login(username='user@test.com', password='testpassword')
-        response = self.client.get(reverse('delete_account'), {'user_id': 'user@test.com'})
-        form = DeleteAccountForm()
-        test_dict = {'form': form}
-        self.assertQuerysetEqual(response.context['form'], test_dict['form'])
-
-    def test_delete_account_view_form_validation(self):
-        """
-        Ensures users can only delete account after submitting a valid form
-        """
-        self.client.login(username='user@test.com', password='testpassword')
-        self.client.get(reverse('delete_account'), {'user_id': 'user@test.com'})
-        form = DeleteAccountForm(data={})
-        self.assertTrue(form.is_valid())
-        response = self.client.get(reverse('index'))
-        self.assertEqual(response.status_code, 200)
-
 class RatingViewTests(TestCase):
 
     def setUp(self):
         """
-        Populates the database with required data and creates test user
+        Creates a test user
         """
-        from population_script import populate
-        populate()
-        self.user = User.objects.create(first_name='user', last_name='test', username='user@test.com', email='user@test.com')
-        self.user.set_password('testpassword')
-        self.user.save()
-        self.profile = UserProfile.objects.create(user=self.user, city='test', country='test', dob='1000-10-10')
-        self.profile.save()
-        self.client = Client()
+        user = createUser('user@test.com')
+        createProfile(user)
 
     def test_rating_ensure_login_required(self):
         """
@@ -400,7 +367,7 @@ class RatingViewTests(TestCase):
         """
         self.client.login(username='user@test.com', password='testpassword')
         self.client.get('/LanguageSwap/rating/', HTTP_X_REQUESTED_WITH='XMLHttpRequest',
-                                   args={"ratedUserId": "nonexistentuser"})
+                                   args={'ratedUserId': 'nonexistentuser'})
         self.assertRaises(ObjectDoesNotExist)
 
 class EmailCheckViewTests(TestCase):
@@ -418,9 +385,7 @@ class MyRegistrationViewTests(TestCase):
         """
         Creates a test user
         """
-        self.user = User.objects.create(first_name='user', last_name='test', username='user@test.com',email='user@test.com')
-        self.user.set_password('testpassword')
-        self.user.save()
+        createUser('user@test.com')
         self.client = Client()
 
     def test_get_success_url_method(self):

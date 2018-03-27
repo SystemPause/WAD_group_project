@@ -72,10 +72,10 @@
                 <div class="form-group col-md-4">
                     <label for="{{ form.gender.id_for_label }}">Gender:</label><br>
                     {% for value,label in form.gender.field.choices %}
-                        <div class="form-check form-check-inline">
+                        <div class="form-check form-check-inline" id="{{ form.gender.id_for_label }}" >
                             <input class="form-check-input" type="radio" name="gender"
-                                   id="{{ form.gender.id_for_label }}" value="{{ value }}" required>
-                            <label class="form-check-label" for="{{ form.gender.id_for_label }}">{{ label }}</label>
+                                   value="{{ value }}" required>
+                            <label class="form-check-label">{{ label }}</label>
                         </div>
                     {% endfor %}
                 </div>

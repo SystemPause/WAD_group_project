@@ -102,7 +102,7 @@ def profile(request):
 def edit_profile(request):
     loggedUser = UserProfile.objects.get(user=request.user)
 
-    form = EditProfileForm(request.POST or None, initial={'places': loggedUser.city.title()+", "+loggedUser.country.title(),
+    form = EditProfileForm(request.POST or None, initial={'places': loggedUser.city.title()+","+loggedUser.country.title(),
                                                           'hobby': loggedUser.hobby, 'picture': loggedUser.picture})
     if request.method == 'POST':
         if form.is_valid():
@@ -115,11 +115,11 @@ def edit_profile(request):
             loggedUser.save()
             return HttpResponseRedirect(reverse('myProfile'))
 
-    context = {"form": form, 'userProfile' : {}}
+    context = {'form': form, 'userProfile': {}}
     # Gets all the details of the current logged in user
     context['userProfile'].update(getUserDetails(loggedUser))
 
-    return render(request, "language_swap/edit_profile.html", context)
+    return render(request, 'language_swap/edit_profile.html', context)
 
 @login_required
 def delete_account(request):
@@ -134,8 +134,8 @@ def delete_account(request):
             user.delete()
             return HttpResponseRedirect(reverse(index))
 
-    context = {"form": form}
-    return render(request, "language_swap/delete_account.html", context)
+    context = {'form': form}
+    return render(request, 'language_swap/delete_account.html', context)
 
 @login_required
 def contactHistory(request):
