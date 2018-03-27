@@ -133,6 +133,9 @@ EMAIL_HOST_USER = 'username'
 EMAIL_HOST_PASSWORD = 'password'
 EMAIL_USE_TLS = True
 
+DEFAULT_FROM_EMAIL = 'language.swap@gmx.com'
+SERVER_EMAIL = 'language.swap@gmx.com'
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
