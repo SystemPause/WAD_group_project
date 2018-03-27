@@ -77,11 +77,6 @@ def about(request):
 
     return render(request, 'language_swap/about.html', context_dict)
 
-def team(request):
-    context_dict = {}
-
-    return render(request, 'language_swap/team.html', context_dict)
-
 def contact(request):
     context_dict = {}
 
