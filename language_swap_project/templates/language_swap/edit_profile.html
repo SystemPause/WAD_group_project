@@ -1,90 +1,38 @@
 {% extends 'language_swap/base.html' %}
 {% load i18n %}
 {% load staticfiles %}
+{% load languageswap_template_tags %}
 
 {% block title_block %}{% trans "Edit Profile" %}{% endblock %}
 
 {% block body_block %}
-{% if userProfile.values %}
-    {% for details in userProfile.values %}
     <div class="container">
+        <!-- Header -->
         <div class="header text-center px-3 py-3 pt-md-5 pb-md-4 mx-auto">
             <h3 class="display-4">Edit Your Profile</h3>
         </div>
-        <div class="row">
-            <div class="col-6 mx-auto">
-                <div class="card box-shadow">
-                        <div class="card-body">
-                            <h3 class="card-subtitle text-muted text-capitalize text-center">{{details.firstname}} {{details.lastname}}</h3>
-                            <p class="card-text font-weight-light text-center">{{ details.age }} &#183;
-                                {% if details.gender == "female" %}
-                                    <i class="fa fa-venus"></i>
-                                {% elif details.gender == "male" %}
-                                    <i class="fa fa-mars"></i>
-                                {% else %}
-                                    <i class="fa fa-neuter"></i>
-                                {% endif %}
-                                 &#183; {% if details.score %}{{ details.score }}<i class="fa fa-star golden"></i>{% else %}<span class="font-weight-light">No ratings.</span>{% endif %}
-                            </p>
-                        </div>
-                        <form class="form" method="post" action="{% url 'edit_profile' %}" enctype="multipart/form-data">
-                            {% csrf_token %}
-                        <ul class="list-group list-group-flush list-unstyled">
-                            <li class="list-group-item"> <i class="fa fa-envelope"></i> Contact at <span class="text-primary">{{details.email}}</span> </li>
-                            <li class="list-group-item">
-                                <div class="form-group">
-                                    <label><i class="fa fa-home"></i> From </label>
-                                    <input class="form-control" type="text" name="places" value="{{ details.city|title }}, {{ details.country|title }}" id="gMapsAutocomplete" required/>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="form-group">
-                                    <label><i class="fa fa-compass"></i> What you should know about me</label>
-                                    <textarea class="form-control" rows="3" type="text" name="hobby"
-                                           maxlength="500" id="id_hobby">{% if details.hobby %}{{ details.hobby}}{% endif %}</textarea>
-                                </div>
-                            </li>
-                            <li class="list-group-item pb-4">
-                                <div class="card-text pb-1"><i class="fas fa-camera"></i> My profile picture</div>
-                                <div class="custom-file">
-                                    <label class="custom-file-label" for="id_picture">Change profile picture</label>
-                                    <input class="custom-file-input" type="file" id="id_picture"/>
-                                </div>
-                                Filename does not change dynamically yet
-                            </li>
-                        </ul>
 
-                        <div class="card-body row text-center">
-                            <div class="col">
-                                <h6 class="card-subtitle">Speaking</h6>
-                                <p class="card-text text-capitalize font-weight-light">
-                                    {% for slang in details.speaks %} {{ slang }} <br> {% endfor %}
-                                </p>
-                            </div>
-                            <div class="col">
-                                <h6 class="card-subtitle">Practicing</h6>
-                                <p class="text-capitalize font-weight-light">
-                                {% for plang in details.practices %} {{ plang }} <br> {% endfor %}
-                                </p>
-                            </div>
-                        </div>
-                        <div class=" card-footer text-right">
-                            <a class="btn btn-light btn-sm text-danger" href="{% url 'myProfile' %}" role="button">{% trans "Cancel" %}</a>
-                            <button type="submit" class="btn btn-light btn-sm text-primary">{% trans "Save" %}</button>
-                        </div>
-                    </form>
-                </div>
+        <!-- Shows user profile information and allows the user to edit the optional details -->
+        {% if userProfile.values %}
+        <div class="row">
+            <div class="col-md-8 col-lg-6 mx-auto px-3">
+            {% for details in userProfile.values %}
+                {% get_cards_list details "edit_profile" %}
+            {% endfor %}
             </div>
         </div>
+
+        <!-- Show an informative message in case of errors -->
+        {% else %}
+            <div class="lead">No information found.</div>
+        {% endif %}
+
     </div>
-    {% endfor %}
-{% else %}
-    No information found.
-{% endif %}
 {% endblock %}
 
 {% block extra_resources_block %}
     <!-- Import the google maps places API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0WYZr005e3brFlluhm2dUStd1bmZ5jec&libraries=places&language=en"></script>
     <script src="{% static 'javascript/placesAutocomplete.js' %}"></script>
+    <script src="{% static 'javascript/fileUploader.js' %}"></script>
 {% endblock %}

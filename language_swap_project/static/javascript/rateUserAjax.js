@@ -24,7 +24,7 @@ $(function(){
             if(JsonObj.result){
                 $('#scoreId' + ratedUserId).html(JsonObj.score.toFixed(1)  + ' <i class="fa fa-star golden"></i>');
             }else{
-                alert("Something wrong happen when rating the current user");
+                alert("Something wrong happened while rating the current user");
             }
         });
     });

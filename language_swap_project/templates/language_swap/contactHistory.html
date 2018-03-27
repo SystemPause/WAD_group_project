@@ -1,112 +1,36 @@
 {% extends 'language_swap/base.html' %}
 {% load staticfiles %}
+{% load languageswap_template_tags %}
 
 {% block title_block %}Contact History{% endblock %}
 
 {% block body_block %}
-    <div class="header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-        <h3 class="display-5">Contact history</h3>
-    </div>
-    {% if contacts %}
-        <div class="container-fluid">
-            <div class="row row-eq-height m-3">
+    <div class="container-fluid">
+        <!-- Header -->
+        <div class="header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h3 class="display-5">Contact history</h3>
+        </div>
+
+        <!-- If there are contacts on the user's contact history, shows their details -->
+        {% if contacts %}
+            <div class="row mx-3">
                 {% for details in contacts.values %}
-                <div class="col-sm-6 col-md-4 col-xl-3 p-3 d-flex align-items-stretch">
-                    <!-- Create a card for every user filtered by the research -->
-                    <div class="card box-shadow">
-                        <!-- Load the profile picture at the top of the card -->
-                        {% if details.picture %}
-                            <img class="card-img-top img-fluid" src="{{MEDIA_URL}}{{ details.picture }}" alt="{{details.firstname}}, profile picture">
-                        {% else %}
-                            <!-- If the picture is not present, load a placeholder -->
-                            <img class="card-img-top img-fluid" src="{% static 'images/placeholder.png' %}" alt="Placeholder: profile picture missing">
-                        {% endif %}
-                        <!-- Show profile detailes in the card body -->
-                        <div class="card-body">
-                            <p class="card-text float-right pt-1">
-                                <span id="scoreId{{ details.id}}">
-                                {% if details.score %}
-                                    {{ details.score }} <i class="fa fa-star golden"></i>
-                                {% else %}
-                                    No ratings yet.
-                                {% endif %}
-                                </span>
-                            </p>
-                            <!-- First name and Last name -->
-                            <h4 class="card-title text-capitalize"> {{ details.firstname }} {{ details.lastname }}</h4>
-                            <!-- Demographic details -->
-                            <h5 class="card-subtitle text-muted text-capitalize pb-2">{{ details.gender }}, {{ details.age }}</h5>
-                            <p class="card-text text-capitalize">
-                                {{ details.city }}, {{ details.country }}
-                            </p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <h6 class="card-subtitle mb-2">Bio</h6>
-                                {% if details.hobby %}
-                                    <p class="card-text">{{ details.hobby }}</p>
-                                {% else %}
-                                    <p class="card-text">No bio for this user</p>
-                                {% endif %}
-                            </li>
-                            <li class="list-group-item test">
-                                <div class="row">
-                                    <div class="col">
-                                        <h6 class="card-subtitle mb-2">Speaks</h6>
-                                        <p class="card-text text-capitalize">
-                                            {% for slang in details.speaks %} {{ slang }} <br> {% endfor %}
-                                        </p>
-                                    </div>
-                                    <div class="col">
-                                        <h6 class="card-subtitle mb-2">Practices</h6>
-                                        <p class="card-text text-capitalize">
-                                            {% for plang in details.practices %} {{ plang }} <br> {% endfor %}
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <p class="card-text text-center">{{details.email}}</p>
-                            </li>
-                            <li class="list-group-item">
-                                <p class="card-text">Rate this user:</p>
-                                <form class="ratingForm" method="get">
-                                    <input type="hidden" value={{details.id}} name="ratedUserId">
-                                    <select id="invalidSelect{{details.id}}" class="custom-select mb-2"  name="rating">
-                                        <option {% if details.assignedScore == 0  %} selected {% endif %} disabled>You have not rated this user yet</option>
-                                        <option {% if details.assignedScore == 1  %} selected {% endif %} value="1">1</option>
-                                        <option {% if details.assignedScore == 2  %} selected {% endif %} value="2">2</option>
-                                        <option {% if details.assignedScore == 3  %} selected {% endif %} value="3">3</option>
-                                        <option {% if details.assignedScore == 4  %} selected {% endif %} value="4">4</option>
-                                        <option {% if details.assignedScore == 5  %} selected {% endif %} value="5">5</option>
-                                    </select>
-                                    <div class="invalid-feedback">
-                                        Invalid feedback
-                                    </div>
-                                    <button type="submit" class="btn btn-primary btn-block submit" value="Rate">Rate</button>
-                                </form>
-
-                                <!-- <fieldset class="rating">
-                                    <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-                                    <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                                    <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                                    <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                                    <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                                </fieldset> -->
-
-                            </li>
-                        </ul>
-                    </div>
+                <div class="col-sm-6 col-md-4 col-xl-3 d-flex align-items-stretch pb-4">
+                    {% get_cards_list details "contactHistory" MEDIA_URL %}
                 </div>
                 {% endfor %}
             </div>
+
+        <!-- Otherwise shows an informative message-->
+        {% else %}
+        <div class="text-center h-100">
+            <p>The contact history is empty.</p>
         </div>
-    {% else %}
-    <div class="text-center">
-        <p>The contact history is empty.</p>
+        {% endif %}
+
     </div>
-    {% endif %}
 {% endblock %}
+
 {% block extra_resources_block %}
     <script src="{% static 'javascript/rateUserAjax.js' %}"></script>
 {% endblock %}

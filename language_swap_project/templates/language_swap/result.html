@@ -1,28 +1,39 @@
 {% extends 'language_swap/base.html' %}
 {% load staticfiles %}
+{% load languageswap_template_tags %}
+
 {% block title_block %} Results {% endblock %}
 
 {% block body_block %}
+    <!-- Header -->
     <div class="header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
         <h3 class="display-5">Results for search:</h3>
     </div>
 
+    <!-- Display any errors or messages occurred from the search -->
     {% if errors %}
+    <div class="container h-100">
         {% for error in errors %}
-            <div class="text-center"> {{ error }} </div>
+            <div class="alert alert-danger text-danger text-center"> {{ error }} </div>
         {% endfor %}
+    </div>
+
     {% else %}
         <!-- Modal popup box used to send emails -->
         <div class="modal fade" id="sendEmailModal" tabindex="-1" role="dialog" aria-labelledby="sendEmailModal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
+
+                    <!-- Customised modal header -->
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLongTitle">Send a message to</h5>
                         <h5 class="modal-title" id="modalName"></h5>
+                        <!-- Close button -->
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    <!-- Message -->
                     <form class="sendEmailForm" method="get">
                         <div class="modal-body">
                             <textarea name="message" class="form-control" id="message-text" placeholder="Type your message here" rows="6"></textarea>
@@ -32,6 +43,7 @@
                                 The email has been sent successfully!
                             </div>
                         </div>
+                        <!-- Modal footer with buttons -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <input type="submit" class="sendMessageButton btn btn-primary" value="Send Message">
@@ -40,87 +52,21 @@
                 </div>
             </div>
         </div>
+
+        <!-- Display the search results -->
         <div class="container-fluid">
        <!-- Create a responsive row of card -->
             <div class="row mx-3">
             {% for details in users.values %}
-                <div class="col-sm-6 col-md-4 col-xl-3 d-flex align-items-stretch">
-                    <!-- Create a card for every user filtered by the research -->
-                    <div class="card box-shadow mb-4">
-                        <!-- Load the profile picture at the top of the card -->
-                        <!--<div class="imgdiv" style="height:200px; overflow:hidden; object-fit:contain;">-->
-                        {% if details.picture %}
-                            <img class="card-img-top img-fluid" src="{{MEDIA_URL}}{{ details.picture }}" alt="{{details.firstname}}, profile picture">
-                        {% else %}
-                           <!-- If the picture is not present, load a placeholder -->
-                            <img class="card-img-top img-fluid" src="{% static 'images/placeholder.png' %}" alt="Placeholder: profile picture missing">
-                        {% endif %}
-                        <!-- </div> -->
-                        <!-- Show profile detailes in the card body -->
-                        <div class="card-body">
-                            <p class="card-text float-right ml-1 pt-1">
-                                <span id="scoreId{{ details.id}}">
-                                {% if details.score %}
-                                    {{ details.score }} <i class="fa fa-star golden"></i>
-                                {% else %}
-                                    <em>No ratings.</em>
-                                {% endif %}
-                                </span>
-                            </p>
-                            <!-- First name and Last name -->
-                            <h4 id="completeName-{{details.id}}" class="card-title text-capitalize"> {{ details.firstname }} {{ details.lastname }}</h4>
-
-                            <!-- Demographic details -->
-                            <h5 class="card-subtitle text-muted text-capitalize mb-2">{{ details.gender }}, {{ details.age }}</h5>
-                            <p class="card-text text-capitalize">
-                                {{ details.city }}, {{ details.country }}
-                            </p>
-                        </div>
-
-                        <!-- Card elements with profile details-->
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <h6 class="card-subtitle mb-2">Bio</h6>
-                                {% if details.hobby %}
-                                <p class="card-text">{{ details.hobby }}</p>
-                                {% else %}
-                                <p class="card-text">No bio for this user.</p>
-                                {% endif %}
-                            </li>
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col">
-                                        <h6 class="card-subtitle mb-2">Speaks</h6>
-                                        <p class="card-text text-capitalize">
-                                            {% for slang in details.speaks %} {{ slang }} <br> {% endfor %}
-                                        </p>
-                                    </div>
-                                    <div class="col">
-                                        <h6 class="card-subtitle mb-2">Practices</h6>
-                                        <p class="card-text text-capitalize">
-                                            {% for plang in details.practices %}
-                                                {{ plang }} <br>
-                                            {% endfor %}
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                {% if user.is_authenticated %}
-                                    <button id="userContact-{{details.id}}" class="btn btn-primary btn-block sendEmail" data-toggle="modal" data-target="#sendEmailModal">Contact</button>
-                                <!--{{ details.email }}-->
-                                {% else %}
-                                    <a href="{% url 'auth_login' %}" class="btn btn-primary btn-block">Contact</a>
-                                {% endif %}
-                            </li>
-                        </ul>
-                    </div>
+                <div class="col-sm-6 col-md-4 col-xl-3 d-flex align-items-stretch pb-4">
+                    {% get_cards_list details "result" MEDIA_URL user %}
                 </div>
-                {% endfor %}
+            {% endfor %}
             </div>
         </div>
     {% endif %}
 {% endblock %}
+
 {% block extra_resources_block %}
     <script src="{% static 'javascript/sendEmailAjax.js' %}"></script>
 {% endblock %}

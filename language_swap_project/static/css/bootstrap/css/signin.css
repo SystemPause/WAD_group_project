@@ -25,6 +25,7 @@ body {
     margin: 0 auto;
 }
 
+/* Set different width for signup */
 .form-signup {
     width: 100%;
     max-width: 800px;
@@ -49,13 +50,7 @@ body {
 }
 
 .form-signin input[type="email"] {
-    margin-bottom: -1px;
-}
-
-.form-signin input[type="password"] {
     margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
 }
 
 .form-signin input[type="username"] {
@@ -64,9 +59,30 @@ body {
     border-bottom-left-radius: 0;
 }
 
+
+.form-signin input[type="password"] {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+/* Styiling customisations */
 .select2-hidden-accessible,
 .select2-hidden-accessible:focus {
-    left: auto
-    top: auto
+    left: auto;
+    top: auto;
     margin: -1px;
+}
+
+.form-signin input[id="id_new_password1"] {
+    margin-bottom: -1px;
+    border-radius: 0.25rem 0.25rem 0 0;
+}
+
+.form-signin input[id="id_new_password2"] {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.form-signin input[id="old_password"] {
+    border-radius: 0.25rem 0.25rem 0.25rem 0.25rem;
 }

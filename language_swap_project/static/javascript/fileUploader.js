@@ -3,5 +3,8 @@
 // on the user input
 
 $(function(){
-    var autocomplete = new google.maps.places.Autocomplete((document.getElementById('gMapsAutocomplete')), {types: ['(cities)']});
+    $("#id_picture").change(function(){
+        var filename = $('#id_picture').val().replace(/^.*\\/, "");
+        $("#id_label_picture").html(filename);
+    });
 });

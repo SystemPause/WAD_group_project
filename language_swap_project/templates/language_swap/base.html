@@ -1,5 +1,6 @@
 <!doctype html>
 {% load staticfiles %}
+
 <html lang="en">
 
 <head>
@@ -14,11 +15,11 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="{% static 'css/bootstrap/css/bootstrap.min.css' %}" type="text/css"></link>
 
-    <!-- Custom styles for this template -->
+    <!-- Custom styles for the templates -->
     <link href="{% static 'css/bootstrap/css/carousel.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'css/main_css.css' %}" rel="stylesheet" type="text/css">
-    <!-- <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"> -->
 
+    <!-- Block for customised CSS files that are needed only in specific templates. -->
     {% block specific_css %}
     {% endblock %}
 </head>
@@ -26,33 +27,40 @@
 <body class="bg-light">
 
     <header>
+        <!-- Navbar -->
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <!-- Website name -->
             <a class="navbar-brand" href="{% url 'index' %}">LanguageSwap</a>
+            <!-- Navbar collapse button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Navbar links -->
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto">
+                    <!-- Homepage -->
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'index' %}">Home</a>
                     </li>
+                    <!-- Links available only to authenticated users -->
                     {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'myProfile' %}">My Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'contactHistory' %}">Contact History</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'auth_logout' %}?next=/LanguageSwap/">Logout</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'myProfile' %}">My Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'contactHistory' %}">Contact History</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'auth_logout' %}?next=/LanguageSwap/">Logout</a>
+                        </li>
+                    <!-- Links available to guest users -->
                     {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'auth_login' %}">Log In</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'registration_register' %}">Sign Up</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'auth_login' %}">Log In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'registration_register' %}">Sign Up</a>
+                        </li>
                     {% endif %}
                 </ul>
             </div>
@@ -62,7 +70,7 @@
     {% block body_block %} {% endblock %}
 
 
-    <!-- FOOTER -->
+    <!-- Footer -->
     <footer class="my-4 pt-3 text-right border-top">
         <ul class="list-inline mr-3">
             <li class="list-inline-item"><a href="{% url 'about' %}">About</a></li>
@@ -71,9 +79,7 @@
         </ul>
     </footer>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- Bootstrap core JavaScript & FontAwesome javascript-->
     <script src="{% static 'javascript/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static 'css/bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'css/fontawesome/svg-with-js/js/fontawesome-all.js' %}"></script>
@@ -81,6 +87,8 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="http://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js">
     </script>
+
+    <!-- Block for customized javascript files that are needed only in specific templates. -->
     {% block extra_resources_block %}
     {% endblock %}
 </body>

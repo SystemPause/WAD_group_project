@@ -1,6 +1,7 @@
 {% extends 'language_swap/base.html' %}
 {% load i18n %}
 {% load staticfiles %}
+
 {% block specific_css %}
     <link href="{% static 'css/bootstrap/css/signin.css' %}" rel="stylesheet">
 {% endblock %}
@@ -9,12 +10,16 @@
 
 {% block body_block %}
     <div class="container-fluid">
-        <form class="form-signup" method="post" action=".">
+        <form class="form-signup text-center" method="post" action=".">
             {% csrf_token %}
-            {{ form.as_p }}
-            <p>{% trans "Are you sure you want to delete your account? This action cannot be reversed." %}</p>
-            <a href="{% url 'myProfile' %}" type="button" class="btn btn-default">{% trans "Cancel" %}</a>
-            <button type="submit" class="btn btn-primary">{% trans "Delete" %}</button>
+
+            <p class="lead">{% trans "Are you sure you want to delete your account? This action cannot be reversed." %}</p>
+
+            <div class="text-center">
+                <a href="{% url 'myProfile' %}" role="button" class="btn btn-secondary">{% trans "Cancel" %}</a>
+                <button type="submit" class="btn btn-danger">{% trans "Delete" %}</button>
+            </div>
+
         </form>
     </div>
 {% endblock %}

@@ -1,6 +1,7 @@
 {% extends 'language_swap/base.html' %}
 {% load i18n %}
 {% load staticfiles %}
+
 {% block specific_css %}
     <link href="{% static 'css/bootstrap/css/signin.css' %}" rel="stylesheet">
     <link href="{% static 'css/select2.min.css' %}" rel="stylesheet"/>
@@ -10,78 +11,113 @@
 
 {% block body_block %}
     <div class="container-fluid">
+        <!-- Registration form -->
         <form class="form-signup" method="post" action=".">
             {% csrf_token %}
             <h1 class="form-signin-heading">{% trans "Sign Up" %}</h1>
+            <!-- Display form errors not related to specific fields -->
             {{ form.non_field_errors }}
+
+            <!-- Form row 1 with first name and last name -->
             <div class="form-row">
                 <div class="form-group col-md-6">
+                    <!-- First name -->
                     <label for="{{ form.first_name.id_for_label }}">First Name:</label>
                     <span id="first_name_error"></span>
-                    <input class="form-control" id="{{ form.first_name.id_for_label }}"
-                           name="{{ form.first_name.name }}" type="text" value="{{ form.data.first_name }}"
-                           required autofocus>
-                    {{ form.first_name.errors }}
+                    <input class="form-control" id="{{ form.first_name.id_for_label }}" name="{{ form.first_name.name }}" type="text" value="{{ form.data.first_name }}" required autofocus>
+                    <!-- Error messages -->
+                    {% for error in form.first_name.errors %}
+                        <div class="text-danger small">{{error}}</div>
+                    {% endfor %}
                 </div>
+
                 <div class="form-group col-md-6">
+                    <!-- Last name -->
                     <label for="{{ form.last_name.id_for_label }}">Last Name:</label>
                     <span id="last_name_error"></span>
-                    <input class="form-control" id="{{ form.last_name.id_for_label }}"
-                           name="{{ form.last_name.name }}" type="text" value="{{ form.data.last_name }}" required>
-                    {{ form.last_name.errors }}
+                    <input class="form-control" id="{{ form.last_name.id_for_label }}" name="{{ form.last_name.name }}" type="text" value="{{ form.data.last_name }}" required>
+                    <!-- Error messages -->
+                    {% for error in form.last_name.errors %}
+                        <div class="text-danger small">{{error}}</div>
+                    {% endfor %}
                 </div>
             </div>
+
+            <!-- Form row 2 with email address -->
             <div class="form-row">
                 <div class="form-group col">
+                    <!-- Email address -->
                     <label for="{{ form.email.id_for_label }}">Email:</label>
                     <span id="email_error"></span>
-                    <input class="form-control" id="{{ form.email.id_for_label }}" name="email" type="email"
-                           value="{{ form.data.email }}" required>
+                    <input class="form-control" id="{{ form.email.id_for_label }}" name="email" type="email" value="{{ form.data.email }}" required>
+                    <!-- Error messages -->
+                    {% for error in form.email.errors %}
+                        <div class="text-danger small">{{error}}</div>
+                    {% endfor %}
                 </div>
             </div>
+
+            <!-- Form row 3 with password and password confirmation -->
             <div class="form-row">
                 <div class="form-group col-md-6">
+                    <!-- Password -->
                     <label for="{{ form.password1.id_for_label }}">Password:</label>
                     <span id="pass1_error"></span>
-                    <input class="form-control" id="{{ form.password1.id_for_label }}" name="password1" type="password"
-                           value="{{ form.data.password1 }}" required>
-                    {{ form.password1.errors }}
+                    <input class="form-control" id="{{ form.password1.id_for_label }}" name="password1" type="password" value="{{ form.data.password1 }}" required>
+                    <!-- Error messages -->
+                    {% for error in form.password1.errors %}
+                        <div class="text-danger small">{{error}}</div>
+                    {% endfor %}
                 </div>
+
                 <div class="form-group col-md-6">
+                    <!-- Password confirmation -->
                     <label for="{{ form.password2.id_for_label }}">Password Confirmation:</label>
                     <span id="pass2_error"></span>
-                    <input class="form-control" id="{{ form.password2.id_for_label }}" name="password2" type="password"
-                           value="{{ form.data.password2 }}" required>
-                    {{ form.password2.errors }}
+                    <input class="form-control" id="{{ form.password2.id_for_label }}" name="password2" type="password" value="{{ form.data.password2 }}" required>
+                    <!-- Error messages -->
+                    {% for error in form.password2.errors %}
+                        <div class="text-danger small">{{error}}</div>
+                    {% endfor %}
                 </div>
             </div>
+
+            <!-- Form row 4 with user location, date of birth and gender -->
             <div class="form-row">
                 <div class="form-group col-md-4">
+                    <!-- Location -->
                     <label>City:</label>
                     <span id="city_error"></span>
-                    <input type="text" name="places" id="gMapsAutocomplete" class="form-control autocomplete-address"
-                           placeholder="" required>
+                    <input type="text" name="places" id="gMapsAutocomplete" class="form-control autocomplete-address" placeholder="" required>
                 </div>
+
                 <div class="form-group col-md-4">
+                    <!-- Date of birth -->
                     <label for="{{ form.dob.id_for_label }}">Date of Birth:</label>
                     <span id="birthday_error"></span>
-                    <input class="form-control" id="{{ form.dob.id_for_label }}" name="dob" type="date"
-                           placeholder="YYYY-MM-DD" value="{{ form.data.dob }}" required>
-                    {{ form.dob.errors }}
+                    <input class="form-control" id="{{ form.dob.id_for_label }}" name="dob" type="date" placeholder="YYYY-MM-DD" value="{{ form.data.dob }}" required>
+                    <!-- Error messages -->
+                    {% for error in form.dob.errors %}
+                        <div class="text-danger small">{{error}}</div>
+                    {% endfor %}
                 </div>
+
                 <div class="form-group col-md-4">
+                    <!-- Gender -->
                     <label for="{{ form.gender.id_for_label }}">Gender:</label><br>
                     {% for value,label in form.gender.field.choices %}
                         <div class="form-check form-check-inline" id="{{ form.gender.id_for_label }}" >
-                            <input class="form-check-input" type="radio" name="gender"
-                                   value="{{ value }}" required>
+                            <input class="form-check-input" type="radio" name="gender" value="{{ value }}" required>
                             <label class="form-check-label">{{ label }}</label>
                         </div>
                     {% endfor %}
                 </div>
             </div>
+
+            <!-- Form row 5 with Native languages and Practising languages -->
             <div class="form-row">
                 <div class="form-group col-md-6">
+                    <!-- Native languages -->
                     <label for="{{ form.speaks.id_for_label }}">Native Language(s):</label>
                     <span id="native_error"></span>
                     <select class="custom-select" name="speaks" required id="{{ form.speaks.id_for_label }}" multiple>
@@ -91,7 +127,9 @@
                         {% endfor %}
                     </select>
                 </div>
+
                 <div class="form-group col-md-6">
+                    <!-- Practising languages -->
                     <label for="{{ form.practices.id_for_label }}">Practising Language(s):</label>
                     <span id="practice_error"></span>
                     <select class="custom-select" name="practices" required id="{{ form.practices.id_for_label }}" multiple>
@@ -102,7 +140,9 @@
                     </select>
                 </div>
             </div>
+            <!-- Submit button -->
             <center><button type="submit" class="btn btn-primary btn-lg">{% trans "Sign Up" %}</button></center>
+
         </form>
     </div>
 {% endblock %}

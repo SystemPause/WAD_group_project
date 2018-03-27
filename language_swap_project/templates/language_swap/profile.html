@@ -1,75 +1,28 @@
 {% extends 'language_swap/base.html' %}
 {% load staticfiles %}
+{% load languageswap_template_tags %}
 
 {% block title_block %}My Profile{% endblock %}
 
 {% block body_block %}
-    {% if userProfile.values %}
-        {% for details in userProfile.values %}
-        <div class="container">
-            <div class="header text-center px-3 py-3 pt-md-5 pb-md-4 mx-auto">
-                <h3 class="display-4">Your Profile</h3>
-            </div>
-            <div class="row">
-                <div class="col-6 mx-auto">
-                    <div class="card box-shadow">
-                        {% if details.picture %}
-                            <img class="card-img-top img-fluid" src="{{MEDIA_URL}}{{ details.picture }}" alt="{{details.firstname}}, profile picture">
-                        {% else %}
-                           <!-- If the picture is not present, load a placeholder -->
-                            <img class="card-img-top img-fluid" src="{% static 'images/placeholder.png' %}" alt="Placeholder: profile picture missing">
-                        {% endif %}
-                        <div class="card-body">
+    <div class="container">
+        <!-- Header -->
+        <div class="header text-center px-3 py-3 pt-md-5 pb-md-4 mx-auto">
+            <h3 class="display-4">Your Profile</h3>
+        </div>
 
-                            <h3 class="card-subtitle text-muted text-capitalize text-center">{{details.firstname}} {{details.lastname}}</h3>
-                            <p class="card-text font-weight-light text-center">{{ details.age }} &#183;
-                                {% if details.gender == "female" %}
-                                    <i class="fa fa-venus"></i>
-                                {% elif details.gender == "male" %}
-                                    <i class="fa fa-mars"></i>
-                                {% else %}
-                                    <i class="fa fa-neuter"></i>
-                                {% endif %}
-                                 &#183; {% if details.score %}{{ details.score }}<i class="fa fa-star golden"></i>{% else %}<span class="font-weight-light"><em>No ratings.</em></span>{% endif %}
-                            </p>
-                        </div>
-                        <ul class="list-group list-group-flush list-unstyled">
-                            <li class="list-group-item"> <i class="fa fa-home"></i> From <span class="text-primary text-capitalize"> {{ details.city }}, {{ details.country }} </span></li>
-                            <li class="list-group-item"> <i class="fa fa-envelope"></i> Contact at <span class="text-primary">{{details.email}}</span> </li>
-                            <li class="list-group-item">  <i class="fa fa-compass"></i> What you should know about me
-                                {% if details.hobby %}
-                                    <p class="pl-4 text-justify font-weight-light ">{{ details.hobby}}</p>
-                                {% else %}
-                                    <p class="pl-4">-</p>
-                                {% endif %}
-                            </li>
-                        </ul>
-
-                        <div class="card-body row text-center">
-                            <div class="col">
-                                <h6 class="card-subtitle">Speaking</h6>
-                                <p class="card-text text-capitalize font-weight-light">
-                                    {% for slang in details.speaks %} {{ slang }} <br> {% endfor %}
-                                </p>
-                            </div>
-                            <div class="col">
-                                <h6 class="card-subtitle">Practicing</h6>
-                                <p class="text-capitalize font-weight-light">
-                                {% for plang in details.practices %} {{ plang }} <br> {% endfor %}
-                                </p>
-                            </div>
-                        </div>
-                        <div class=" card-footer text-right">
-                            <a class="btn btn-light btn-sm text-secondary" href="{% url 'edit_profile' %}" role="button">Edit</a>
-                            <a class="btn btn-light btn-sm text-secondary" href="{% url 'auth_password_change' %}" role="button">Change Password</a>
-                            <a class="btn btn-light btn-sm text-danger" href="{% url 'delete_account' %}" role="button">Delete Account</a>
-                        </div>
+        <!-- Show user details -->
+        {% if userProfile.values %}
+            {% for details in userProfile.values %}
+                <div class="row">
+                    <div class="col-md-8 col-lg-6 mx-auto px-3">
+                        {% get_cards_list details "profile" MEDIA_URL %}
                     </div>
                 </div>
-            </div>
-        </div>
-        {% endfor %}
-    {% else %}
-        No information found.
-    {% endif %}
+            {% endfor %}
+        <!-- Shows an informative message if no information is found -->
+        {% else %}
+            <p>No information found.</p>
+        {% endif %}
+    </div>
 {% endblock %}

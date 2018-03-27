@@ -1,0 +1,162 @@
+{% load staticfiles %}
+<!--
+Customised template tag for easy implementation of the user cards in the website.
+The cards have currently a different design in each of the following pages: my profile, edit profile, search results and contact history.
+To customise the templates based on the current page, a "status" variable is passed to the tag function as a parameter.
+-->
+
+<div class="card box-shadow">
+    <!-- Don't show the picture while in the edit_profile page -->
+    {% if status != "edit_profile" %}
+        {% if details.picture %}
+            <!-- Load the profile picture -->
+            <img class="card-img-top img-fluid" src="{{media}}{{ details.picture }}" alt="{{details.firstname}}, profile picture">
+        {% else %}
+            <!-- If the picture is not present, load a placeholder -->
+            <img class="card-img-top img-fluid" src="{% static 'images/placeholder.png' %}" alt="Placeholder: profile picture missing">
+        {% endif %}
+    {% endif %}
+
+    <div class="card-body">
+        <!-- User demographic details and rating -->
+        <h3 class="card-subtitle text-muted text-capitalize text-center"id="completeName-{{details.id}}">{{details.firstname}} {{details.lastname}}</h3>
+        <p class="card-text font-weight-light text-center">
+            {{ details.age }}
+            &#183; <!-- Unicode middle dot character -->
+            {% if details.gender == "female" %}
+                <i class="fa fa-venus"></i>
+            {% elif details.gender == "male" %}
+                <i class="fa fa-mars"></i>
+            {% else %}
+                <i class="fa fa-neuter"></i>
+            {% endif %}
+             &#183; <!-- Unicode middle dot character -->
+             <span id="scoreId{{ details.id}}">
+                 {% if details.score %}
+                    {{ details.score }}<i class="fa fa-star golden"></i>
+                 {% else %}
+                    <span class="font-weight-light">
+                        <em>No ratings.</em>
+                    </span>
+                 {% endif %}
+             </span>
+        </p>
+    </div>
+
+    <!-- If in the edit profile page, allows user to edit their information -->
+    {% if status == "edit_profile" %}
+    <form class="form" method="post" action="{% url 'edit_profile' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <ul class="list-group list-group-flush list-unstyled">
+            <li class="list-group-item"> <i class="fa fa-envelope"></i> Contact at <span class="text-primary">{{details.email}}</span> </li>
+
+            <!-- Modify current location -->
+            <li class="list-group-item">
+                <div class="form-group">
+                    <label><i class="fa fa-home"></i> From </label>
+                    <input class="form-control" type="text" name="places" value="{{ details.city|title }}, {{ details.country|title }}" id="gMapsAutocomplete" required/>
+                </div>
+            </li>
+
+            <!-- Modify user biography -->
+            <li class="list-group-item">
+                <div class="form-group">
+                    <label><i class="fa fa-compass"></i> What you should know about me</label>
+                    <textarea class="form-control" rows="3" type="text" name="hobby" maxlength="500" id="id_hobby">{% if details.hobby %}{{ details.hobby}}{% endif %}</textarea>
+                </div>
+            </li>
+
+            <!-- Modify profile picture -->
+            <li class="list-group-item pb-4">
+                <div class="card-text pb-1"><i class="fas fa-camera"></i> My profile picture</div>
+                <div class="custom-file">
+                    <label class="custom-file-label" for="id_picture" id="id_label_picture">Change profile picture</label>
+                    <input class="custom-file-input" name="picture" type="file" id="id_picture"/>
+                </div>
+            </li>
+        </ul>
+
+    <!-- Otherwise, show user information -->
+    {% else %}
+    <ul class="list-group list-group-flush list-unstyled">
+        <li class="list-group-item"> <i class="fa fa-home"></i> From <span class="text-primary text-capitalize"> {{ details.city }}, {{ details.country }} </span></li>
+        <li class="list-group-item"> <i class="fa fa-envelope"></i> Contact at <span class="text-primary">{{details.email}}</span> </li>
+        <li class="list-group-item"> <i class="fa fa-compass"></i> What you should know about me
+            {% if details.hobby %}
+                <p class="pl-4 text-justify font-weight-light ">{{ details.hobby}}</p>
+            {% else %}
+                <p class="pl-4">-</p>
+            {% endif %}
+        </li>
+    </ul>
+    {% endif %}
+
+    <!-- Show user languages. The edit functionality for languages is not yet implemented. -->
+    <div class="card-body row text-center">
+        <div class="col">
+            <h6 class="card-subtitle">Speaking</h6>
+            <p class="card-text text-capitalize font-weight-light">
+                {% for slang in details.speaks %} {{ slang }} <br> {% endfor %}
+            </p>
+        </div>
+        <div class="col">
+            <h6 class="card-subtitle">Practicing</h6>
+            <p class="text-capitalize font-weight-light">
+            {% for plang in details.practices %} {{ plang }} <br> {% endfor %}
+            </p>
+        </div>
+    </div>
+
+    <!-- Customized footer -->
+
+    <!-- Footer for profile page -->
+    {% if status == "profile" %}
+    <div class=" card-footer text-right">
+        <a class="btn btn-light btn-sm text-secondary" href="{% url 'edit_profile' %}" role="button">Edit</a>
+        <a class="btn btn-light btn-sm text-secondary" href="{% url 'auth_password_change' %}" role="button">Change Password</a>
+        <a class="btn btn-light btn-sm text-danger" href="{% url 'delete_account' %}" role="button">Delete Account</a>
+    </div>
+
+    <!-- Footer for contact history page -->
+    {% elif status == "contactHistory" %}
+    <div class="card-footer">
+        <span class="card-text">Rate this user:</span>
+        <form class="ratingForm" method="get">
+            <input type="hidden" value={{details.id}} name="ratedUserId">
+            <select id="invalidSelect{{details.id}}" class="custom-select mb-2"  name="rating">
+                <option {% if details.assignedScore == 0  %} selected {% endif %} disabled>You have not rated this user yet</option>
+                <option {% if details.assignedScore == 1  %} selected {% endif %} value="1">1</option>
+                <option {% if details.assignedScore == 2  %} selected {% endif %} value="2">2</option>
+                <option {% if details.assignedScore == 3  %} selected {% endif %} value="3">3</option>
+                <option {% if details.assignedScore == 4  %} selected {% endif %} value="4">4</option>
+                <option {% if details.assignedScore == 5  %} selected {% endif %} value="5">5</option>
+            </select>
+            <div class="invalid-feedback">
+                Invalid feedback
+            </div>
+            <button type="submit" class="btn btn-primary btn-block submit" value="Rate">Rate</button>
+        </form>
+    </div>
+
+    <!-- Footer for edit profile page. The form tag is closed here for the correct functionality of the Save button. -->
+    {% elif status == "edit_profile" %}
+        <div class=" card-footer text-right">
+            <a class="btn btn-light btn-sm text-danger" href="{% url 'myProfile' %}" role="button">Cancel</a>
+            <button type="submit" class="btn btn-light btn-sm text-primary">Save</button>
+        </div>
+    </form>
+
+    <!-- Footer for the search result page -->
+    {% elif status == "result" %}
+    <div class=" card-footer text-right">
+        <!-- If the user is authenticated, allows to contact the other user -->
+        {% if user.is_authenticated %}
+            <button id="userContact-{{details.id}}" class="btn btn-primary btn-block sendEmail" data-toggle="modal" data-target="#sendEmailModal">Contact</button>
+        <!-- Otherwise, link to the login page -->
+        {% else %}
+            <a href="{% url 'auth_login' %}" role="button" class="btn btn-primary btn-block">Contact</a>
+        {% endif %}
+    </div>
+    {% endif %}
+
+</div>

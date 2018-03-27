@@ -5,6 +5,7 @@
 
 {% block body_block %}
 <main role="main">
+    <!-- Top image and overlying content -->
     <div class="row overflow-hidden p-3 p-md-5 text-center bg-dark bg">
         <div class="col-md-8 p-lg-5 mx-auto my-5">
             <!--Page header-->
@@ -13,43 +14,48 @@
 
             <!--Responsive search form -->
             <form id="search_user_form" method="get" action="{%  url 'result' %}">
-              <div class="form-row">
-                <div class="col-md mb-2">
-                  <select name="spokenLanguage" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                    <option value="" disabled selected>Native language</option>
-                    {% for language in languages %}
-                        <option value="{{ language }}">{{ language | title }}</option>
-                    {% endfor %}
-                    </select>
-                </div>
-                <div class="col-md mb-2">
-                  <select name="practicingLanguage" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                    <option value="" disabled selected>Practicing language</option>
-                    {% for language in languages %}
-                        <option value="{{ language }}">{{ language | title }}</option>
-                    {% endfor %}
-                    </select>
-                </div>
-                <div class="col-md mb-2">
-                    <input type="text" name="places" id="gMapsAutocomplete" class="form-control autocomplete-address" placeholder="Select your city">
-                </div>
+                <div class="form-row">
+                    <!-- Creates a column for the native language input -->
+                    <div class="col-md mb-2">
+                        <select name="spokenLanguage" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                            <option value="" disabled selected>Native language</option>
+                            <!-- Display languages in the language list -->
+                            {% for language in languages %}
+                                <option value="{{ language }}">{{ language | title }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <!-- Creates a column for the practising language input -->
+                    <div class="col-md mb-2">
+                        <select name="practicingLanguage" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                            <option value="" disabled selected>Practicing language</option>
+                            <!-- Display languages in the language list -->
+                            {% for language in languages %}
+                                <option value="{{ language }}">{{ language | title }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <!-- Creates a column for the location input -->
+                    <div class="col-md mb-2">
+                        <input type="text" name="places" id="gMapsAutocomplete" class="form-control autocomplete-address" placeholder="Select your city">
+                    </div>
 
                 <!-- Submit button becomes a block-button at the small breakpoint. -->
-                <div class="d-none d-md-inline col-md-2 col-xl-1 mb-2">
-                  <button class="btn btn-primary" type="submit">Search</button>
-                </div>
-                <div class="d-md-none col-md-2 col-xl-1 mb-2">
-                  <button class="btn btn-primary btn-block" type="submit">Search</button>
-                </div>
+                    <div class="d-none d-md-inline col-md-2 col-xl-1 mb-2">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </div>
+                    <div class="d-md-none col-md-2 col-xl-1 mb-2">
+                        <button class="btn btn-primary btn-block" type="submit">Search</button>
+                    </div>
 
-              </div>
+                </div>
             </form>
         </div>
     </div>
 
-    <!-- Informative columns
-      ================================================== -->
-
+    <!-- Informative columns -->
     <div class="container marketing">
         <!-- Three columns of text below the carousel -->
         <div class="row pt-5">
@@ -62,6 +68,7 @@
                     Send them an email through our website and let the SWAP begin!
                 </p>
             </div>
+
             <!-- Column 2: Meet -->
             <div class="col-lg-4 pt-4">
                 <img class="rounded-circle" src="{% static 'images/meet.jpeg' %}" alt="Generic placeholder image" width="140" height="140">
@@ -71,6 +78,7 @@
                     There is nothing better than a friendly chat and a coffee to break the ice!
                 </p>
             </div>
+
             <!-- Column 3: Practice -->
             <div class="col-lg-4 pt-4">
                 <img class="rounded-circle" src="{% static 'images/practice.jpeg' %}" alt="Generic placeholder image" width="140" height="140">
@@ -83,8 +91,7 @@
         </div>
 
 
-        <!-- Present example users
-          ================================================== -->
+        <!-- Example users -->
 
         <hr class="featurette-divider">
         <!-- Example user 1 -->
