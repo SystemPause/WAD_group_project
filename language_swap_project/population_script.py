@@ -125,7 +125,7 @@ def populate():
             "hobby":""
         },
         {
-            "firstname": "Alessandro", "lastname": "Speggy", "username": "ass@gmx.com", "email": "ass@gmx.com",
+            "firstname": "Alessandro", "lastname": "Speggy", "username": "ale@gmx.com", "email": "ale@gmx.com",
             "password": "hunter123", "city": "vicenza", "country": "italy", "gender": "female", "dob": "1996-11-11",
             "speaks": ["italian", "chinese"], "practices": ["hindi", "japanese"],"image":"",
             "hobby":""
@@ -209,7 +209,7 @@ def populate():
             "hobby":""
         },
         {
-            "firstname": "Vim", "lastname": "Wandauandslfeseee", "username": "wim@gmx.com", "email": "wim@gmx.com",
+            "firstname": "Vimmy", "lastname": "Melvin", "username": "melvin@gmx.com", "email": "melvin@gmx.com",
             "password": "hunter123", "city": "glasgow", "country": "united kingdom", "gender": "other", "dob": "1988-01-01",
             "speaks": ["english", "japanese"], "practices": ["japanese", "chinese"],"image":"",
             "hobby":""
