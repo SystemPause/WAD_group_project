@@ -8,6 +8,7 @@ class MyRegistrationView(RegistrationView):
 
     def register(self, form_class):
         if form_class.is_valid():
+            # Creates new user and user profile with valid form details
             new_user = super(MyRegistrationView, self).register(form_class)
             first_name = form_class.cleaned_data['first_name']
             last_name = form_class.cleaned_data['last_name']
