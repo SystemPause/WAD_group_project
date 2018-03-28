@@ -1,0 +1,12 @@
+certifi==2018.1.18
+chardet==3.0.4
+Django==1.11.7
+django-registration-redux==1.4
+idna==2.6
+Pillow==5.0.0
+pycountry==18.2.23
+python-dateutil==2.6.1
+pytz==2018.3
+requests==2.18.4
+six==1.11.0
+urllib3==1.22
