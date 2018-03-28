@@ -4,7 +4,6 @@ Django==1.11.7
 django-registration-redux==1.4
 idna==2.6
 Pillow==5.0.0
-pycountry==18.2.23
 pytz==2018.3
 requests==2.18.4
 six==1.11.0
