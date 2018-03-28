@@ -127,14 +127,14 @@ LOGIN_URL = '/accounts/login/'
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # During development only
 # Email gmx host settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'mail.gmx.com'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'username'
+EMAIL_HOST_USER = 'languageswapproject@gmail.com'
 EMAIL_HOST_PASSWORD = 'password'
 EMAIL_USE_TLS = True
 
-DEFAULT_FROM_EMAIL = 'language.swap@gmx.com'
-SERVER_EMAIL = 'language.swap@gmx.com'
+DEFAULT_FROM_EMAIL = 'languageswapproject@gmail.com'
+SERVER_EMAIL = 'languageswapproject@gmail.com'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
