@@ -9,7 +9,7 @@
 
 ## Guide to Website
 Welcome to LanguageSwap, a web application where you can find people to exchange and practice new languages.
-In the main page, you can search for users you practices your native language and speaks the language you practice
+In the main page, you can search for users who are practicing your native language and fluently speak the language you want to practice
 in a particular city without an account. There are over 7000 languages but we have included the most commonly used 
 ones (that are available on Google Translate). For the city input, a Google Map API is used and the autocomplete 
 function should make the selection easier and to prevent and typos resulting in a smoother process.
@@ -31,7 +31,7 @@ not make the info public). Then you are able to contact the users. The contactin
 to the other user's email inbox where the message sender will be our website's email. The actual sender's information will 
 be presented in the email title.
 
-Every users you have contacted will appear on your contact history where you can rate him/her on the scale of 1 to 5. 
+All the users you have contacted will appear on your contact history where you can rate each user on a scale of 1 to 5. 
 We have made sure that once you have rated, you wont have to refresh the page to see the changes.
 
 The page is made responsive and adaptable to changes so feel free to resize your browser or access it from your phone.
