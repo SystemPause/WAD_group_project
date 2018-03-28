@@ -1,6 +1,6 @@
 # LanguageSwap 
 ## Group Project: WAD2 - University of Glasgow 2018
-## Group members: 
+## Group Members:
 
  1. Martina Cocco - 2267320C
  2. Zay Yar Tun - 2277073Z
@@ -9,7 +9,7 @@
 
 ## Guide to Website
 Welcome to LanguageSwap, a web application where you can find people to exchange and practice new languages.
-In the main page, you can search for users who are practicing your native language and fluently speak the language you want to practice
+In the main page, you can search for users who are studying your native language and fluently speak the language you want to practice
 in a particular city without an account. There are over 7000 languages but we have included the most commonly used 
 ones (that are available on Google Translate). For the city input, a Google Map API is used and the autocomplete 
 function should make the selection easier and to prevent and typos resulting in a smoother process.
