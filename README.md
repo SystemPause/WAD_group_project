@@ -14,10 +14,10 @@ in a particular city without an account. There are over 7000 languages but we ha
 ones (that are available on Google Translate). For the city input, a Google Map API is used and the autocomplete 
 function should make the selection easier and to prevent and typos resulting in a smoother process.
 
-But first, to generate sample users, a population script is given to be executed. For optimal users result,
+But first, to generate sample users, a population script is given to be executed. **For optimal users result,
 it is recommended that you input "English" as your native language, "Italian" as your practicing language and 
 "Milan, Italy" as your city. (Pretend you are an English speaker who wants to practice Italian as you are going to be 
-living in Milan). Feel free to test other inputs.
+living in Milan)**. Feel free to test other inputs.
 
 Now you got your users and in order to be able to contact these users, first create an account. The live checking 
 registration form should aid you in your account creation.
@@ -49,6 +49,7 @@ Afrikaans, Albanian, Amharic, Arabic, Armenian, Azerbaijani, Basque, Belarusian,
 *	Gmail (https://mail.google.com/)
 *	Django registration redux (https://django-registration-redux.readthedocs.io/en/latest/)
 *	Select2 (https://select2.org)
+
 For Presentation
 *	Hislide (https://hislide.io/)
 *	Carbon (https://carbon.now.sh)
