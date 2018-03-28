@@ -76,11 +76,14 @@ To customise the templates based on the current page, a "status" variable is pas
             </li>
         </ul>
 
+
     <!-- Otherwise, show user information -->
     {% else %}
     <ul class="list-group list-group-flush list-unstyled">
         <li class="list-group-item"> <i class="fa fa-home"></i> From <span class="text-primary text-capitalize"> {{ details.city }}, {{ details.country }} </span></li>
-        <li class="list-group-item"> <i class="fa fa-envelope"></i> Contact at <span class="text-primary">{{details.email}}</span> </li>
+        {% if status != "result" %}
+            <li class="list-group-item"> <i class="fa fa-envelope"></i> Contact at <span class="text-primary">{{details.email}}</span> </li>
+        {% endif %}
         <li class="list-group-item"> <i class="fa fa-compass"></i> What you should know about me
             {% if details.hobby %}
                 <p class="pl-4 text-justify font-weight-light ">{{ details.hobby}}</p>
