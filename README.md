@@ -37,14 +37,8 @@ We have made sure that once you have rated, you wont have to refresh the page to
 The page is made responsive and adaptable to changes so feel free to resize your browser or access it from your phone.
 
 ## Languages Supported
-"afrikaans","albanian","amharic","arabic","armenian","azerbaijani","basque","belarusian","bengali","bosnian","bulgarian","burmese",
-"catalan","cebuano","chichewa","chinese","corsican","croatian","czech","danish","dutch","english","esperanto","estonian","filipino","finnish",
-"french","frisian","gaelic","galician","georgian","german","greek","gujarati","haitian","hausa","hawaiian","hebrew","hindi","hmong",
-"hungarian","icelandic","igbo","indonesian","irish","italian","japanese","javanese","kannada","kazakh","khmer","korean","kurdish",
-"kyrgyz","lao","latin","latvian","lithuanian","luxembourgish","macedonian","malagasy","malay","malayalam","maltese","maori","marathi",
-"mongolian","nepali","norwegian","pashto","persian","polish","portuguese","punjabi","romanian","russian","samoan","serbian",
-"sesotho","shona","sindhi","sinhala","slovak","slovenian","somali","spanish","sundanese","swahili","swedish","tajik","tamil","telugu",
-"thai","turkish","ukrainian","urdu","uzbek","vietnamese","welsh","xhosa","yiddish","yoruba","zulu"
+Afrikaans, Albanian, Amharic, Arabic, Armenian, Azerbaijani, Basque, Belarusian, Bengali, Bosnian, Bulgarian, Burmese, Catalan, Cebuano, Chichewa, Chinese, Corsican, Croatian, Czech, Danish, Dutch, English, Esperanto, Estonian, Filipino, Finnish, French, Frisian, Gaelic, Galician, Georgian, German, Greek, Gujarati, Haitian, Hausa, Hawaiian, Hebrew, Hindi, Hmong, Hungarian, Icelandic, Igbo, Indonesian, Irish, Italian, Japanese, Javanese, Kannada, Kazakh, Khmer, Korean, Kurdish, Kyrgyz, Lao, Latin, Latvian, Lithuanian, Luxembourgish, Macedonian, Malagasy, Malay, Malayalam, Maltese, Maori, Marathi, Mongolian, Nepali, Norwegian, Pashto, Persian, Polish, Portuguese, Punjabi, Romanian, Russian, Samoan, Serbian, Sesotho, Shona, Sindhi, Sinhala, Slovak, Slovenian, Somali, Spanish, Sundanese, Swahili, Swedish, Tajik, Tamil, Telugu, Thai, Turkish, Ukrainian, Urdu, Uzbek, Vietnamese, Welsh, Xhosa, Yiddish, Yoruba, Zulu
+
 
 ## External Sources
 *	Google Map API (https://developers.google.com/maps/documentation/javascript/places-autocomplete & https://developers.google.com/maps/documentation/geocoding/intro)
