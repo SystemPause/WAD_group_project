@@ -1,5 +1,3 @@
-
-
 # LanguageSwap 
 ## Group Project: WAD2 - University of Glasgow 2018
 ## Group members: 
@@ -11,49 +9,53 @@
 
 ## Project Overview 
 
-## Coding Syle
-In this section we should add coding rules that we want follow so that we all follow the same coding standards.  
-    
- - In every template, in order to get the url we should use
- 
-    ```python
-        {% url 'show_category'}
-    ```
-## TODO List 
-Here you can divide your work as you want so that other group members can see your progress
+## External Sources
+•	Google Map API (https://developers.google.com/maps/documentation/javascript/places-autocomplete &             https://developers.google.com/maps/documentation/geocoding/intro)
+•	Bootstrap (https://getbootstrap.com/)
+•	Hislide (https://hislide.io/)
+•	Carbon (https://carbon.now.sh)
+•	Smartmockups (https://smartmockups.com/)
+•	Gmail (https://mail.google.com/)
+•	Requests (http://docs.python-requests.org/en/master/user/quickstart/)
+•	jQuery (https://jquery.com/)
+•	Font Awesome (https://fontawesome.com/)
 
- - **Dante**: Models / Population Script / Javascript / Jquery
- - **Gloria**: User authentication / unit testing
- - **Martina**: Templates / CSS
- - **Alessandro**: Views / Ajax 
- 
-## Marking Scheme
+## Guide to Website
+Welcome to LanguageSwap, a web application where you can find people to exchange and practice new languages.
+In the main page, you can search for users you practices your native language and speaks the language you practice
+in a particular city without an account. There are over 7000 languages but we have included the most commonly used 
+ones (that are available on Google Translate). For the city input, a Google Map API is used and the autocomplete 
+function should make the selection easier and to prevent and typos resulting in a smoother process.
 
-**Deployment**
-- [ ] Application is deployed via PythonAnywhere and runs from there - 2
-- [ ] Requirements file is included and contains the correct packages - 2
-- [ ] Database / migrations files not included - 1
-- [ ] Population script works and contains useful example data - 2
-- [ ] Application can be deployed on marker's own machine - 2
+But first, to generate sample users, a population script is given to be executed. For optimal users result,
+it is recommended that you input "English" as your native language, "Italian" as your practicing language and 
+"Milan, Italy" as your city. (Pretend you are an English speaker who wants to practice Italian as you are going to be 
+living in Milan). Feel free to test other inputs.
 
-**Functionality**
-- [ ] Main functionality has been implemented reflecting the design - 10
-- [ ] Application is bug-free / no error messages occur - 3
-- [ ] Application includes some Javascript / JQuery / AJAX - 5
+Now you got your users and in order to be able to contact these users, first you have to create an account. 
+The live checking registration form should aid you in your account creation.
 
-**Look and Feel**
-- [ ] Polished / refined interface, not clunky - 3
-- [x] Uses a responsive CSS framework - 3
-- [ ] If browser window size changed, is the change handled neatly? - 1
+Once you have gotten an account, you are able to view your profile which contains your main information and from the 
+profile page, you are able to edit those information, change password and if needed, delete your account. If you forgot 
+your password, there is a feature to reset it.
 
-**Code**
-- [ ] Templates inherit from base - 2
-- [ ] URLs are relative, i.e., use the {% url ..%} tag - 2
-- [ ] Code contains helper functions/classes (if required) - 2
-- [ ] Code is readable, clear and commented where appropriate - 3
-- [ ] CSS and Javascript are kept separate from templates (i.e., not inline) - 1
-- [ ] No repetition of code blocks in the views or templates - 2
-- [ ] Unit tests are included - 4
+Then you are able to contact the users. The contacting system is designed so that the message will be sent to the 
+other user's email inbox where the message sender will be our website's email. The actual sender's information will 
+be presented in the email title.
 
+Every users you have contacted will appear on your contact history where you can rate him/her on the scale of 1 to 5. 
+We have made sure that once you have rated, you wont have to refresh the page to see the changes.
+
+The page is made responsive and adaptable to changes so feel free to resize your browser or access it from your phone.
+
+## Languages Used
+"afrikaans","albanian","amharic","arabic","armenian","azerbaijani","basque","belarusian","bengali","bosnian","bulgarian","burmese",
+"catalan","cebuano","chichewa","chinese","corsican","croatian","czech","danish","dutch","english","esperanto","estonian","filipino","finnish",
+"french","frisian","gaelic","galician","georgian","german","greek","gujarati","haitian","hausa","hawaiian","hebrew","hindi","hmong",
+"hungarian","icelandic","igbo","indonesian","irish","italian","japanese","javanese","kannada","kazakh","khmer","korean","kurdish",
+"kyrgyz","lao","latin","latvian","lithuanian","luxembourgish","macedonian","malagasy","malay","malayalam","maltese","maori","marathi",
+"mongolian","nepali","norwegian","pashto","persian","polish","portuguese","punjabi","romanian","russian","samoan","serbian",
+"sesotho","shona","sindhi","sinhala","slovak","slovenian","somali","spanish","sundanese","swahili","swedish","tajik","tamil","telugu",
+"thai","turkish","ukrainian","urdu","uzbek","vietnamese","welsh","xhosa","yiddish","yoruba","zulu"
 
 
