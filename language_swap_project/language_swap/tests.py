@@ -27,6 +27,9 @@ def createProfile(user):
 class AppConfigTests(TestCase):
 
     def test_language_swap_app_config(self):
+        """
+        Ensures language_swap app is configured correctly
+        """
         self.assertEqual(LanguageSwapConfig.name, 'language_swap')
         self.assertEqual(apps.get_app_config('language_swap').name, 'language_swap')
 
@@ -172,25 +175,9 @@ class AboutViewTests(TestCase):
         response = self.client.get(reverse('about'))
         self.assertTemplateUsed(response, 'language_swap/about.html')
 
-class TeamViewTests(TestCase):
-
-    def test_ensure_about_loads(self):
-        """
-        Ensures team page loads with status code 200
-        """
-        response = self.client.get(reverse('team'))
-        self.assertEqual(response.status_code, 200)
-
-    def test_team_view_using_template(self):
-        """
-        Ensures correct template used to render team page
-        """
-        response = self.client.get(reverse('team'))
-        self.assertTemplateUsed(response, 'language_swap/team.html')
-
 class ContactViewTests(TestCase):
 
-    def test_ensure_about_loads(self):
+    def test_ensure_contact_loads(self):
         """
         Ensures contact us page loads with status code 200
         """
@@ -232,7 +219,7 @@ class ContactHistoryViewTests(TestCase):
 
     def test_contact_history_using_template(self):
         """
-        Ensures correct template us used to render contact history page
+        Ensures correct template used to render contact history page
         """
         self.client.login(username='user@test.com', password='testpassword')
         response = self.client.get(reverse('contactHistory'), {'user_id': 'user@test.com'})
@@ -347,7 +334,7 @@ class RatingViewTests(TestCase):
 
     def test_rating_loads(self):
         """
-        Ensures that rating loads with status code 200 when user is logged in and request is an ajax request
+        Ensures that rating page loads with status code 200 when user is logged in and request is an ajax request
         """
         self.client.login(username='user@test.com', password='testpassword')
         response = self.client.get('/LanguageSwap/rating/', HTTP_X_REQUESTED_WITH='XMLHttpRequest')
