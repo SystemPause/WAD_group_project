@@ -1,6 +1,6 @@
 certifi==2018.1.18
 chardet==3.0.4
-Django==1.11.7
+Django==1.11.23
 django-registration-redux==2.2
 idna==2.6
 Pillow==5.0.0
